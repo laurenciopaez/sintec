@@ -36,7 +36,9 @@ const iconMapLarge: Record<string, React.ReactNode> = {
   FileText: <FileText size={36} />,
 };
 
-function ServiceImageCarousel({ images, alt }: { images: string[]; alt: string }) {
+type ServiceImage = { src: string; description: string };
+
+function ServiceImageCarousel({ images, alt }: { images: ServiceImage[]; alt: string }) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -55,52 +57,70 @@ function ServiceImageCarousel({ images, alt }: { images: string[]; alt: string }
     );
   }
 
+  const currentImage = images[current];
+
   return (
-    <div className="mb-8 w-full h-60 lg:h-90 rounded-2xl bg-[#f5f5f7] relative overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current}
-          className="absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
-        >
-          <Image
-            src={images[current]}
-            alt={alt}
-            fill
-            className="object-contain rounded-2xl"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </motion.div>
-      </AnimatePresence>
-      {images.length > 1 && (
-        <>
-          <button
-            onClick={() => setCurrent((prev) => (prev - 1 + images.length) % images.length)}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200"
+    <div className="mb-8">
+      <div className="w-full h-60 lg:h-90 rounded-2xl bg-[#f5f5f7] relative overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
           >
-            <ChevronLeft size={18} className="text-[#297373]" />
-          </button>
-          <button
-            onClick={() => setCurrent((prev) => (prev + 1) % images.length)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200"
+            <Image
+              src={currentImage.src}
+              alt={alt}
+              fill
+              className="object-contain rounded-2xl"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </motion.div>
+        </AnimatePresence>
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={() => setCurrent((prev) => (prev - 1 + images.length) % images.length)}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200"
+            >
+              <ChevronLeft size={18} className="text-[#297373]" />
+            </button>
+            <button
+              onClick={() => setCurrent((prev) => (prev + 1) % images.length)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200"
+            >
+              <ChevronRight size={18} className="text-[#297373]" />
+            </button>
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === current ? "bg-[#297373] w-4" : "bg-[#297373]/30 w-1.5"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      {currentImage.description && (
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={current}
+            className="mt-2 text-center text-xs text-[#6e6e73] italic"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
           >
-            <ChevronRight size={18} className="text-[#297373]" />
-          </button>
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-            {images.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === current ? "bg-[#297373] w-4" : "bg-[#297373]/30 w-1.5"
-                }`}
-              />
-            ))}
-          </div>
-        </>
+            {currentImage.description}
+          </motion.p>
+        </AnimatePresence>
       )}
     </div>
   );
