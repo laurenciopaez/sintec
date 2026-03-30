@@ -21,6 +21,7 @@ interface AnimatedSectionProps {
   once?: boolean;
   threshold?: number;
   as?: React.ElementType;
+  id?: string;
 }
 
 const animationVariants: Record<AnimationVariant, Variants> = {
@@ -63,6 +64,7 @@ export function AnimatedSection({
   once = true,
   threshold = 0.1,
   as: Component = "div",
+  id,
 }: AnimatedSectionProps) {
   const ref = React.useRef<HTMLElement>(null);
   const isInView = useInView(ref, {
@@ -75,6 +77,7 @@ export function AnimatedSection({
   return (
     <MotionComponent
       ref={ref}
+      id={id}
       className={className}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}

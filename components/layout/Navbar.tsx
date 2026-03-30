@@ -44,17 +44,17 @@ export function Navbar() {
       : "bg-transparent";
 
   const logoColor =
-    scrolled || !isHome ? "text-[#1d1d1f]" : "text-white";
+    scrolled || !isHome ? "text-[#001514]" : "text-white";
   const linkColor =
     scrolled || !isHome
-      ? "text-[#1d1d1f] hover:text-[#0066cc]"
+      ? "text-[#001514] hover:text-[#297373]"
       : "text-white/90 hover:text-white";
   const ctaBg =
     scrolled || !isHome
-      ? "bg-[#0066cc] text-white hover:bg-[#004499]"
-      : "bg-white text-[#1d1d1f] hover:bg-white/90";
+      ? "bg-[#297373] text-white hover:bg-[#0A1045]"
+      : "bg-white text-[#001514] hover:bg-white/90";
   const menuIconColor =
-    scrolled || !isHome ? "text-[#1d1d1f]" : "text-white";
+    scrolled || !isHome ? "text-[#001514]" : "text-white";
 
   return (
     <>
@@ -77,8 +77,8 @@ export function Navbar() {
                 <span
                   className={`text-2xl font-light tracking-tight transition-colors duration-300 ml-0.5 ${
                     scrolled || !isHome
-                      ? "text-[#0066cc]"
-                      : "text-[#60aaff]"
+                      ? "text-[#297373]"
+                      : "text-[#5aacac]"
                   }`}
                 >
                   S.A.
@@ -99,19 +99,19 @@ export function Navbar() {
                     className={`text-sm font-medium transition-all duration-200 relative py-1 group ${linkColor} ${
                       isActive
                         ? scrolled || !isHome
-                          ? "text-[#0066cc]"
+                          ? "text-[#297373]"
                           : "text-white"
                         : ""
                     }`}
                   >
                     {link.label}
                     <span
-                      className={`absolute bottom-0 left-0 h-0.5 bg-[#0066cc] transition-all duration-200 ${
+                      className={`absolute bottom-0 left-0 h-0.5 bg-[#297373] transition-all duration-200 ${
                         isActive ? "w-full" : "w-0 group-hover:w-full"
                       } ${
                         !scrolled && isHome
                           ? "bg-white"
-                          : "bg-[#0066cc]"
+                          : "bg-[#297373]"
                       }`}
                     />
                   </Link>
@@ -158,16 +158,16 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center"
               >
-                <span className="text-2xl font-bold text-[#1d1d1f]">
+                <span className="text-2xl font-bold text-[#001514]">
                   {COMPANY_SHORT_NAME}
                 </span>
-                <span className="text-2xl font-light text-[#0066cc] ml-0.5">
+                <span className="text-2xl font-light text-[#297373] ml-0.5">
                   S.A.
                 </span>
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="p-2 text-[#1d1d1f]"
+                className="p-2 text-[#001514]"
                 aria-label="Cerrar menú"
               >
                 <X size={24} />
@@ -192,8 +192,8 @@ export function Navbar() {
                       onClick={() => setMobileOpen(false)}
                       className={`block text-2xl font-medium py-3 border-b border-[#d2d2d7]/30 transition-colors duration-200 ${
                         isActive
-                          ? "text-[#0066cc]"
-                          : "text-[#1d1d1f] hover:text-[#0066cc]"
+                          ? "text-[#297373]"
+                          : "text-[#001514] hover:text-[#297373]"
                       }`}
                     >
                       {link.label}
@@ -211,7 +211,7 @@ export function Navbar() {
                 <Link
                   href="/#contacto"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full text-center bg-[#0066cc] text-white text-lg font-semibold py-4 rounded-xl hover:bg-[#004499] transition-colors duration-200"
+                  className="block w-full text-center bg-[#297373] text-white text-lg font-semibold py-4 rounded-xl hover:bg-[#0A1045] transition-colors duration-200"
                 >
                   Contactar
                 </Link>

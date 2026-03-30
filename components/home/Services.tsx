@@ -44,13 +44,13 @@ export function Services() {
         {/* Section Header */}
         <AnimatedSection variant="slideUp" className="text-center mb-16 lg:mb-20">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-px w-8 bg-[#0066cc]" />
-            <span className="text-[#0066cc] text-sm font-medium tracking-widest uppercase">
+            <div className="h-px w-8 bg-[#297373]" />
+            <span className="text-[#297373] text-sm font-medium tracking-widest uppercase">
               Lo que hacemos
             </span>
-            <div className="h-px w-8 bg-[#0066cc]" />
+            <div className="h-px w-8 bg-[#297373]" />
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#1d1d1f] mb-6">
+          <h2 className="text-4xl sm:text-5xl font-bold text-[#001514] mb-6">
             Nuestros Servicios
           </h2>
           <p className="text-[#6e6e73] text-lg max-w-2xl mx-auto leading-relaxed">
@@ -76,7 +76,7 @@ export function Services() {
         <AnimatedSection variant="slideUp" delay={0.3} className="text-center mt-16">
           <Link
             href="/soluciones"
-            className="group inline-flex items-center gap-2 text-[#0066cc] font-semibold hover:gap-3 transition-all duration-200"
+            className="group inline-flex items-center gap-2 text-[#297373] font-semibold hover:gap-3 transition-all duration-200"
           >
             Ver todas las soluciones en detalle
             <ArrowRight
@@ -98,18 +98,18 @@ interface ServiceCardProps {
 function ServiceCard({ service }: ServiceCardProps) {
   return (
     <motion.div
-      className="group bg-white rounded-2xl p-8 border border-[#d2d2d7]/50 hover:border-[#0066cc]/30 hover:shadow-xl hover:shadow-[#0066cc]/5 transition-all duration-300 cursor-pointer"
+      className="group bg-white rounded-2xl p-8 border border-[#d2d2d7]/50 hover:border-[#297373]/30 hover:shadow-xl hover:shadow-[#297373]/5 transition-all duration-300 cursor-pointer"
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ duration: 0.2 }}
     >
       <Link href={`/soluciones#${service.slug}`} className="block h-full">
         {/* Icon */}
-        <div className="w-14 h-14 rounded-xl bg-[#0066cc]/10 flex items-center justify-center text-[#0066cc] mb-6 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
+        <div className="w-14 h-14 rounded-xl bg-[#297373]/10 flex items-center justify-center text-[#297373] mb-6 group-hover:bg-[#297373] group-hover:text-white transition-all duration-300">
           {iconMap[service.icon]}
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-semibold text-[#1d1d1f] mb-3 group-hover:text-[#0066cc] transition-colors duration-200">
+        <h3 className="text-xl font-semibold text-[#001514] mb-3 group-hover:text-[#297373] transition-colors duration-200">
           {service.title}
         </h3>
 
@@ -119,7 +119,7 @@ function ServiceCard({ service }: ServiceCardProps) {
         </p>
 
         {/* CTA link */}
-        <div className="flex items-center gap-2 text-[#0066cc] text-sm font-medium group/link">
+        <div className="flex items-center gap-2 text-[#297373] text-sm font-medium group/link">
           <span>Conocer más</span>
           <ArrowRight
             size={14}

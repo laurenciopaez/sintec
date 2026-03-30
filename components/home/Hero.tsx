@@ -19,16 +19,16 @@ export function Hero() {
   if (!mounted) return null;
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#1d1d1f]">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#001514]">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#000000] via-[#1d1d1f] to-[#0a1628]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#001514] via-[#001514] to-[#0A1045]" />
 
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 hero-grid-bg opacity-40" />
 
       {/* Blue accent glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0066cc]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#0066cc]/5 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#297373]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#297373]/5 rounded-full blur-2xl pointer-events-none" />
 
       {/* Decorative lines */}
       <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
@@ -43,11 +43,11 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex items-center justify-center gap-3 mb-8"
         >
-          <div className="h-px w-12 bg-[#0066cc]" />
-          <span className="text-[#3399ff] text-sm font-medium tracking-widest uppercase">
+          <div className="h-px w-12 bg-[#297373]" />
+          <span className="text-[#A33400] text-sm font-medium tracking-widest uppercase">
             Ingeniería de Integridad Industrial
           </span>
-          <div className="h-px w-12 bg-[#0066cc]" />
+          <div className="h-px w-12 bg-[#297373]" />
         </motion.div>
 
         {/* Main Headline */}
@@ -56,7 +56,7 @@ export function Hero() {
             {words.map((word, wordIndex) => (
               <span key={wordIndex} className="inline-block overflow-hidden mr-4 last:mr-0">
                 <motion.span
-                  className={`inline-block ${wordIndex === 1 ? "text-[#0066cc]" : ""}`}
+                  className={`inline-block ${wordIndex === 1 ? "text-[#297373]" : ""}`}
                   initial={{ y: "100%" }}
                   animate={{ y: "0%" }}
                   transition={{
@@ -100,7 +100,7 @@ export function Hero() {
         >
           <Link
             href="/soluciones"
-            className="group inline-flex items-center gap-3 bg-[#0066cc] hover:bg-[#004499] text-white px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 shadow-lg shadow-[#0066cc]/20 hover:shadow-[#0066cc]/40"
+            className="group inline-flex items-center gap-3 bg-[#297373] hover:bg-[#0A1045] text-white px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 shadow-lg shadow-[#297373]/20 hover:shadow-[#297373]/40"
           >
             Conocer Soluciones
             <ArrowRight

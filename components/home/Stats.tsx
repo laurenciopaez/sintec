@@ -87,22 +87,22 @@ export function Stats() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section className="py-24 lg:py-32 bg-[#1d1d1f] relative overflow-hidden" id="stats">
+    <section className="py-24 lg:py-32 bg-[#001514] relative overflow-hidden" id="stats">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1d1d1f] via-[#0a1628] to-[#1d1d1f]" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0066cc]/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0066cc]/30 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0066cc]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#001514] via-[#0A1045] to-[#001514]" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#297373]/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#297373]/30 to-transparent" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#297373]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <AnimatedSection variant="slideUp" className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-px w-8 bg-[#3399ff]" />
-            <span className="text-[#3399ff] text-sm font-medium tracking-widest uppercase">
+            <div className="h-px w-8 bg-[#A33400]" />
+            <span className="text-[#A33400] text-sm font-medium tracking-widest uppercase">
               Nuestra trayectoria
             </span>
-            <div className="h-px w-8 bg-[#3399ff]" />
+            <div className="h-px w-8 bg-[#A33400]" />
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             Más de dos décadas de experiencia

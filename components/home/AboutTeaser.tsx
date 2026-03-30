@@ -41,12 +41,12 @@ export function AboutTeaser() {
             {/* Main card */}
             <div className="relative">
               {/* Background decoration */}
-              <div className="absolute -top-4 -left-4 w-full h-full bg-[#0066cc]/5 rounded-3xl" />
+              <div className="absolute -top-4 -left-4 w-full h-full bg-[#297373]/5 rounded-3xl" />
               <div className="absolute -bottom-4 -right-4 w-full h-full bg-[#f5f5f7] rounded-3xl" />
 
               {/* Main content block */}
-              <div className="relative bg-[#1d1d1f] rounded-3xl p-8 lg:p-10">
-                <div className="text-[#3399ff] text-sm font-medium tracking-widest uppercase mb-6">
+              <div className="relative bg-[#001514] rounded-3xl p-8 lg:p-10">
+                <div className="text-[#A33400] text-sm font-medium tracking-widest uppercase mb-6">
                   Quiénes somos
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">
@@ -100,10 +100,10 @@ export function AboutTeaser() {
                     animationTimingFunction: "ease-in-out",
                   }}
                 >
-                  <div className="w-8 h-8 rounded-lg bg-[#0066cc]/10 flex items-center justify-center text-[#0066cc] mb-2">
+                  <div className="w-8 h-8 rounded-lg bg-[#297373]/10 flex items-center justify-center text-[#297373] mb-2">
                     {item.icon}
                   </div>
-                  <div className="text-xs font-semibold text-[#1d1d1f] mb-1">
+                  <div className="text-xs font-semibold text-[#001514] mb-1">
                     {item.title}
                   </div>
                   <div className="text-xs text-[#6e6e73]">
@@ -117,13 +117,13 @@ export function AboutTeaser() {
           {/* Right: Text content */}
           <AnimatedSection variant="slideLeft" className="order-1 lg:order-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-8 bg-[#0066cc]" />
-              <span className="text-[#0066cc] text-sm font-medium tracking-widest uppercase">
+              <div className="h-px w-8 bg-[#297373]" />
+              <span className="text-[#297373] text-sm font-medium tracking-widest uppercase">
                 Sobre nosotros
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl font-bold text-[#1d1d1f] mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-bold text-[#001514] mb-6 leading-tight">
               Ingeniería con propósito y precisión
             </h2>
 
@@ -147,9 +147,9 @@ export function AboutTeaser() {
                 >
                   <CheckCircle
                     size={20}
-                    className="text-[#0066cc] shrink-0 mt-0.5"
+                    className="text-[#297373] shrink-0 mt-0.5"
                   />
-                  <span className="text-[#1d1d1f] text-base">{point}</span>
+                  <span className="text-[#001514] text-base">{point}</span>
                 </motion.div>
               ))}
             </div>
@@ -157,7 +157,7 @@ export function AboutTeaser() {
             {/* CTA */}
             <Link
               href="/quienes-somos"
-              className="group inline-flex items-center gap-3 bg-[#0066cc] hover:bg-[#004499] text-white px-7 py-3.5 rounded-xl font-semibold text-base transition-all duration-200"
+              className="group inline-flex items-center gap-3 bg-[#297373] hover:bg-[#0A1045] text-white px-7 py-3.5 rounded-xl font-semibold text-base transition-all duration-200"
             >
               Conocer más sobre nosotros
               <ArrowRight

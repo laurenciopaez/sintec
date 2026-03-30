@@ -39,19 +39,19 @@ export default function SolucionesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-[#1d1d1f] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#000000] via-[#1d1d1f] to-[#0a1628]" />
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-[#001514] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#001514] via-[#001514] to-[#0A1045]" />
         <div className="absolute inset-0 hero-grid-bg opacity-30" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-[#0066cc]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-[#297373]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection variant="slideUp">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="h-px w-8 bg-[#3399ff]" />
-              <span className="text-[#3399ff] text-sm font-medium tracking-widest uppercase">
+              <div className="h-px w-8 bg-[#A33400]" />
+              <span className="text-[#A33400] text-sm font-medium tracking-widest uppercase">
                 Servicios especializados
               </span>
-              <div className="h-px w-8 bg-[#3399ff]" />
+              <div className="h-px w-8 bg-[#A33400]" />
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
               {content.hero.title}
@@ -68,7 +68,7 @@ export default function SolucionesPage() {
                 <a
                   key={service.id}
                   href={`#${service.slug}`}
-                  className="px-4 py-2 rounded-full border border-white/20 hover:border-[#0066cc] hover:bg-[#0066cc] text-white/70 hover:text-white text-sm transition-all duration-200"
+                  className="px-4 py-2 rounded-full border border-white/20 hover:border-[#297373] hover:bg-[#297373] text-white/70 hover:text-white text-sm transition-all duration-200"
                 >
                   {service.title}
                 </a>
@@ -82,7 +82,7 @@ export default function SolucionesPage() {
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection variant="slideUp">
-            <h2 className="text-3xl font-bold text-[#1d1d1f] mb-4">
+            <h2 className="text-3xl font-bold text-[#001514] mb-4">
               {content.intro.title}
             </h2>
             <p className="text-[#6e6e73] text-lg leading-relaxed">
@@ -120,14 +120,14 @@ export default function SolucionesPage() {
                     >
                       {/* Service number + icon */}
                       <div className="flex items-center gap-4 mb-6">
-                        <div className="w-16 h-16 rounded-2xl bg-[#0066cc] flex items-center justify-center text-white">
+                        <div className="w-16 h-16 rounded-2xl bg-[#297373] flex items-center justify-center text-white">
                           {iconMap[service.icon]}
                         </div>
                         <div>
                           <span className="text-xs text-[#6e6e73] uppercase tracking-widest font-medium">
                             Servicio 0{index + 1}
                           </span>
-                          <h2 className="text-2xl font-bold text-[#1d1d1f] mt-0.5">
+                          <h2 className="text-2xl font-bold text-[#001514] mt-0.5">
                             {service.title}
                           </h2>
                         </div>
@@ -146,9 +146,9 @@ export default function SolucionesPage() {
                           >
                             <CheckCircle
                               size={18}
-                              className="text-[#0066cc] shrink-0"
+                              className="text-[#297373] shrink-0"
                             />
-                            <span className="text-[#1d1d1f] text-sm">
+                            <span className="text-[#001514] text-sm">
                               {feature}
                             </span>
                           </div>
@@ -158,7 +158,7 @@ export default function SolucionesPage() {
                       {/* CTA */}
                       <Link
                         href="/#contacto"
-                        className="group inline-flex items-center gap-2 text-[#0066cc] font-semibold hover:gap-3 transition-all duration-200"
+                        className="group inline-flex items-center gap-2 text-[#297373] font-semibold hover:gap-3 transition-all duration-200"
                       >
                         Consultar sobre este servicio
                         <ArrowRight
@@ -172,11 +172,11 @@ export default function SolucionesPage() {
                     <div
                       className={`${
                         isEven ? "order-2" : "order-2 lg:order-1"
-                      } bg-gradient-to-br from-[#1d1d1f] to-[#0a1628] p-8 lg:p-12 flex flex-col justify-center min-h-[300px] lg:min-h-0 relative overflow-hidden`}
+                      } bg-gradient-to-br from-[#001514] to-[#0A1045] p-8 lg:p-12 flex flex-col justify-center min-h-[300px] lg:min-h-0 relative overflow-hidden`}
                     >
                       {/* Background decoration */}
                       <div className="absolute inset-0 hero-grid-bg opacity-20" />
-                      <div className="absolute top-0 right-0 w-64 h-64 bg-[#0066cc]/10 rounded-full blur-3xl" />
+                      <div className="absolute top-0 right-0 w-64 h-64 bg-[#297373]/10 rounded-full blur-3xl" />
 
                       <div className="relative">
                         {/* Large icon backdrop */}
@@ -229,7 +229,7 @@ export default function SolucionesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-28 bg-[#0066cc] relative overflow-hidden">
+      <section className="py-20 lg:py-28 bg-[#297373] relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 hero-grid-bg opacity-10" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/5 rounded-full blur-3xl pointer-events-none" />
@@ -244,7 +244,7 @@ export default function SolucionesPage() {
             </p>
             <Link
               href="/#contacto"
-              className="inline-flex items-center gap-3 bg-white text-[#0066cc] hover:bg-white/90 px-8 py-4 rounded-xl font-bold text-base transition-all duration-200 shadow-xl"
+              className="inline-flex items-center gap-3 bg-white text-[#297373] hover:bg-white/90 px-8 py-4 rounded-xl font-bold text-base transition-all duration-200 shadow-xl"
             >
               {content.cta.button}
               <ArrowRight size={18} />

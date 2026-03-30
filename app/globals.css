@@ -3,12 +3,12 @@
 @theme {
   --color-white: #ffffff;
   --color-off-white: #f5f5f7;
-  --color-dark: #1d1d1f;
+  --color-dark: #001514;
   --color-gray: #6e6e73;
-  --color-blue: #0066cc;
-  --color-blue-dark: #004499;
-  --color-blue-light: #3399ff;
-  --color-black: #000000;
+  --color-blue: #297373;
+  --color-blue-dark: #0A1045;
+  --color-blue-light: #A33400;
+  --color-black: #001514;
   --color-border: #d2d2d7;
   --color-surface: #fbfbfd;
 
@@ -114,13 +114,13 @@ html {
 
 body {
   background-color: #ffffff;
-  color: #1d1d1f;
+  color: #001514;
   font-family: var(--font-family-sans);
   overflow-x: hidden;
 }
 
 ::selection {
-  background-color: #0066cc;
+  background-color: #297373;
   color: #ffffff;
 }
 
@@ -138,11 +138,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1d1d1f;
+  background: #001514;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #0066cc 0%, #3399ff 100%);
+  background: linear-gradient(135deg, #297373 0%, #A33400 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

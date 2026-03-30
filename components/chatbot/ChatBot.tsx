@@ -71,7 +71,7 @@ export function ChatBot() {
             style={{ maxHeight: "calc(100vh - 120px)" }}
           >
             {/* Header */}
-            <div className="bg-gradient-to-br from-[#0066cc] to-[#004499] p-5 flex items-start justify-between">
+            <div className="bg-gradient-to-br from-[#297373] to-[#0A1045] p-5 flex items-start justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                   <MessageCircle size={20} className="text-white" />
@@ -115,11 +115,11 @@ export function ChatBot() {
                   >
                     {/* Greeting */}
                     <div className="flex gap-3 mb-5">
-                      <div className="w-8 h-8 rounded-full bg-[#0066cc]/10 flex items-center justify-center shrink-0 mt-1">
-                        <MessageCircle size={16} className="text-[#0066cc]" />
+                      <div className="w-8 h-8 rounded-full bg-[#297373]/10 flex items-center justify-center shrink-0 mt-1">
+                        <MessageCircle size={16} className="text-[#297373]" />
                       </div>
                       <div className="bg-[#f5f5f7] rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
-                        <p className="text-sm text-[#1d1d1f] leading-relaxed">
+                        <p className="text-sm text-[#001514] leading-relaxed">
                           ¡Hola! Soy el asistente de <strong>SINTEC S.A.</strong>{" "}
                           ¿En qué puedo ayudarle hoy?
                         </p>
@@ -136,7 +136,7 @@ export function ChatBot() {
                           <motion.button
                             key={faq.id}
                             onClick={() => handleFaqSelect(faq)}
-                            className="w-full text-left px-4 py-3 rounded-xl bg-[#f5f5f7] hover:bg-[#0066cc]/10 hover:text-[#0066cc] border border-transparent hover:border-[#0066cc]/20 text-sm text-[#1d1d1f] transition-all duration-150 cursor-pointer"
+                            className="w-full text-left px-4 py-3 rounded-xl bg-[#f5f5f7] hover:bg-[#297373]/10 hover:text-[#297373] border border-transparent hover:border-[#297373]/20 text-sm text-[#001514] transition-all duration-150 cursor-pointer"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.05 + 0.1 }}
@@ -161,7 +161,7 @@ export function ChatBot() {
                   >
                     {/* User question bubble */}
                     <div className="flex justify-end mb-4">
-                      <div className="bg-[#0066cc] text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]">
+                      <div className="bg-[#297373] text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]">
                         <p className="text-sm leading-relaxed">
                           {selectedFaq.question}
                         </p>
@@ -170,11 +170,11 @@ export function ChatBot() {
 
                     {/* Bot answer bubble */}
                     <div className="flex gap-3 mb-5">
-                      <div className="w-8 h-8 rounded-full bg-[#0066cc]/10 flex items-center justify-center shrink-0 mt-1">
-                        <MessageCircle size={16} className="text-[#0066cc]" />
+                      <div className="w-8 h-8 rounded-full bg-[#297373]/10 flex items-center justify-center shrink-0 mt-1">
+                        <MessageCircle size={16} className="text-[#297373]" />
                       </div>
                       <div className="bg-[#f5f5f7] rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
-                        <p className="text-sm text-[#1d1d1f] leading-relaxed">
+                        <p className="text-sm text-[#001514] leading-relaxed">
                           {selectedFaq.answer}
                         </p>
                       </div>
@@ -186,7 +186,7 @@ export function ChatBot() {
                       <Link
                         href={selectedFaq.cta.href}
                         onClick={handleClose}
-                        className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#004499] text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
+                        className="flex items-center gap-2 bg-[#297373] hover:bg-[#0A1045] text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
                       >
                         {selectedFaq.cta.label}
                         <ExternalLink size={13} />
@@ -196,7 +196,7 @@ export function ChatBot() {
                     {/* Back button */}
                     <button
                       onClick={handleBack}
-                      className="flex items-center gap-2 text-[#6e6e73] hover:text-[#0066cc] text-sm transition-colors duration-200 pl-11 cursor-pointer"
+                      className="flex items-center gap-2 text-[#6e6e73] hover:text-[#297373] text-sm transition-colors duration-200 pl-11 cursor-pointer"
                     >
                       <ArrowLeft size={14} />
                       Ver otras preguntas
@@ -216,7 +216,7 @@ export function ChatBot() {
                 <Link
                   href="/#contacto"
                   onClick={handleClose}
-                  className="w-10 h-10 rounded-xl bg-[#0066cc] hover:bg-[#004499] flex items-center justify-center text-white transition-colors duration-200 shrink-0"
+                  className="w-10 h-10 rounded-xl bg-[#297373] hover:bg-[#0A1045] flex items-center justify-center text-white transition-colors duration-200 shrink-0"
                   aria-label="Ir a contacto"
                 >
                   <Send size={16} />
@@ -234,12 +234,12 @@ export function ChatBot() {
       <div className="relative">
         {/* Pulse ring */}
         {showPulse && !isOpen && (
-          <span className="absolute inset-0 rounded-full bg-[#0066cc] animate-ping opacity-30" />
+          <span className="absolute inset-0 rounded-full bg-[#297373] animate-ping opacity-30" />
         )}
 
         <motion.button
           onClick={isOpen ? handleClose : handleOpen}
-          className="relative w-14 h-14 bg-[#0066cc] hover:bg-[#004499] rounded-full flex items-center justify-center text-white shadow-lg shadow-[#0066cc]/30 hover:shadow-[#0066cc]/50 transition-all duration-200 cursor-pointer"
+          className="relative w-14 h-14 bg-[#297373] hover:bg-[#0A1045] rounded-full flex items-center justify-center text-white shadow-lg shadow-[#297373]/30 hover:shadow-[#297373]/50 transition-all duration-200 cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}

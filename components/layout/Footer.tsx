@@ -15,7 +15,7 @@ const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <footer className="bg-[#1d1d1f] text-white">
+    <footer className="bg-[#001514] text-white">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -26,7 +26,7 @@ export function Footer() {
                 <span className="text-2xl font-bold text-white">
                   {COMPANY_SHORT_NAME}
                 </span>
-                <span className="text-2xl font-light text-[#3399ff] ml-0.5">
+                <span className="text-2xl font-light text-[#A33400] ml-0.5">
                   S.A.
                 </span>
               </div>
@@ -41,7 +41,7 @@ export function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#6e6e73] hover:text-white hover:bg-[#0066cc] hover:border-[#0066cc] transition-all duration-200"
+                className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#6e6e73] hover:text-white hover:bg-[#297373] hover:border-[#297373] transition-all duration-200"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={18} />
@@ -118,8 +118,8 @@ export function Footer() {
                   href={`mailto:${COMPANY_EMAIL}`}
                   className="flex items-start gap-3 text-[#6e6e73] hover:text-white transition-colors duration-200 group"
                 >
-                  <span className="w-8 h-8 rounded-lg bg-[#0066cc]/10 flex items-center justify-center shrink-0 group-hover:bg-[#0066cc]/20 transition-colors duration-200">
-                    <Mail size={15} className="text-[#3399ff]" />
+                  <span className="w-8 h-8 rounded-lg bg-[#297373]/10 flex items-center justify-center shrink-0 group-hover:bg-[#297373]/20 transition-colors duration-200">
+                    <Mail size={15} className="text-[#A33400]" />
                   </span>
                   <div>
                     <p className="text-xs text-[#6e6e73] mb-0.5">Email</p>
@@ -132,8 +132,8 @@ export function Footer() {
                   href={`tel:${COMPANY_PHONE.replace(/\s/g, "")}`}
                   className="flex items-start gap-3 text-[#6e6e73] hover:text-white transition-colors duration-200 group"
                 >
-                  <span className="w-8 h-8 rounded-lg bg-[#0066cc]/10 flex items-center justify-center shrink-0 group-hover:bg-[#0066cc]/20 transition-colors duration-200">
-                    <Phone size={15} className="text-[#3399ff]" />
+                  <span className="w-8 h-8 rounded-lg bg-[#297373]/10 flex items-center justify-center shrink-0 group-hover:bg-[#297373]/20 transition-colors duration-200">
+                    <Phone size={15} className="text-[#A33400]" />
                   </span>
                   <div>
                     <p className="text-xs text-[#6e6e73] mb-0.5">Teléfono</p>
@@ -143,8 +143,8 @@ export function Footer() {
               </li>
               <li>
                 <div className="flex items-start gap-3 text-[#6e6e73]">
-                  <span className="w-8 h-8 rounded-lg bg-[#0066cc]/10 flex items-center justify-center shrink-0">
-                    <MapPin size={15} className="text-[#3399ff]" />
+                  <span className="w-8 h-8 rounded-lg bg-[#297373]/10 flex items-center justify-center shrink-0">
+                    <MapPin size={15} className="text-[#A33400]" />
                   </span>
                   <div>
                     <p className="text-xs text-[#6e6e73] mb-0.5">Ubicación</p>

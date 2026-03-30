@@ -23,13 +23,13 @@ interface ButtonProps {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-[#0066cc] text-white hover:bg-[#004499] active:bg-[#003377] shadow-sm hover:shadow-md",
+    "bg-[#297373] text-white hover:bg-[#0A1045] active:bg-[#003377] shadow-sm hover:shadow-md",
   secondary:
-    "bg-[#1d1d1f] text-white hover:bg-[#3d3d3f] active:bg-[#2d2d2f] shadow-sm hover:shadow-md",
+    "bg-[#001514] text-white hover:bg-[#3d3d3f] active:bg-[#2d2d2f] shadow-sm hover:shadow-md",
   ghost:
-    "bg-transparent text-[#0066cc] hover:bg-[#0066cc]/10 active:bg-[#0066cc]/20",
+    "bg-transparent text-[#297373] hover:bg-[#297373]/10 active:bg-[#297373]/20",
   outline:
-    "bg-transparent border border-[#0066cc] text-[#0066cc] hover:bg-[#0066cc] hover:text-white",
+    "bg-transparent border border-[#297373] text-[#297373] hover:bg-[#297373] hover:text-white",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -52,7 +52,7 @@ export function Button({
   iconPosition = "right",
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066cc] focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
+    "inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#297373] focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
   const classes = [
     baseClasses,

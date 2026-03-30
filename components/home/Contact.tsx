@@ -82,10 +82,10 @@ export function Contact() {
   };
 
   const inputClasses = (field: keyof FormState) =>
-    `w-full px-4 py-3 bg-[#f5f5f7] border rounded-xl text-[#1d1d1f] placeholder-[#6e6e73] focus:outline-none focus:ring-2 focus:bg-white transition-all duration-200 text-sm ${
+    `w-full px-4 py-3 bg-[#f5f5f7] border rounded-xl text-[#001514] placeholder-[#6e6e73] focus:outline-none focus:ring-2 focus:bg-white transition-all duration-200 text-sm ${
       errors[field]
         ? "border-red-400 focus:ring-red-200"
-        : "border-[#d2d2d7] focus:ring-[#0066cc]/30 focus:border-[#0066cc]"
+        : "border-[#d2d2d7] focus:ring-[#297373]/30 focus:border-[#297373]"
     }`;
 
   return (
@@ -94,13 +94,13 @@ export function Contact() {
         {/* Section Header */}
         <AnimatedSection variant="slideUp" className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-px w-8 bg-[#0066cc]" />
-            <span className="text-[#0066cc] text-sm font-medium tracking-widest uppercase">
+            <div className="h-px w-8 bg-[#297373]" />
+            <span className="text-[#297373] text-sm font-medium tracking-widest uppercase">
               Contacto
             </span>
-            <div className="h-px w-8 bg-[#0066cc]" />
+            <div className="h-px w-8 bg-[#297373]" />
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#1d1d1f] mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold text-[#001514] mb-4">
             Hablemos de su proyecto
           </h2>
           <p className="text-[#6e6e73] text-lg max-w-xl mx-auto">
@@ -136,9 +136,9 @@ export function Contact() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-[#d2d2d7]/50 hover:border-[#0066cc]/30 hover:shadow-md transition-all duration-200"
+                  className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-[#d2d2d7]/50 hover:border-[#297373]/30 hover:shadow-md transition-all duration-200"
                 >
-                  <div className="w-11 h-11 rounded-xl bg-[#0066cc]/10 flex items-center justify-center text-[#0066cc] shrink-0">
+                  <div className="w-11 h-11 rounded-xl bg-[#297373]/10 flex items-center justify-center text-[#297373] shrink-0">
                     {item.icon}
                   </div>
                   <div>
@@ -148,12 +148,12 @@ export function Contact() {
                     {item.href ? (
                       <a
                         href={item.href}
-                        className="text-[#1d1d1f] font-medium hover:text-[#0066cc] transition-colors duration-200 text-sm"
+                        className="text-[#001514] font-medium hover:text-[#297373] transition-colors duration-200 text-sm"
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <span className="text-[#1d1d1f] font-medium text-sm">
+                      <span className="text-[#001514] font-medium text-sm">
                         {item.value}
                       </span>
                     )}
@@ -162,12 +162,12 @@ export function Contact() {
               ))}
 
               {/* Response time note */}
-              <div className="p-5 bg-[#0066cc]/5 rounded-2xl border border-[#0066cc]/20">
+              <div className="p-5 bg-[#297373]/5 rounded-2xl border border-[#297373]/20">
                 <div className="flex items-start gap-3">
-                  <CheckCircle size={18} className="text-[#0066cc] shrink-0 mt-0.5" />
+                  <CheckCircle size={18} className="text-[#297373] shrink-0 mt-0.5" />
                   <p className="text-sm text-[#6e6e73]">
                     Respondemos todas las consultas dentro de las{" "}
-                    <strong className="text-[#1d1d1f]">24 horas hábiles</strong>.
+                    <strong className="text-[#001514]">24 horas hábiles</strong>.
                     Para urgencias, contáctenos directamente por teléfono.
                   </p>
                 </div>
@@ -189,7 +189,7 @@ export function Contact() {
                     <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center mb-6">
                       <CheckCircle size={36} className="text-green-500" />
                     </div>
-                    <h3 className="text-2xl font-bold text-[#1d1d1f] mb-3">
+                    <h3 className="text-2xl font-bold text-[#001514] mb-3">
                       ¡Mensaje enviado!
                     </h3>
                     <p className="text-[#6e6e73] mb-8 max-w-sm">
@@ -198,7 +198,7 @@ export function Contact() {
                     </p>
                     <button
                       onClick={() => setStatus("idle")}
-                      className="text-[#0066cc] font-medium hover:underline"
+                      className="text-[#297373] font-medium hover:underline"
                     >
                       Enviar otra consulta
                     </button>
@@ -214,7 +214,7 @@ export function Contact() {
                     {/* Name + Email */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium text-[#1d1d1f] mb-2">
+                        <label className="block text-sm font-medium text-[#001514] mb-2">
                           Nombre y apellido <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -232,7 +232,7 @@ export function Contact() {
                         )}
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-[#1d1d1f] mb-2">
+                        <label className="block text-sm font-medium text-[#001514] mb-2">
                           Email corporativo <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -254,7 +254,7 @@ export function Contact() {
                     {/* Company + Phone */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium text-[#1d1d1f] mb-2">
+                        <label className="block text-sm font-medium text-[#001514] mb-2">
                           Empresa
                         </label>
                         <input
@@ -267,7 +267,7 @@ export function Contact() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-[#1d1d1f] mb-2">
+                        <label className="block text-sm font-medium text-[#001514] mb-2">
                           Teléfono
                         </label>
                         <input
@@ -283,7 +283,7 @@ export function Contact() {
 
                     {/* Service */}
                     <div>
-                      <label className="block text-sm font-medium text-[#1d1d1f] mb-2">
+                      <label className="block text-sm font-medium text-[#001514] mb-2">
                         Servicio de interés
                       </label>
                       <select
@@ -303,7 +303,7 @@ export function Contact() {
 
                     {/* Message */}
                     <div>
-                      <label className="block text-sm font-medium text-[#1d1d1f] mb-2">
+                      <label className="block text-sm font-medium text-[#001514] mb-2">
                         Mensaje <span className="text-red-500">*</span>
                       </label>
                       <textarea
@@ -326,7 +326,7 @@ export function Contact() {
                       <motion.button
                         type="submit"
                         disabled={status === "loading"}
-                        className="w-full flex items-center justify-center gap-3 bg-[#0066cc] hover:bg-[#004499] disabled:bg-[#0066cc]/50 text-white py-4 rounded-xl font-semibold text-base transition-all duration-200 cursor-pointer disabled:cursor-not-allowed"
+                        className="w-full flex items-center justify-center gap-3 bg-[#297373] hover:bg-[#0A1045] disabled:bg-[#297373]/50 text-white py-4 rounded-xl font-semibold text-base transition-all duration-200 cursor-pointer disabled:cursor-not-allowed"
                         whileHover={{ scale: status === "loading" ? 1 : 1.01 }}
                         whileTap={{ scale: status === "loading" ? 1 : 0.99 }}
                       >
