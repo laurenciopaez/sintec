@@ -13,6 +13,7 @@ import {
   CheckCircle,
   ArrowRight,
   ChevronRight,
+  ChevronLeft,
 } from "lucide-react";
 import Image from "next/image"; // Importar el componente Image de Next.js
 import { SERVICES } from "@/lib/constants";
@@ -34,6 +35,76 @@ const iconMapLarge: Record<string, React.ReactNode> = {
   Eye: <Eye size={36} />,
   FileText: <FileText size={36} />,
 };
+
+function ServiceImageCarousel({ images, alt }: { images: string[]; alt: string }) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [images]);
+
+  if (!images || images.length === 0) {
+    return (
+      <div className="mb-8 w-full h-60 lg:h-90 rounded-2xl bg-[#f5f5f7] flex items-center justify-center">
+        <span className="text-[#6e6e73] text-sm">Imagen no disponible</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mb-8 w-full h-60 lg:h-90 rounded-2xl bg-[#f5f5f7] relative overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current}
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+        >
+          <Image
+            src={images[current]}
+            alt={alt}
+            fill
+            className="object-contain rounded-2xl"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </motion.div>
+      </AnimatePresence>
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={() => setCurrent((prev) => (prev - 1 + images.length) % images.length)}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200"
+          >
+            <ChevronLeft size={18} className="text-[#297373]" />
+          </button>
+          <button
+            onClick={() => setCurrent((prev) => (prev + 1) % images.length)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200"
+          >
+            <ChevronRight size={18} className="text-[#297373]" />
+          </button>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === current ? "bg-[#297373] w-4" : "bg-[#297373]/30 w-1.5"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 const standardsByIndex: string[][] = [
   ["API 571", "ASME", "ISO 31000"],
@@ -279,19 +350,11 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
                 </div>
               </div>
 
-              {/* Image placeholder */}
-              <div className="mb-8 w-full h-60 lg:h-90 rounded-2xl bg-[#f5f5f7] flex items-center justify-center relative overflow-hidden">
-                {activeService.imageSrc ? (
-                  <Image
-                    src={activeService.imageSrc}
-                    alt={activeService.imageAlt}
-                    fill
-                    className="object-contain rounded-2xl" // La imagen se adaptará al tamaño del contenedor padre, mostrando la imagen completa sin recortar
-                  />
-                ) : (
-                  <span className="text-[#6e6e73] text-sm">Imagen no disponible</span>
-                )}
-              </div>
+              {/* Image carousel */}
+              <ServiceImageCarousel
+                images={activeService.imageSrc}
+                alt={activeService.imageAlt}
+              />
 
               {/* CTA */}
               <div className="flex flex-col sm:flex-row gap-3">

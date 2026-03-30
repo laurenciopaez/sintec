@@ -48,6 +48,7 @@ export const SERVICES = [
     imageSrc: SERVICE_INTEGRITY,
     imageSrc2: SERVICE_INTEGRITY2,
     imageAlt: "Integridad de Activos",
+
   },
   {
     id: "integridad-riesgos-rbi",
