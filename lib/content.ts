@@ -50,7 +50,7 @@ export const QUIENES_SOMOS_CONTENT = {
         icon: "Zap",
       },
       {
-        title: "Cobertura Nacional",
+        title: "Cobertura Nacional e Internacional",
         description:
           "Presencia en todo el territorio argentino y en el exterior, con experiencia en ambientes extremos de la Patagonia y Vaca Muerta.",
         icon: "MapPin",

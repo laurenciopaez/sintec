@@ -14,6 +14,7 @@ import {
   ArrowRight,
   ChevronRight,
 } from "lucide-react";
+import Image from "next/image"; // Importar el componente Image de Next.js
 import { SERVICES } from "@/lib/constants";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -279,10 +280,17 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
               </div>
 
               {/* Image placeholder */}
-              <div className="mb-8 w-full h-40 lg:h-52 rounded-2xl bg-[#f5f5f7] border-2 border-dashed border-[#d2d2d7] flex items-center justify-center">
-                <p className="text-[#6e6e73] text-sm">
-                  Imagen / {activeService.title}
-                </p>
+              <div className="mb-8 w-full h-60 lg:h-90 rounded-2xl bg-[#f5f5f7] flex items-center justify-center relative overflow-hidden">
+                {activeService.imageSrc ? (
+                  <Image
+                    src={activeService.imageSrc}
+                    alt={activeService.imageAlt}
+                    fill
+                    className="object-contain rounded-2xl" // La imagen se adaptará al tamaño del contenedor padre, mostrando la imagen completa sin recortar
+                  />
+                ) : (
+                  <span className="text-[#6e6e73] text-sm">Imagen no disponible</span>
+                )}
               </div>
 
               {/* CTA */}

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image"; // Importar el componente Image de Next.js
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -104,6 +105,17 @@ function ServiceCard({ service }: ServiceCardProps) {
     >
       <Link href={`/soluciones#${service.slug}`} className="block h-full">
         {/* Icon */}
+        {/* Se agregó el componente Image para mostrar la imagen del servicio */}
+        {service.imageSrc2 && (
+          <div className="mb-8 w-full h-30 lg:h-40 rounded-2xl bg-[#f5f5f7] flex items-center justify-center relative overflow-hidden">
+            <Image
+              src={service.imageSrc2}
+              alt={service.imageAlt}
+              fill
+              className="object-contain rounded-2xl"
+            />
+          </div>
+        )}
         <div className="w-14 h-14 rounded-xl bg-[#297373]/10 flex items-center justify-center text-[#297373] mb-6 group-hover:bg-[#297373] group-hover:text-white transition-all duration-300">
           {iconMap[service.icon]}
         </div>

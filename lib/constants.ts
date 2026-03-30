@@ -1,3 +1,6 @@
+import { i, image } from "framer-motion/client";
+import { SERVICE_INTEGRITY, SERVICE_RBI, SERVICE_FAILURE, SERVICE_CORROSION, SERVICE_INSPECTION, SERVICE_PROCEDURES, SERVICE_CORROSION2, SERVICE_FAILURE2, SERVICE_INSPECTION2, SERVICE_INTEGRITY2, SERVICE_PROCEDURES2, SERVICE_RBI2 } from "./images/index";
+
 export const COMPANY_NAME = "SINTEC S.A.";
 export const COMPANY_SHORT_NAME = "SINTEC";
 export const COMPANY_TAGLINE =
@@ -42,6 +45,9 @@ export const SERVICES = [
       "Gestión de vida útil remanente",
       "Análisis de integridad estructural",
     ],
+    imageSrc: SERVICE_INTEGRITY,
+    imageSrc2: SERVICE_INTEGRITY2,
+    imageAlt: "Integridad de Activos",
   },
   {
     id: "integridad-riesgos-rbi",
@@ -58,6 +64,10 @@ export const SERVICES = [
       "Planes de inspección optimizados",
       "Software especializado RBI",
     ],
+    imageSrc: SERVICE_RBI,
+    imageAlt: "Integridad de Riesgos (RBI)",
+    imageSrc2: SERVICE_RBI2,
+  
   },
   {
     id: "analisis-falla",
@@ -79,6 +89,10 @@ export const SERVICES = [
       "Metalografía y caracterización",
       "Informes técnicos periciales",
     ],
+    imageSrc: SERVICE_FAILURE,
+    imageAlt: "Análisis de Falla",
+    imageSrc2: SERVICE_FAILURE2,
+
   },
   {
     id: "control-corrosion",
@@ -100,6 +114,12 @@ export const SERVICES = [
       "Monitoreo de corrosión",
       "Inhibidores y tratamientos",
     ],
+    imageSrc: SERVICE_CORROSION,
+    imageAlt: "Control de Corrosión",
+    imageSrc2: SERVICE_CORROSION2,
+
+
+
   },
   {
     id: "inspeccion-monitoreo",
@@ -121,11 +141,16 @@ export const SERVICES = [
     icon: "Eye",
     slug: "inspeccion-monitoreo",
     features: [
-      "Ultrasonido (UT) avanzado",
-      "Phased Array y TOFD",
-      "Inspección visual y dimensional",
+      "Evaluación de bactericidas",
+      "Estudio de comportamiento electroquímico",
+      "Flexibilidad de aplicación",
       "Monitoreo en línea continuo",
     ],
+    imageSrc: SERVICE_INSPECTION,
+    imageAlt: "Inspección y Monitoreo",
+    imageSrc2: SERVICE_INSPECTION2,
+
+
   },
   {
     id: "procedimientos-tecnicos",
@@ -152,6 +177,11 @@ export const SERVICES = [
       "Manuales de operación y mantenimiento",
       "Documentación conforme a normas API/ASME",
     ],
+    imageSrc: SERVICE_PROCEDURES,
+    imageAlt: "Ingeniería de Procedimientos",
+    imageSrc2: SERVICE_PROCEDURES2,
+
+
   },
 ];
 
