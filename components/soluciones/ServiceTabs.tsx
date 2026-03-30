@@ -62,6 +62,9 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
 
   const activeService = SERVICES.find((s) => s.id === activeId) ?? SERVICES[0];
   const activeIndex = SERVICES.findIndex((s) => s.id === activeId);
+  const s = activeService as Record<string, unknown>;
+  const alcanceList = Array.isArray(s.alcance) ? (s.alcance as string[]) : undefined;
+  const valorAgregadoList = Array.isArray(s.valorAgregado) ? (s.valorAgregado as string[]) : undefined;
 
   const handleTabClick = (id: string, slug: string) => {
     setActiveId(id);
@@ -219,9 +222,41 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
               </div>
 
               {/* Description */}
-              <p className="text-[#6e6e73] leading-relaxed text-base mb-8 max-w-2xl">
+              <p className={`text-[#6e6e73] leading-relaxed text-base max-w-2xl ${alcanceList || valorAgregadoList ? "mb-4" : "mb-8"}`}>
                 {activeService.description}
               </p>
+
+              {alcanceList && (
+                <div className={valorAgregadoList ? "mb-4" : "mb-8"}>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-2">
+                    Alcance
+                  </p>
+                  <ul className="space-y-1">
+                    {alcanceList.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[#6e6e73] text-sm">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#297373] shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {valorAgregadoList && (
+                <div className="mb-8">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-2">
+                    Valor Agregado
+                  </p>
+                  <ul className="space-y-1">
+                    {valorAgregadoList.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[#6e6e73] text-sm">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#A33400] shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* Features grid */}
               <div className="mb-8">

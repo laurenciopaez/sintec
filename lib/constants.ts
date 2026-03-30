@@ -21,8 +21,19 @@ export const SERVICES = [
     title: "Integridad de Activos",
     shortDescription:
       "Gestión integral del ciclo de vida de activos industriales para maximizar confiabilidad y seguridad operativa.",
-    description:
-      "Desarrollamos planes de gestión de integridad para plantas industriales, refineries, plantas petroquímicas y de gas. Evaluamos el estado actual de sus activos y definimos estrategias óptimas para extender su vida útil con total seguridad.",
+    description:"Desarrollamos e implementamos Planes de Gestión de Integridad alineados con normativas globales (API, ASME, ISO). Nuestro proceso abarca desde el diagnóstico situacional y el análisis de mecanismos de daño hasta la definición de Estrategias de Inspección Basada en Riesgo (RBI).",
+    alcance: [
+      "Refinerías",
+      "Plantas de procesamiento de gas",
+      "Terminales petroquímicas",
+      "Ductos de transporte",
+    ],
+    valorAgregado: [
+      "Transformamos datos técnicos en decisiones estratégicas",
+      "Prevenimos fallas catastróficas",
+      "Aseguramos la confiabilidad mecánica",
+      "Extendemos la operatividad de sus activos críticos con total respaldo técnico",
+    ],
     icon: "Shield",
     slug: "integridad-activos",
     features: [
@@ -38,7 +49,7 @@ export const SERVICES = [
     shortDescription:
       "Metodología API 580/581 para inspección basada en riesgo, optimizando recursos y maximizando seguridad.",
     description:
-      "Implementamos la metodología de Inspección Basada en Riesgo (RBI) conforme a estándares API 580 y API 581. Priorizamos los esfuerzos de inspección según el riesgo real de cada equipo, optimizando costos sin comprometer la seguridad.",
+      "Implementamos programas de Inspección Basada en Riesgo (RBI) bajo los estándares API 580 y API 581, transformando la gestión reactiva en una estrategia de mantenimiento predictivo de alta precisión. Al cuantificar la Probabilidad de Falla (POF) y la Consecuencia de Falla (COF), jerarquizamos sus activos críticos para concentrar los recursos donde el riesgo es mayor. Este enfoque técnico no solo garantiza el cumplimiento normativo, sino que optimiza los intervalos de inspección, reduciendo costos operativos y minimizando la exposición al riesgo del personal y el medio ambiente.",
     icon: "BarChart3",
     slug: "integridad-riesgos-rbi",
     features: [
@@ -54,7 +65,12 @@ export const SERVICES = [
     shortDescription:
       "Investigación forense de fallas en equipos y estructuras con metodologías RCA para prevenir recurrencias.",
     description:
-      "Realizamos análisis de causa raíz (RCA) de fallas en equipos de proceso, tuberías y estructuras. Identificamos los mecanismos de daño, determinamos causas raíces y emitimos recomendaciones para prevenir recurrencias.",
+      "Nuestra metodología de RBI permite una gestión dinámica de la integridad mecánica. Al aplicar los modelos probabilísticos de los estándares API, logramos:",
+    alcance: [
+      "Jerarquización de Activos: Identificación de equipos con altos mecanismos de daño latentes.",
+      "Eficiencia en Paradas de Planta (Turnarounds): Reducción de alcances de inspección innecesarios en equipos de bajo riesgo.",
+      "Seguridad Basada en Datos: Sustituimos los cronogramas fijos por frecuencias basadas en el estado real y el riesgo calculado, asegurando la continuidad operativa sin comprometer la integridad estructural.",
+    ],
     icon: "Search",
     slug: "analisis-falla",
     features: [
@@ -70,7 +86,12 @@ export const SERVICES = [
     shortDescription:
       "Soluciones avanzadas de protección catódica, recubrimientos y monitoreo para combatir la corrosión.",
     description:
-      "Diseñamos e implementamos sistemas de protección contra corrosión para infraestructura industrial. Desde la evaluación de mecanismos de corrosión hasta el diseño de sistemas de protección catódica y selección de recubrimientos.",
+      "Ofrecemos soluciones de ingeniería especializada para el control de la corrosión interna y externa en infraestructura crítica (pipelines, tanques de almacenamiento y estructuras offshore):",
+    alcance: [
+      "Protección Catódica (CP): Diseño de sistemas por corriente impresa (ICCP) y ánodos de sacrificio (GACP), incluyendo estudios de resistividad y auditorías de potencial.",
+      "Recubrimientos de Alto Desempeño: Selección y especificación técnica de esquemas de pintura y revestimientos basados en condiciones de servicio severas.",
+      "Monitoreo y Diagnóstico: Implementación de cupones de corrosión, sondas de resistencia eléctrica y sistemas de monitoreo remoto para la toma de decisiones basada en datos en tiempo real.",
+    ],
     icon: "Layers",
     slug: "control-corrosion",
     features: [
@@ -82,11 +103,21 @@ export const SERVICES = [
   },
   {
     id: "inspeccion-monitoreo",
-    title: "Inspección y Monitoreo",
+    title: "Monitoreo de Corrosión Interna y Electroquímica Industrial",
     shortDescription:
-      "Técnicas avanzadas de END/NDT para inspección de equipos, tuberías y estructuras industriales.",
+      "Evaluación dinámica y en tiempo real de la cinética de corrosión en condiciones de operación.",
     description:
-      "Aplicamos técnicas avanzadas de ensayos no destructivos (END/NDT) para evaluar el estado de integridad de sus equipos sin detener la producción. Contamos con personal certificado en múltiples técnicas de inspección.",
+      "Implementamos sistemas de monitoreo avanzado diseñados para capturar el comportamiento electroquímico de los activos en sus condiciones reales de servicio (presión, temperatura y fluido). A diferencia de los métodos convencionales, utilizamos celdas de 3 y 5 electrodos que actúan como sensores críticos en bocas de pozo, tubulares de producción y facilidades de planta, permitiendo una visión profunda del fenómeno corrosivo sin interrumpir el proceso. ",
+    valorAgregado: [
+      "Permiten la determinación de velocidades de corrosión instantáneas y el análisis de mecanismos corrosivos.",
+      "Habilitan la evaluación de la performance de sistemas de mitigación en servicio (inhibidores de corrosión, secuestrantes químicos, bactericidas).",
+      "Facilitan el estudio y la evaluación de películas superficiales (óxidos protectores, inhibidores fílmicos, películas orgánicas).",
+    ],
+    alcance: [
+      "Instalación y Gestión de Sensores: Configuración de celdas electroquímicas en puntos críticos (Boca de Pozo, Pipelines, Separadores).",
+      "Auditoría de Sistemas de Mitigación: Monitoreo de la eficiencia de la inyección de químicos y optimización de dosificación (OPEX).",
+      "Análisis de Mecanismos de Corrosión: Estudios de corrosión por CO2/H2S, corrosión bajo flujo y regímenes microbiológicos (MIC).",
+    ],
     icon: "Eye",
     slug: "inspeccion-monitoreo",
     features: [
@@ -98,11 +129,21 @@ export const SERVICES = [
   },
   {
     id: "procedimientos-tecnicos",
-    title: "Procedimientos Técnicos",
+    title: "Ingeniería de Procedimientos y Normatividad Técnica",
     shortDescription:
       "Elaboración de procedimientos, especificaciones técnicas y documentación para operaciones seguras.",
     description:
-      "Desarrollamos la documentación técnica necesaria para asegurar operaciones seguras y conformes a estándares internacionales. Procedimientos de inspección, mantenimiento, reparación y operación basados en normas API, ASME y NACE.",
+      "Transformamos los requisitos de las normas internacionales en guías ejecutables que garantizan la repetibilidad y seguridad de sus procesos. Desarrollamos un ecosistema documental sólido que sirve de base para la toma de decisiones técnicas, asegurando que cada intervención en plantas industriales, pozos o ductos esté alineada con las mejores prácticas de la industria (API, ASME, NACE/AMPP e ISO).",
+      valorAgregado: [
+      "Estandarización de Procesos: Reducción de la variabilidad operativa y errores humanos mediante protocolos claros y verificables.",
+      "Garantía de Cumplimiento: Alineación total con marcos regulatorios y auditorías de integridad mecánica.",
+      "Preservación del Conocimiento: Captura del ´know-how´ técnico para asegurar la continuidad operativa y la formación de personal calificado.",
+    ],
+    alcance: [
+      "Manuales de Gestión de Integridad (PIM): Documentación integral para la gestión del ciclo de vida de ductos y recipientes a presión.",
+      "Procedimientos de Reparación y Alteración: Desarrollo de metodologías de reparación según API 510, 570 y 653.",
+      "Filosofías de Operación y Mantenimiento (O&M): Guías técnicas para la operación segura dentro de las Ventanas Operativas de Integridad (IOW).",
+    ],
     icon: "FileText",
     slug: "procedimientos-tecnicos",
     features: [
@@ -188,7 +229,7 @@ export const FAQ_ITEMS = [
       "Nos especializamos en industrias con alta demanda de integridad: Oil & Gas (upstream, midstream, downstream), petroquímica, refinación, generación de energía, industria química y agua/saneamiento.",
     cta: { label: "Ver quiénes somos", href: "/quienes-somos" },
   },
-  {
+  { /// MODIFICAR 
     id: "certifications",
     question: "¿Tienen certificaciones?",
     answer:
@@ -201,25 +242,25 @@ export const VALUES = [
   {
     title: "Excelencia Técnica",
     description:
-      "Aplicamos los más altos estándares de ingeniería en cada proyecto, con profesionales certificados y actualizados.",
+"Garantizamos precisión en cada diagnóstico mediante el rigor normativo y un equipo de ingeniería con basta experiencia.",
     icon: "Award",
   },
   {
     title: "Integridad Profesional",
     description:
-      "Actuamos con transparencia, honestidad y ética en cada relación con nuestros clientes y equipos.",
+"Base fundamental de nuestra consultoría; entregamos resultados imparciales y éticos que aseguran la trazabilidad en la toma de decisiones.",
     icon: "Shield",
   },
   {
     title: "Compromiso con la Seguridad",
     description:
-      "La seguridad industrial es nuestra razón de ser. Cada decisión técnica está orientada a proteger personas y activos.",
+    "La seguridad de procesos y la protección de las personas son innegociables. Diseñamos soluciones orientadas a la mitigación crítica de riesgos.",
     icon: "Heart",
   },
   {
     title: "Innovación Continua",
     description:
-      "Incorporamos permanentemente nuevas tecnologías y metodologías para ofrecer soluciones más eficientes.",
+"Evolucionamos junto a la industria, integrando metodologías emergentes y digitalización para optimizar la gestión de activos de nuestros clientes.",
     icon: "Lightbulb",
   },
 ];

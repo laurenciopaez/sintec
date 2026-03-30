@@ -31,7 +31,7 @@ export const QUIENES_SOMOS_CONTENT = {
           "Más de 20 años y 150 proyectos en las principales empresas de oil & gas, petroquímica y energía de Argentina.",
         icon: "TrendingUp",
       },
-      {
+      { /// MMMMMM
         title: "Equipo Certificado",
         description:
           "Profesionales con certificaciones API, NACE, ASNT y formación continua en estándares internacionales.",
@@ -52,7 +52,7 @@ export const QUIENES_SOMOS_CONTENT = {
       {
         title: "Cobertura Nacional",
         description:
-          "Presencia en todo el territorio argentino, con experiencia en ambientes extremos de la Patagonia y Vaca Muerta.",
+          "Presencia en todo el territorio argentino y en el exterior, con experiencia en ambientes extremos de la Patagonia y Vaca Muerta.",
         icon: "MapPin",
       },
       {

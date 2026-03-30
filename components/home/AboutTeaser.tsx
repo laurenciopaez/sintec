@@ -14,13 +14,13 @@ const highlights = [
   },
   {
     icon: <Users size={20} />,
-    title: "Equipo Especializado",
-    description: "Ingenieros con certificaciones y experiencia comprobada",
+    title: "Equipo Interdisciplinario",
+    description: "Ingenieros Químicos, Mecánicos y Electromecánicos.",
   },
   {
     icon: <Globe size={20} />,
     title: "Cobertura Nacional",
-    description: "Proyectos en todo el territorio argentino",
+    description: "Proyectos en todo el territorio argentino y en el exterior",
   },
 ];
 
