@@ -4,9 +4,9 @@ export const COMPANY_TAGLINE =
   "Ingeniería de Integridad. Precisión. Confianza.";
 export const COMPANY_DESCRIPTION =
   "Consultora argentina especializada en ingeniería de integridad, gestión de riesgos y confiabilidad de activos industriales.";
-export const COMPANY_EMAIL = "contacto@sintecsa.com.ar";
-export const COMPANY_PHONE = "+54 11 4000-0000";
-export const COMPANY_ADDRESS = "Buenos Aires, Argentina";
+export const COMPANY_EMAIL = "lpaez@sintecsa.com.ar";
+export const COMPANY_PHONE = "+54 223 464-4322/23";
+export const COMPANY_ADDRESS = "Mar del Plata, Buenos Aires, Argentina";
 export const COMPANY_FOUNDED = "2004";
 
 export const NAV_LINKS = [

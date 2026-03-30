@@ -72,7 +72,10 @@ export function AnimatedSection({
     amount: threshold,
   });
 
-  const MotionComponent = motion(Component as React.ElementType);
+  const MotionComponent = React.useMemo(
+    () => motion(Component as React.ElementType),
+    [Component]
+  );
 
   return (
     <MotionComponent

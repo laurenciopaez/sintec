@@ -1,30 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { COMPANY_EMAIL, COMPANY_PHONE, COMPANY_ADDRESS } from "@/lib/constants";
 
-interface FormState {
-  name: string;
-  email: string;
-  company: string;
-  phone: string;
-  service: string;
-  message: string;
-}
+// ── Client-side validation ────────────────────────────────────────────────────
+// Kept inline to stay in the client bundle only.
+// The server (app/api/contact/route.ts) runs the same rules independently.
 
-const initialState: FormState = {
-  name: "",
-  email: "",
-  company: "",
-  phone: "",
-  service: "",
-  message: "",
-};
+const MSG_MAX = 2000;
+const MSG_MIN = 10;
+const EMAIL_RE = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+const PHONE_RE = /^[\d\s+\-().]*$/;
 
-const serviceOptions = [
+const SERVICE_OPTIONS = [
   "Integridad de Activos",
   "Integridad de Riesgos (RBI)",
   "Análisis de Falla",
@@ -34,30 +32,62 @@ const serviceOptions = [
   "Otro / Consulta general",
 ];
 
+interface FormState {
+  name:    string;
+  email:   string;
+  company: string;
+  phone:   string;
+  service: string;
+  message: string;
+}
+
+type FormErrors = Partial<Record<keyof FormState, string>>;
+
+function validateForm(f: FormState): FormErrors {
+  const err: FormErrors = {};
+
+  const name = f.name.trim();
+  if (!name)                   err.name = "El nombre es requerido";
+  else if (name.length < 2)    err.name = "Mínimo 2 caracteres";
+  else if (name.length > 100)  err.name = "Máximo 100 caracteres";
+
+  const email = f.email.trim();
+  if (!email)                        err.email = "El email es requerido";
+  else if (!EMAIL_RE.test(email))    err.email = "El formato del email es inválido";
+  else if (email.length > 254)       err.email = "Email demasiado largo";
+
+  if (f.company.trim().length > 150) err.company = "Máximo 150 caracteres";
+
+  const phone = f.phone.trim();
+  if (phone && !PHONE_RE.test(phone))      err.phone = "Solo números, espacios, +, - y ()";
+  else if (phone && phone.length > 20)     err.phone = "Máximo 20 caracteres";
+
+  const msg = f.message.trim();
+  if (!msg)                err.message = "El mensaje es requerido";
+  else if (msg.length < MSG_MIN) err.message = `Mínimo ${MSG_MIN} caracteres`;
+  else if (msg.length > MSG_MAX) err.message = `Máximo ${MSG_MAX} caracteres`;
+
+  return err;
+}
+
+// ── Component ─────────────────────────────────────────────────────────────────
+
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
-export function Contact() {
-  const [form, setForm] = useState<FormState>(initialState);
-  const [status, setStatus] = useState<SubmitStatus>("idle");
-  const [errors, setErrors] = useState<Partial<FormState>>({});
+const EMPTY: FormState = {
+  name: "", email: "", company: "", phone: "", service: "", message: "",
+};
 
-  const validate = (): boolean => {
-    const newErrors: Partial<FormState> = {};
-    if (!form.name.trim()) newErrors.name = "El nombre es requerido";
-    if (!form.email.trim()) {
-      newErrors.email = "El email es requerido";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = "Email inválido";
-    }
-    if (!form.message.trim()) newErrors.message = "El mensaje es requerido";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+export function Contact() {
+  const [form, setForm]               = useState<FormState>(EMPTY);
+  const [honeypot, setHoneypot]       = useState("");
+  const [status, setStatus]           = useState<SubmitStatus>("idle");
+  const [errors, setErrors]           = useState<FormErrors>({});
+  const [serverError, setServerError] = useState("");
+  const lastSubmitRef                 = useRef<number>(0);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -68,30 +98,81 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    setServerError("");
+
+    const validationErrors = validateForm(form);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    // Debounce: ignore duplicate submits within 3 s
+    const now = Date.now();
+    if (now - lastSubmitRef.current < 3000) return;
+    lastSubmitRef.current = now;
 
     setStatus("loading");
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // ── Web3Forms — free static-site form service ──────────────────────────
+    // Get your free access key at https://web3forms.com
+    const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "TU_ACCESS_KEY_AQUI";
 
-    // In production, replace with actual API call:
-    // const response = await fetch('/api/contact', { method: 'POST', body: JSON.stringify(form) });
-    setStatus("success");
-    setForm(initialState);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          // honeypot field — Web3Forms ignores submissions where this is filled
+          botcheck: honeypot,
+          // form fields
+          name:    form.name,
+          email:   form.email,
+          subject: `Consulta SINTEC: ${form.service || "Consulta general"}`,
+          message: [
+            form.message,
+            form.company ? `\nEmpresa: ${form.company}` : "",
+            form.phone   ? `\nTeléfono: ${form.phone}`  : "",
+          ]
+            .filter(Boolean)
+            .join(""),
+        }),
+      });
+
+      const data = await res.json();
+      console.log("[Web3Forms response]", res.status, data);
+
+      if (data.success) {
+        setStatus("success");
+        setForm(EMPTY);
+        setHoneypot("");
+      } else {
+        setServerError(data.message ?? "Error al enviar. Intente nuevamente.");
+        setStatus("error");
+      }
+    } catch {
+      setServerError("Error de conexión. Verifique su internet e intente nuevamente.");
+      setStatus("error");
+    }
   };
 
-  const inputClasses = (field: keyof FormState) =>
+  const inputCls = (field: keyof FormState) =>
     `w-full px-4 py-3 bg-[#f5f5f7] border rounded-xl text-[#001514] placeholder-[#6e6e73] focus:outline-none focus:ring-2 focus:bg-white transition-all duration-200 text-sm ${
       errors[field]
         ? "border-red-400 focus:ring-red-200"
         : "border-[#d2d2d7] focus:ring-[#297373]/30 focus:border-[#297373]"
     }`;
 
+  const msgLen       = form.message.length;
+  const msgNearLimit = msgLen > MSG_MAX * 0.85;
+
   return (
-    <section className="py-24 lg:py-32 bg-[#f5f5f7]" id="contacto">
+    <section
+      className="py-24 lg:py-32 bg-[#f5f5f7] scroll-mt-20"
+      id="contacto"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Header */}
         <AnimatedSection variant="slideUp" className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-8 bg-[#297373]" />
@@ -110,10 +191,9 @@ export function Contact() {
         </AnimatedSection>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Contact Info */}
+          {/* Contact info */}
           <AnimatedSection variant="slideRight" className="lg:col-span-1">
             <div className="space-y-6">
-              {/* Contact cards */}
               {[
                 {
                   icon: <Mail size={22} />,
@@ -161,7 +241,6 @@ export function Contact() {
                 </div>
               ))}
 
-              {/* Response time note */}
               <div className="p-5 bg-[#297373]/5 rounded-2xl border border-[#297373]/20">
                 <div className="flex items-start gap-3">
                   <CheckCircle size={18} className="text-[#297373] shrink-0 mt-0.5" />
@@ -175,7 +254,7 @@ export function Contact() {
             </div>
           </AnimatedSection>
 
-          {/* Contact Form */}
+          {/* Form */}
           <AnimatedSection variant="slideLeft" delay={0.1} className="lg:col-span-2">
             <div className="bg-white rounded-3xl border border-[#d2d2d7]/50 p-8 lg:p-10 shadow-sm">
               <AnimatePresence mode="wait">
@@ -209,8 +288,25 @@ export function Contact() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     onSubmit={handleSubmit}
+                    noValidate
                     className="space-y-5"
                   >
+                    {/* Honeypot — off-screen, not display:none so bots see it */}
+                    <div
+                      aria-hidden="true"
+                      style={{ position: "absolute", left: "-9999px", top: "-9999px" }}
+                    >
+                      <label htmlFor="hp-website">No completar este campo</label>
+                      <input
+                        id="hp-website"
+                        type="text"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
+
                     {/* Name + Email */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
@@ -222,15 +318,20 @@ export function Contact() {
                           name="name"
                           value={form.name}
                           onChange={handleChange}
-                          placeholder="Ej: Juan García"
-                          className={inputClasses("name")}
+                          placeholder="Juan García"
+                          maxLength={100}
+                          autoComplete="name"
+                          aria-required="true"
+                          aria-invalid={!!errors.name}
+                          className={inputCls("name")}
                         />
                         {errors.name && (
-                          <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                          <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                             <AlertCircle size={12} /> {errors.name}
                           </p>
                         )}
                       </div>
+
                       <div>
                         <label className="block text-sm font-medium text-[#001514] mb-2">
                           Email corporativo <span className="text-red-500">*</span>
@@ -241,10 +342,14 @@ export function Contact() {
                           value={form.email}
                           onChange={handleChange}
                           placeholder="juan@empresa.com"
-                          className={inputClasses("email")}
+                          maxLength={254}
+                          autoComplete="email"
+                          aria-required="true"
+                          aria-invalid={!!errors.email}
+                          className={inputCls("email")}
                         />
                         {errors.email && (
-                          <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                          <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                             <AlertCircle size={12} /> {errors.email}
                           </p>
                         )}
@@ -263,9 +368,17 @@ export function Contact() {
                           value={form.company}
                           onChange={handleChange}
                           placeholder="Nombre de su empresa"
-                          className={inputClasses("company")}
+                          maxLength={150}
+                          autoComplete="organization"
+                          className={inputCls("company")}
                         />
+                        {errors.company && (
+                          <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                            <AlertCircle size={12} /> {errors.company}
+                          </p>
+                        )}
                       </div>
+
                       <div>
                         <label className="block text-sm font-medium text-[#001514] mb-2">
                           Teléfono
@@ -276,8 +389,15 @@ export function Contact() {
                           value={form.phone}
                           onChange={handleChange}
                           placeholder="+54 11 0000-0000"
-                          className={inputClasses("phone")}
+                          maxLength={20}
+                          autoComplete="tel"
+                          className={inputCls("phone")}
                         />
+                        {errors.phone && (
+                          <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                            <AlertCircle size={12} /> {errors.phone}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -290,36 +410,67 @@ export function Contact() {
                         name="service"
                         value={form.service}
                         onChange={handleChange}
-                        className={inputClasses("service")}
+                        className={inputCls("service")}
                       >
                         <option value="">Seleccione un servicio...</option>
-                        {serviceOptions.map((opt) => (
-                          <option key={opt} value={opt}>
-                            {opt}
-                          </option>
+                        {SERVICE_OPTIONS.map((opt) => (
+                          <option key={opt} value={opt}>{opt}</option>
                         ))}
                       </select>
                     </div>
 
                     {/* Message */}
                     <div>
-                      <label className="block text-sm font-medium text-[#001514] mb-2">
-                        Mensaje <span className="text-red-500">*</span>
-                      </label>
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="block text-sm font-medium text-[#001514]">
+                          Mensaje <span className="text-red-500">*</span>
+                        </label>
+                        <span
+                          aria-live="polite"
+                          className={`text-xs tabular-nums transition-colors duration-200 ${
+                            msgLen > MSG_MAX
+                              ? "text-red-500 font-semibold"
+                              : msgNearLimit
+                              ? "text-amber-500"
+                              : "text-[#6e6e73]"
+                          }`}
+                        >
+                          {msgLen} / {MSG_MAX}
+                        </span>
+                      </div>
                       <textarea
                         name="message"
                         value={form.message}
                         onChange={handleChange}
                         rows={5}
                         placeholder="Describa brevemente su consulta o proyecto..."
-                        className={`${inputClasses("message")} resize-none`}
+                        maxLength={MSG_MAX}
+                        aria-required="true"
+                        aria-invalid={!!errors.message}
+                        className={`${inputCls("message")} resize-none`}
                       />
                       {errors.message && (
-                        <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                        <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                           <AlertCircle size={12} /> {errors.message}
                         </p>
                       )}
                     </div>
+
+                    {/* Server error banner */}
+                    <AnimatePresence>
+                      {serverError && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0 }}
+                          role="alert"
+                          className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700"
+                        >
+                          <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                          {serverError}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
                     {/* Submit */}
                     <div className="pt-2">
@@ -332,24 +483,9 @@ export function Contact() {
                       >
                         {status === "loading" ? (
                           <>
-                            <svg
-                              className="animate-spin h-5 w-5"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                              />
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                              />
+                            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                             </svg>
                             Enviando...
                           </>
@@ -363,8 +499,7 @@ export function Contact() {
                     </div>
 
                     <p className="text-xs text-[#6e6e73] text-center">
-                      Sus datos son confidenciales y nunca serán compartidos con
-                      terceros.
+                      Sus datos son confidenciales y nunca serán compartidos con terceros.
                     </p>
                   </motion.form>
                 )}

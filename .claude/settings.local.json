@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:sintecsa.com.ar)",
       "Bash(npm install:*)",
-      "Bash(where npm:*)"
+      "Bash(where npm:*)",
+      "Bash(npm run:*)"
     ]
   }
 }

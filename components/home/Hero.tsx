@@ -108,12 +108,12 @@ export function Hero() {
               className="transition-transform duration-200 group-hover:translate-x-1"
             />
           </Link>
-          <Link
-            href="/#contacto"
+          <a
+            href="#contacto"
             className="group inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 backdrop-blur-sm border border-white/20 hover:border-white/40"
           >
             Contactar
-          </Link>
+          </a>
         </motion.div>
 
         {/* Stats strip */}
