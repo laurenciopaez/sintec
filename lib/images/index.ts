@@ -18,6 +18,8 @@ export const SERVICE_RBI = [
 ];
 export const SERVICE_FAILURE = [
   { src: "img/service1/analisis de falla.jpg", description: "Análisis de falla de electrodo de equipo separador de crudo." },
+  { src: "img/service1/analisis de falla 2.jpeg", description: "Brida retirada de servicio por corrosión interna inducida por corrientes parasitas producto de la protección catodica." },
+  { src: "img/service1/analisis de falla 3.jpeg", description: "Fuga por corrosión bajo depositos intensificada por condensación de agua y parada prolongada del equipo." },
 ];
 export const SERVICE_CORROSION = [
   { src: "img/service1/corrosion2.jpeg", description: "Corrosión generalizada." },

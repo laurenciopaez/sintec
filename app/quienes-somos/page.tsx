@@ -14,6 +14,7 @@ import {
   MapPin,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Quiénes Somos | SINTEC S.A.",
@@ -207,6 +208,17 @@ export default function QuienesSomosPage() {
             {VALUES.map((value) => (
               <StaggerItem key={value.title}>
                 <div className="bg-white rounded-2xl p-6 border border-[#d2d2d7]/50 hover:border-[#297373]/30 hover:shadow-lg transition-all duration-300 h-full">
+                  {value.image && (
+                    <div className="mb-4 w-full h-36 rounded-xl bg-[#f5f5f7] relative overflow-hidden">
+                      <Image
+                        src={value.image}
+                        alt={value.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      />
+                    </div>
+                  )}
                   <div className="w-11 h-11 rounded-xl bg-[#297373]/10 flex items-center justify-center text-[#297373] mb-4">
                     {iconMap[value.icon]}
                   </div>

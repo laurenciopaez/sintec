@@ -275,23 +275,27 @@ export const VALUES = [
     description:
 "Garantizamos precisión en cada diagnóstico mediante el rigor normativo y un equipo de ingeniería con basta experiencia.",
     icon: "Award",
+    image: "/sintec/img/quienesSomos/excelenciaTecnica.jpeg",
   },
   {
     title: "Integridad Profesional",
     description:
 "Base fundamental de nuestra consultoría; entregamos resultados imparciales y éticos que aseguran la trazabilidad en la toma de decisiones.",
     icon: "Shield",
+    image: "/sintec/img/quienesSomos/integridadProfesional.jpeg",
   },
   {
     title: "Compromiso con la Seguridad",
     description:
     "La seguridad de procesos y la protección de las personas son innegociables. Diseñamos soluciones orientadas a la mitigación crítica de riesgos.",
     icon: "Heart",
+    image: "/sintec/img/quienesSomos/compromisoSeguridad.jpeg",
   },
   {
     title: "Innovación Continua",
     description:
 "Evolucionamos junto a la industria, integrando metodologías emergentes y digitalización para optimizar la gestión de activos de nuestros clientes.",
     icon: "Lightbulb",
+    image: "/sintec/img/quienesSomos/innovacionContinua.png",
   },
 ];
