@@ -14,6 +14,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  FolderOpen,
 } from "lucide-react";
 import Image from "next/image";
 import { SERVICES } from "@/lib/constants";
@@ -162,8 +163,28 @@ export function ServiceDetail({
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -24 }}
       transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="p-8 lg:p-12 h-full"
+      className="p-8 lg:p-12 h-full relative"
     >
+      {/* FAQ file tab */}
+      <motion.div
+        className="absolute top-0 right-8"
+        initial={{ y: -4, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.18, duration: 0.25 }}
+      >
+        <Link
+          href={`/soluciones/${service.slug}/faq`}
+          className="group flex items-center gap-1.5 bg-[#A33400] hover:bg-[#8a2c00] text-white px-3.5 py-2 text-xs font-semibold transition-colors duration-200 rounded-b-xl shadow-md"
+          style={{ borderTop: "none" }}
+        >
+          <FolderOpen
+            size={13}
+            className="group-hover:scale-110 transition-transform duration-200"
+          />
+          FAQ
+        </Link>
+      </motion.div>
+
       {/* Badge row */}
       <div className="flex items-center gap-3 mb-6">
         <span className="text-xs font-mono text-[#6e6e73] bg-[#f5f5f7] px-3 py-1 rounded-full">

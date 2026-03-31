@@ -30,7 +30,11 @@ export function ServiceSidebarLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const activeSlug = pathname.split("/").pop() ?? "";
+  const pathParts = pathname.split("/");
+  const lastPart = pathParts[pathParts.length - 1];
+  const activeSlug = lastPart === "faq"
+    ? pathParts[pathParts.length - 2]
+    : lastPart;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">

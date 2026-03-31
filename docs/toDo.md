@@ -37,7 +37,7 @@
 - [x] Reemplazar `/soluciones#rbi` → `/soluciones/rbi`
 - [x] Reemplazar `/soluciones#api-579` → `/soluciones/api-579`
 - [x] Crear una página dinámica por servicio (`app/soluciones/[slug]/page.tsx`)
-- [ ] Configurar redirects desde las URLs antiguas
+- [x] Configurar redirects desde las URLs antiguas
 
 ### 4. SEO técnico base
 - [ ] Generar `sitemap.xml` dinámico (`app/sitemap.ts`)
@@ -52,7 +52,7 @@
 
 ### 5. Páginas SEO por servicio
 - [ ] Crear página individual para cada servicio (mínimo 1000 palabras)
-- [ ] Cada página debe incluir: introducción técnica, metodología, casos de uso, beneficios, FAQs
+- [x] Cada página debe incluir: introducción técnica, metodología, casos de uso, beneficios, FAQs
 - [ ] Optimizar H1/H2/H3 con keywords objetivo
 - [ ] Agregar imágenes reales con alt text descriptivo
 
@@ -67,8 +67,8 @@
 
 ### 7. Contenido de autoridad
 - [ ] Mostrar certificaciones (API, NACE, ISO)
-- [ ] Agregar logos de clientes (con permiso)
-- [ ] Publicar proyectos realizados / portfolio
+- [x] Agregar logos de clientes (con permiso)
+- [x] Publicar proyectos realizados / portfolio
 - [ ] Crear casos de estudio con métricas reales
 
 ---
@@ -125,7 +125,7 @@
 - [ ] robots.txt
 - [ ] Canonical URLs
 - [ ] Structured data (schema.org)
-- [ ] URLs limpias (sin hash)
+- [x] URLs limpias (sin hash)
 
 ### Contenido
 - [ ] Páginas de servicios con profundidad (≥1000 palabras)
@@ -137,11 +137,11 @@
 
 ### Backend
 - [ ] API de contacto funcional
-- [ ] Envío de emails
+- [x] Envío de emails
 - [ ] Persistencia de leads
 - [ ] Validación backend
-- [ ] Rate limiting
-- [ ] Sanitización de inputs
+- [x] Rate limiting
+- [x] Sanitización de inputs
 
 ### Performance
 - [ ] Lazy loading de componentes pesados
