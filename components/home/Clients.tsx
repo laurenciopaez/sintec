@@ -16,7 +16,7 @@ const LOGOS = [
 ];
 
 // Duplicamos para el loop infinito
-const LOGOS_DOUBLED = [...LOGOS, ...LOGOS];
+const LOGOS_DOUBLED = [...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS,...LOGOS, ...LOGOS];
 
 export function Clients() {
   return (

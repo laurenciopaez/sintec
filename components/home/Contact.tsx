@@ -136,7 +136,7 @@ export function Contact() {
       className="py-24 lg:py-32 bg-[#f5f5f7] scroll-mt-20"
       id="contacto"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto xp-4 sm:px-6 lg:px-8">
         {/* Header */}
         <AnimatedSection variant="slideUp" className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">

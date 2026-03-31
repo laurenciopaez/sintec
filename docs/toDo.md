@@ -56,15 +56,6 @@
 - [ ] Optimizar H1/H2/H3 con keywords objetivo
 - [x] Agregar imágenes reales con alt text descriptivo
 
-### 6. Blog técnico
-- [ ] Crear estructura `/blog` y `/blog/[slug]`
-- [ ] Publicar primeros artículos:
-  - [ ] `api-579-explicacion`
-  - [ ] `rbi-metodologia`
-  - [ ] `corrosion-co2-modelos`
-- [ ] Meta objetivo: 2–4 artículos por mes
-- [ ] Integrar links internos entre blog y servicios
-
 ### 7. Contenido de autoridad
 - [ ] Mostrar certificaciones (API, NACE, ISO)
 - [x] Agregar logos de clientes (con permiso)
@@ -84,7 +75,6 @@
 ### 9. Multiplicar puntos de contacto
 - [ ] Formulario de contacto en: Home, Servicios, Blog
 - [ ] Chatbot con captura de email/teléfono antes de responder
-- [ ] WhatsApp flotante como canal alternativo
 
 ### 10. Prueba social
 - [ ] Logos de clientes en sección dedicada

@@ -390,7 +390,7 @@ export const STATS = [
   },
   {
     id: "clients",
-    value: 50,
+    value: 10,
     prefix: "+",
     suffix: "",
     label: "Clientes Activos",
