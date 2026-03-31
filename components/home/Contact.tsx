@@ -11,6 +11,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { analytics } from "@/lib/analytics";
 import { COMPANY_EMAIL, COMPANY_PHONE, COMPANY_ADDRESS } from "@/lib/constants";
 import {
   MSG_MAX,
@@ -107,13 +108,16 @@ export function Contact() {
         setStatus("success");
         setForm(EMPTY_FORM);
         setHoneypot("");
+        analytics.contactFormSubmit();
       } else {
         setServerError(data.message ?? "Error al enviar. Intente nuevamente.");
         setStatus("error");
+        analytics.contactFormError("server");
       }
     } catch {
       setServerError("Error de conexión. Verifique su internet e intente nuevamente.");
       setStatus("error");
+      analytics.contactFormError("network");
     }
   };
 

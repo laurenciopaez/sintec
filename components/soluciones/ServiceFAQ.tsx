@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ArrowLeft, MessageCircle } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
+import { analytics } from "@/lib/analytics";
 
 type FaqItem = { id: string; question: string; answer: string };
 
@@ -20,7 +21,10 @@ function FaqCard({ item, index }: { item: FaqItem; index: number }) {
       className="rounded-2xl border border-[#e5e5ea] bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
     >
       <button
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          analytics.chatbotFaqClick(item.question);
+          setOpen((v) => !v);
+        }}
         className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left group"
         aria-expanded={open}
       >

@@ -162,10 +162,10 @@
 - [ ] Headers de seguridad (next.config.ts)
 
 ### Analítica
-- [ ] Google Analytics 4
-- [ ] Eventos personalizados
-- [ ] Tracking de conversiones
-- [ ] Heatmaps
+- [x] Google Analytics 4
+- [x] Eventos personalizados
+- [ ] Tracking de conversiones (eventos listos en `lib/analytics.ts`, falta configurar Goals en GA4 dashboard)
+- [x] Heatmaps
 
 ### Conversión
 - [ ] CTAs claros y repetidos en cada página

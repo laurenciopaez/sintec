@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, ArrowLeft, ExternalLink, Send } from "lucide-react";
 import { FAQ_ITEMS, COMPANY_SHORT_NAME } from "@/lib/constants";
+import { analytics } from "@/lib/analytics";
 
 type ChatView = "faq-list" | "faq-answer";
 
@@ -44,11 +45,13 @@ export function ChatBot() {
 
   const handleClose = () => {
     setIsOpen(false);
+    analytics.chatbotOpen();
   };
 
   const handleFaqSelect = (faq: (typeof FAQ_ITEMS)[0]) => {
     setSelectedFaq(faq);
     setView("faq-answer");
+    analytics.chatbotFaqClick(faq.question);
   };
 
   const handleBack = () => {
