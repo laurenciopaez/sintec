@@ -32,6 +32,8 @@ export const SERVICE_INSPECTION = [
   { src: "../img/service1/mediciones1.jpg", description: "Mediciones electroquímicas con sistema de monitoreo movil. Mediciones in-situ." },
   { src: "../img/service1/mediciones2.jpeg", description: "Toma de muestra con bamboleta." },
   { src: "../img/service1/mediciones3.jpeg", description: "Mediciones electroquímicas con sistema de monitoreo movil. Mediciones in-situ." },
+  { src: "../img/service1/mediciones4.jpeg", description: "Mediciones electroquímicas con sistema de monitoreo movil. Mediciones en laboratorio bajo condiciones controladas." },
+  { src: "../img/service1/mediciones5.jpeg", description: "Mediciones electroquímicas con sistema de monitoreo movil. Toma de muestra en tanque separador." },
 ];
 export const SERVICE_PROCEDURES = [
   { src: "../img/service1/operacion2.png", description: "Metodología general de IOWs." },
