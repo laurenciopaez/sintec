@@ -12,15 +12,14 @@ import {
 } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { COMPANY_EMAIL, COMPANY_PHONE, COMPANY_ADDRESS } from "@/lib/constants";
-
-// ── Client-side validation ────────────────────────────────────────────────────
-// Kept inline to stay in the client bundle only.
-// The server (app/api/contact/route.ts) runs the same rules independently.
-
-const MSG_MAX = 2000;
-const MSG_MIN = 10;
-const EMAIL_RE = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
-const PHONE_RE = /^[\d\s+\-().]*$/;
+import {
+  MSG_MAX,
+  sanitizeText,
+  validateForm,
+  type FormState,
+  type FormErrors,
+  EMPTY_FORM,
+} from "@/lib/contactFormUtils";
 
 const SERVICE_OPTIONS = [
   "Integridad de Activos",
@@ -32,65 +31,27 @@ const SERVICE_OPTIONS = [
   "Otro / Consulta general",
 ];
 
-interface FormState {
-  name:    string;
-  email:   string;
-  company: string;
-  phone:   string;
-  service: string;
-  message: string;
-}
-
-type FormErrors = Partial<Record<keyof FormState, string>>;
-
-function validateForm(f: FormState): FormErrors {
-  const err: FormErrors = {};
-
-  const name = f.name.trim();
-  if (!name)                   err.name = "El nombre es requerido";
-  else if (name.length < 2)    err.name = "Mínimo 2 caracteres";
-  else if (name.length > 100)  err.name = "Máximo 100 caracteres";
-
-  const email = f.email.trim();
-  if (!email)                        err.email = "El email es requerido";
-  else if (!EMAIL_RE.test(email))    err.email = "El formato del email es inválido";
-  else if (email.length > 254)       err.email = "Email demasiado largo";
-
-  if (f.company.trim().length > 150) err.company = "Máximo 150 caracteres";
-
-  const phone = f.phone.trim();
-  if (phone && !PHONE_RE.test(phone))      err.phone = "Solo números, espacios, +, - y ()";
-  else if (phone && phone.length > 20)     err.phone = "Máximo 20 caracteres";
-
-  const msg = f.message.trim();
-  if (!msg)                err.message = "El mensaje es requerido";
-  else if (msg.length < MSG_MIN) err.message = `Mínimo ${MSG_MIN} caracteres`;
-  else if (msg.length > MSG_MAX) err.message = `Máximo ${MSG_MAX} caracteres`;
-
-  return err;
-}
-
 // ── Component ─────────────────────────────────────────────────────────────────
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
-const EMPTY: FormState = {
-  name: "", email: "", company: "", phone: "", service: "", message: "",
-};
-
 export function Contact() {
-  const [form, setForm]               = useState<FormState>(EMPTY);
+  const [form, setForm]               = useState<FormState>(EMPTY_FORM);
   const [honeypot, setHoneypot]       = useState("");
   const [status, setStatus]           = useState<SubmitStatus>("idle");
   const [errors, setErrors]           = useState<FormErrors>({});
   const [serverError, setServerError] = useState("");
   const lastSubmitRef                 = useRef<number>(0);
 
+  // Fields where HTML sanitization applies (not email/phone which have their own rules)
+  const TEXT_FIELDS: (keyof FormState)[] = ["name", "company", "message"];
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const clean = TEXT_FIELDS.includes(name as keyof FormState) ? sanitizeText(value) : value;
+    setForm((prev) => ({ ...prev, [name]: clean }));
     if (errors[name as keyof FormState]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -115,7 +76,7 @@ export function Contact() {
 
     // ── Web3Forms — free static-site form service ──────────────────────────
     // Get your free access key at https://web3forms.com
-    const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "TU_ACCESS_KEY_AQUI";
+    const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ;
 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -144,7 +105,7 @@ export function Contact() {
 
       if (data.success) {
         setStatus("success");
-        setForm(EMPTY);
+        setForm(EMPTY_FORM);
         setHoneypot("");
       } else {
         setServerError(data.message ?? "Error al enviar. Intente nuevamente.");

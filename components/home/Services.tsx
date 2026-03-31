@@ -103,7 +103,7 @@ function ServiceCard({ service }: ServiceCardProps) {
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ duration: 0.2 }}
     >
-      <Link href={`/soluciones#${service.slug}`} className="block h-full">
+      <Link href={`/soluciones/${service.slug}`} className="block h-full">
         {/* Icon */}
         {/* Se agregó el componente Image para mostrar la imagen del servicio */}
         {service.imageSrc2 && (

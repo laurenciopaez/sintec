@@ -1,16 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
-import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { ServiceTabs } from "@/components/soluciones/ServiceTabs";
+import {
+  Shield,
+  BarChart3,
+  Search,
+  Layers,
+  Eye,
+  FileText,
+  ArrowRight,
+} from "lucide-react";
+import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { SERVICES } from "@/lib/constants";
 import { SOLUCIONES_CONTENT } from "@/lib/content";
-import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Soluciones | SINTEC S.A.",
   description:
     "Conoce el portafolio completo de servicios de SINTEC S.A.: Integridad de Activos, RBI, Análisis de Falla, Control de Corrosión, Inspección y más.",
+};
+
+const iconMap: Record<string, React.ReactNode> = {
+  Shield: <Shield size={28} />,
+  BarChart3: <BarChart3 size={28} />,
+  Search: <Search size={28} />,
+  Layers: <Layers size={28} />,
+  Eye: <Eye size={28} />,
+  FileText: <FileText size={28} />,
 };
 
 export default function SolucionesPage() {
@@ -45,24 +60,76 @@ export default function SolucionesPage() {
           <AnimatedSection variant="slideUp" delay={0.3} className="mt-12">
             <div className="flex flex-wrap justify-center gap-3">
               {SERVICES.map((service) => (
-                <a
+                <Link
                   key={service.id}
-                  href={`#${service.slug}`}
+                  href={`/soluciones/${service.slug}`}
                   className="px-4 py-2 rounded-full border border-white/20 hover:border-[#297373] hover:bg-[#297373] text-white/70 hover:text-white text-sm transition-all duration-200"
                 >
                   {service.title}
-                </a>
+                </Link>
               ))}
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Tab viewer */}
-      <section className="bg-[#f5f5f7]">
-        <Suspense>
-          <ServiceTabs />
-        </Suspense>
+      {/* Intro */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection variant="slideUp" className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#001514] mb-4">
+              {content.intro.title}
+            </h2>
+            <p className="text-[#6e6e73] text-lg max-w-3xl mx-auto leading-relaxed">
+              {content.intro.text}
+            </p>
+          </AnimatedSection>
+
+          {/* Services grid */}
+          <StaggerContainer
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            staggerDelay={0.08}
+            initialDelay={0.1}
+          >
+            {SERVICES.map((service, index) => (
+              <StaggerItem key={service.id}>
+                <Link
+                  href={`/soluciones/${service.slug}`}
+                  className="group block bg-white rounded-2xl p-8 border border-[#d2d2d7]/50 hover:border-[#297373]/30 hover:shadow-xl hover:shadow-[#297373]/5 transition-all duration-300 h-full"
+                >
+                  {/* Number */}
+                  <span className="text-xs font-mono text-[#6e6e73] bg-[#f5f5f7] px-2.5 py-1 rounded-full mb-6 inline-block">
+                    0{index + 1}
+                  </span>
+
+                  {/* Icon */}
+                  <div className="w-14 h-14 rounded-xl bg-[#297373]/10 flex items-center justify-center text-[#297373] mb-6 group-hover:bg-[#297373] group-hover:text-white transition-all duration-300">
+                    {iconMap[service.icon]}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-xl font-semibold text-[#001514] mb-3 group-hover:text-[#297373] transition-colors duration-200">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-[#6e6e73] text-sm leading-relaxed mb-6">
+                    {service.shortDescription}
+                  </p>
+
+                  {/* CTA */}
+                  <div className="flex items-center gap-2 text-[#297373] text-sm font-medium">
+                    <span>Ver detalle</span>
+                    <ArrowRight
+                      size={14}
+                      className="transition-transform duration-200 group-hover:translate-x-1"
+                    />
+                  </div>
+                </Link>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
       </section>
 
       {/* CTA */}

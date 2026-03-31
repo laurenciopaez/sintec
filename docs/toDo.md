@@ -20,23 +20,23 @@
 ## FASE 1 — Fundaciones (impacto inmediato)
 
 ### 1. Backend real para el formulario de contacto
-- [ ] Crear `/api/contact` (Next.js Route Handler)
-- [ ] Envío de emails via Resend o Nodemailer
+- [x] Crear `/api/contact` (Next.js Route Handler)
+- [x] Envío de emails via Resend o Nodemailer
 - [ ] Persistencia de leads (DB o Google Sheets)
-- [ ] Validación de inputs en el servidor
-- [ ] Rate limiting para prevenir spam
-- [ ] Sanitización de datos
+- [x] Validación de inputs en el servidor
+- [x] Rate limiting para prevenir spam
+- [x] Sanitización de datos
 
 ### 2. Estrategia de keywords
-- [ ] Definir keywords principales: `integridad de activos`, `inspección industrial`, `API 579`, `RBI`
-- [ ] Definir long-tail: `inspección de ductos argentina`, `corrosion CO2 oil gas model`
+- [x] Definir keywords principales: `integridad de activos`, `inspección industrial`, `API 579`, `RBI`
+- [x] Definir long-tail: `inspección de ductos argentina`, `corrosion CO2 oil gas model`
 - [ ] Mapear cada keyword a una URL específica
 - [ ] Usar la lista para guiar TODO el contenido futuro
 
 ### 3. Reestructurar URLs de servicios
-- [ ] Reemplazar `/soluciones#rbi` → `/soluciones/rbi`
-- [ ] Reemplazar `/soluciones#api-579` → `/soluciones/api-579`
-- [ ] Crear una página dinámica por servicio (`app/soluciones/[slug]/page.tsx`)
+- [x] Reemplazar `/soluciones#rbi` → `/soluciones/rbi`
+- [x] Reemplazar `/soluciones#api-579` → `/soluciones/api-579`
+- [x] Crear una página dinámica por servicio (`app/soluciones/[slug]/page.tsx`)
 - [ ] Configurar redirects desde las URLs antiguas
 
 ### 4. SEO técnico base

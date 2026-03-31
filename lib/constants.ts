@@ -1,4 +1,3 @@
-import { i, image } from "framer-motion/client";
 import { SERVICE_INTEGRITY, SERVICE_RBI, SERVICE_FAILURE, SERVICE_CORROSION, SERVICE_INSPECTION, SERVICE_PROCEDURES, SERVICE_CORROSION2, SERVICE_FAILURE2, SERVICE_INSPECTION2, SERVICE_INTEGRITY2, SERVICE_PROCEDURES2, SERVICE_RBI2 } from "./images/index";
 
 export const COMPANY_NAME = "SINTEC S.A.";
@@ -226,7 +225,7 @@ export const FAQ_ITEMS = [
     id: "services",
     question: "¿Qué servicios ofrecen?",
     answer:
-      "Ofrecemos servicios especializados en ingeniería de integridad industrial: Integridad de Activos, Inspección Basada en Riesgo (RBI), Análisis de Falla, Control de Corrosión, Inspección y Monitoreo con técnicas END/NDT, y elaboración de Procedimientos Técnicos.",
+      "Ofrecemos servicios especializados en ingeniería de integridad industrial: Integridad de Activos, Inspección Basada en Riesgo (RBI), Análisis de Falla, Control de Corrosión, Inspección y Monitoreo con electroquimicas in-situ, y elaboración de Procedimientos Técnicos.",
     cta: { label: "Ver nuestras soluciones", href: "/soluciones" },
   },
   {
@@ -236,21 +235,21 @@ export const FAQ_ITEMS = [
       "RBI (Risk-Based Inspection) es una metodología según API 580/581 que evalúa el riesgo de falla de equipos industriales. Permite priorizar y optimizar los planes de inspección, reduciendo costos hasta un 40% mientras se mejora la seguridad operativa.",
     cta: {
       label: "Conocer más sobre RBI",
-      href: "/soluciones#integridad-riesgos-rbi",
+      href: "/soluciones/integridad-riesgos-rbi",
     },
   },
   {
     id: "contact",
     question: "¿Cómo puedo contactarlos?",
     answer:
-      "Puede contactarnos por email a contacto@sintecsa.com.ar o por teléfono al +54 11 4000-0000. También puede completar el formulario de contacto en nuestra web y nos comunicaremos dentro de las 24 horas hábiles.",
+      "Puede contactarnos por email a jprossi@sintecsa.com.ar o por teléfono al +54 223 464-4322/23. También puede completar el formulario de contacto en nuestra web y nos comunicaremos dentro de las 24 horas hábiles.",
     cta: { label: "Ir al formulario de contacto", href: "/#contacto" },
   },
   {
     id: "coverage",
     question: "¿Trabajan en toda Argentina?",
     answer:
-      "Sí, contamos con capacidad de operar en todo el territorio argentino. Hemos desarrollado proyectos en Buenos Aires, Neuquén (Vaca Muerta), Santa Fe, Córdoba, Mendoza y Patagonia, con personal certificado y equipamiento propio.",
+      "Sí, contamos con capacidad de operar en todo el territorio argentino. Hemos desarrollado proyectos en Buenos Aires, Neuquén (Vaca Muerta), Mendoza, Chubut y Santa Cruz, con personal certificado y equipamiento propio.",
     cta: { label: "Contactar a un especialista", href: "/#contacto" },
   },
   {
@@ -259,13 +258,6 @@ export const FAQ_ITEMS = [
     answer:
       "Nos especializamos en industrias con alta demanda de integridad: Oil & Gas (upstream, midstream, downstream), petroquímica, refinación, generación de energía, industria química y agua/saneamiento.",
     cta: { label: "Ver quiénes somos", href: "/quienes-somos" },
-  },
-  { /// MODIFICAR 
-    id: "certifications",
-    question: "¿Tienen certificaciones?",
-    answer:
-      "Nuestro equipo cuenta con certificaciones internacionales en técnicas END (UT, PA, MT, PT, VT), certificaciones API 510, API 570, API 653, NACE CIP y formación continua en normas API, ASME, NORSOK y estándares internacionales.",
-    cta: { label: "Conocer nuestro equipo", href: "/quienes-somos" },
   },
 ];
 
