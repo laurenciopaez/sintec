@@ -54,7 +54,7 @@
 - [ ] Crear página individual para cada servicio (mínimo 1000 palabras)
 - [x] Cada página debe incluir: introducción técnica, metodología, casos de uso, beneficios, FAQs
 - [ ] Optimizar H1/H2/H3 con keywords objetivo
-- [ ] Agregar imágenes reales con alt text descriptivo
+- [x] Agregar imágenes reales con alt text descriptivo
 
 ### 6. Blog técnico
 - [ ] Crear estructura `/blog` y `/blog/[slug]`
@@ -120,7 +120,6 @@
 - [ ] Keywords principales y secundarias definidas
 - [ ] Metadata avanzada por página
 - [ ] Open Graph completo
-- [ ] Twitter cards
 - [ ] Sitemap dinámico
 - [ ] robots.txt
 - [ ] Canonical URLs

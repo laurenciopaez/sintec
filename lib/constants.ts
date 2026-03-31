@@ -50,8 +50,8 @@ export const SERVICES = [
     faq: [
       {
         id: "faq-ia-1",
-        question: "¿Qué incluye un Plan de Gestión de Integridad (PGI)?",
-        answer: "Un PGI es el documento maestro que establece la estrategia de mantenimiento y supervisión de activos para todo su ciclo de vida. Incluye la identificación de mecanismos de daño potenciales, la definición de Estrategias de Inspección Basada en Riesgo (RBI), los umbrales de aceptabilidad, los procedimientos de respuesta ante anomalías y los registros históricos de inspección. Su estructura sigue los lineamientos de API 510, API 570, API 653 y ASME PCC-3.",
+        question: "¿Qué es la integridad de activos?",
+        answer: "Gestión técnica que asegura que equipos e instalaciones operen de forma segura, confiable y dentro de condiciones de diseño. Evalúa el estado real del equipo, su ciclo de vida y los riesgos asociados para prevenir fallas antes de que ocurran, garantizando una operación continua, predecible y segura.",
       },
       {
         id: "faq-ia-2",
@@ -70,9 +70,14 @@ export const SERVICES = [
       },
       {
         id: "faq-ia-5",
-        question: "¿Qué diferencia hay entre mantenimiento preventivo y mantenimiento basado en integridad?",
-        answer: "El mantenimiento preventivo opera bajo cronogramas fijos (tiempo o ciclos), mientras que el mantenimiento basado en integridad es dinámico: se ajusta según el estado real del activo, los mecanismos de daño activos y el nivel de riesgo calculado. Esto permite concentrar recursos donde el riesgo es mayor, reducir intervenciones innecesarias en equipos de bajo riesgo y extender la vida útil con fundamento técnico sólido.",
+        question: "¿Qué equipos abarca?",
+        answer: "Nuestra cobertura abarca desde recipientes a presión, intercambiadores de calor y tanques de almacenamiento, hasta sistemas completos de tuberías e infraestructura de carga.",
       },
+      {
+        id: "faq-ia-6",
+        question: "¿Qué valor aporta?",
+        answer: "Reduce fallas, optimiza mantenimiento y mejora la disponibilidad operativa. Al conocer el estado  real de los equipos, se optimizan los intervalos de mantenimiento preventivo y se extiende la vida útil segura de la infraestructura crítica, maximizando el retorno de inversión.",
+      }
     ],
   },
   {
@@ -96,26 +101,41 @@ export const SERVICES = [
     faq: [
       {
         id: "faq-rbi-1",
-        question: "¿Cuál es la diferencia entre RBI cuantitativo (API 581) y semicuantitativo (API 580)?",
-        answer: "API 580 define el marco conceptual del RBI (proceso, documentación, jerarquización), mientras que API 581 provee los modelos matemáticos para cuantificar la Probabilidad de Falla (POF) y la Consecuencia de Falla (COF) con base en datos de proceso reales. El RBI cuantitativo produce resultados en unidades de riesgo (US$/año), permitiendo comparaciones objetivas entre activos. El semicuantitativo usa matrices de riesgo (Bajo/Medio/Alto) y es adecuado para evaluaciones iniciales.",
+        question: "¿Qué es RBI?",
+        answer: "Metodología que prioriza inspecciones según riesgo (probabilidad de falla + consecuencia). Permite extender de manera segura los intervalos de inspección para equipos de bajo riesgo y enfocar los esfuerzos y presupuestos donde realmente importa.",
       },
       {
         id: "faq-rbi-2",
+        question: "¿Para que sirve el RBI?",
+        answer: "El RBI sirve para optimizar los recursos de inspección y mantenimiento, priorizando aquellos equipos que presentan un mayor riesgo. Esto permite reducir costos operativos y mejorar la seguridad.",
+      },
+      {
+        id: "faq-rbi-3",
+        question: "¿Qué es la consecuencia de falla (COF) y cómo se calcula?",
+        answer: "La consecuencia de falla (COF) es la gravedad del impacto si un equipo falla, considerando aspectos como seguridad, medio ambiente, producción y costos. Se evalúa mediante matrices de impacto que asignan valores a cada categoría de consecuencia.",
+      },
+      {
+        id: "faq-rbi-4",
+        question: "¿Qué es la probabilidad de falla (POF) y cómo se calcula?",
+        answer: "La probabilidad de falla (POF) es la probabilidad de que un equipo falle en un período determinado, basada en su estado actual, mecanismos de daño activos y condiciones de operación. Se calcula utilizando modelos probabilísticos validados por API 581, que integran datos de inspección, tasas de corrosión y características del equipo.",
+      },
+      {
+        id: "faq-rbi-5",
         question: "¿Qué mecanismos de daño son los más frecuentes en la evaluación RBI?",
         answer: "Según API 571, los mecanismos más relevantes en Oil & Gas y petroquímica incluyen: adelgazamiento por corrosión (localizado y generalizado), fragilización por hidrógeno (HIC/SOHIC/SSC), corrosión bajo aislación (CUI), agrietamiento por corrosión bajo tensión (SCC), fatiga mecánica y erosión. El estudio RBI identifica cuáles están activos en cada equipo según las condiciones de servicio y los materiales de construcción.",
       },
       {
-        id: "faq-rbi-3",
+        id: "faq-rbi-6",
         question: "¿Cómo optimiza el RBI los intervalos de inspección?",
         answer: "El RBI reemplaza los intervalos fijos por frecuencias basadas en el riesgo calculado. Un equipo con bajo riesgo puede ampliar su período de inspección, mientras que uno de alto riesgo requiere supervisión más frecuente. Esto evita tanto la sub-inspección como la sobre-inspección. Los estudios demuestran reducciones de costo de hasta un 30-40% con igual o mayor seguridad operativa.",
       },
       {
-        id: "faq-rbi-4",
+        id: "faq-rbi-7",
         question: "¿Cada cuánto tiempo debe actualizarse un estudio RBI?",
         answer: "El estudio RBI debe actualizarse al menos cada 3-5 años, o ante: resultados de inspección significativamente distintos a lo predicho, cambios en las condiciones de proceso, modificaciones de equipos, y cambios en los criterios de riesgo de la empresa. La recalibración parcial puede realizarse con mayor frecuencia sin necesidad de replantear el estudio completo.",
       },
       {
-        id: "faq-rbi-5",
+        id: "faq-rbi-8",
         question: "¿Qué información se necesita para desarrollar un estudio RBI?",
         answer: "Se requiere información de proceso (fluidos, temperatura, presión, caudales), datos de construcción (materiales, espesores nominales, año de fabricación), historial de inspección y espesores medidos, historial de fallas y reparaciones, y criterios de consecuencia de la empresa. Si no existe historial de inspección, comenzamos con una evaluación conservadora que se refina con los primeros datos obtenidos.",
       },
@@ -152,13 +172,13 @@ export const SERVICES = [
       },
       {
         id: "faq-af-2",
-        question: "¿Qué metodologías de análisis de causa raíz (RCA) utilizan?",
-        answer: "Aplicamos metodologías estandarizadas según la complejidad del evento: FMEA (Failure Mode and Effects Analysis) para análisis sistemáticos de modos de falla, Árbol de Falla (FTA) para evaluar combinaciones de eventos, Diagrama de Ishikawa para análisis participativos, y los '5 Por Qué' para fallas con cadena causal directa. El resultado es siempre una cadena causal completa: Causa Raíz Física → Humana → Latente (sistémica).",
+        question: "¿En que consiste el análisis de falla?",
+        answer: "Es una investigación técnica que busca identificar la causa raíz de una falla en un equipo o componente, evaluando factores mecánicos, operativos, metalúrgicos y ambientales. El proceso incluye: recopilación de datos (historial de operación, condiciones de proceso, mantenimiento), inspección visual y dimensional del componente fallado, análisis metalografico, analisis fractográfico, estudio de las propiedades mecanicas para la caracterización del material, evaluación de mecanismos de daño activos, simulación y modelado para validar hipótesis, y elaboración de un informe técnico con conclusiones y recomendaciones para prevenir recurrencias.",
       },
       {
         id: "faq-af-3",
         question: "¿Qué análisis de laboratorio se realizan en un estudio de falla?",
-        answer: "Realizamos: examen visual y macroscópico del componente fallado, análisis fractográfico por microscopía electrónica de barrido (SEM), metalografía óptica para evaluar la microestructura y mecanismos de degradación, análisis químico por EDX/EDS para identificar depósitos o corrosión específica, ensayos de dureza y comparación con especificaciones originales.",
+        answer: "Realizamos: examen visual y macroscópico del componente fallado, metalografía óptica para evaluar la microestructura y mecanismos de degradación, análisis químico por EDX/EDS para identificar depósitos o corrosión específica, ensayos de dureza y comparación con especificaciones originales, entre otros.",
       },
       {
         id: "faq-af-4",
@@ -170,6 +190,10 @@ export const SERVICES = [
         question: "¿Qué entregables incluye el informe de análisis de falla?",
         answer: "El informe técnico incluye: descripción del evento y contexto operacional, resultados detallados de todos los análisis realizados (con imágenes y datos), identificación del mecanismo de falla y las causas raíz (física, humana y sistémica), conclusiones con fundamento en normativas internacionales, y recomendaciones concretas para prevenir la recurrencia. El informe es utilizable como documento técnico-legal.",
       },
+    { id: "faq-af-6",
+      question: "¿Qué mecanismos de daño es posible identificar?",
+      answer: "Los mecanismos de daño que podemos identificar incluyen: corrosión generalizada y localizada, fragilización por hidrógeno (HIC/SOHIC/SSC), corrosión bajo aislación (CUI), agrietamiento por corrosión bajo tensión (SCC), fatiga mecánica, erosión, sobrecarga, defectos de manufactura, defectos en montaje, condiciones operativas inadmisibles,  entre otros. La identificación precisa del mecanismo es fundamental para implementar medidas correctivas efectivas y prevenir recurrencias.",
+    }
     ],
   },
   {
@@ -198,8 +222,8 @@ export const SERVICES = [
     faq: [
       {
         id: "faq-cc-1",
-        question: "¿Cómo se diseña un sistema de protección catódica para ductos enterrados?",
-        answer: "El diseño de un sistema de PC por corriente impresa (ICCP) comienza con estudios de suelo: medición de resistividad eléctrica, gradientes de tensión, presencia de corrientes vagabundas y potenciales naturales del ducto. Con estos datos se dimensionan los rectificadores, el lecho de ánodos y los cables de conexión. El criterio de protección según NACE SP0169 es alcanzar un potencial más negativo que -850 mV Cu/CuSO4 en todos los puntos del ducto.",
+        question: "¿Por qué es importante el control de la corrosión?",
+        answer: "La corrosion es una de las principales causas de deterioro de activos industriales, representando un riesgo significativo para la seguridad, el medio ambiente y la continuidad operativa. El control efectivo de la corrosión previene fallas catastróficas, reduce costos de mantenimiento y reparación, y extiende la vida útil de los activos críticos. En industrias como Oil & Gas, petroquímica y energía, una gestión proactiva de la corrosión es esencial para garantizar operaciones seguras y rentables.",
       },
       {
         id: "faq-cc-2",
@@ -218,8 +242,8 @@ export const SERVICES = [
       },
       {
         id: "faq-cc-5",
-        question: "¿Con qué frecuencia se deben realizar auditorías de un sistema de protección catódica?",
-        answer: "Según NACE SP0169, los sistemas de PC deben tener mediciones de potencial al menos una vez al año en todos los puntos de prueba. Se recomienda una inspección close-interval survey (CIS) cada 3-5 años en ductos enterrados, y una auditoría completa del sistema (rectificadores, lecho de ánodos, drenajes) cada 2-3 años. Ante cambios en el entorno se deben realizar mediciones extraordinarias.",
+        question: "¿Qué soluciones se aplican?",
+        answer: "Diseñamos estrategias de mitigacion a medida, tales como el uso de recubrimientos protectores, sistemas de protección catódica, la implementación de prácticas de mantenimiento preventivo y la apropiada seleccion de materiales. Estas practicas permiten reducir la tasa de corrosión, prevenir fallas y extender la vida útil de los activos industriales.",
       },
     ],
   },
@@ -259,8 +283,8 @@ export const SERVICES = [
       },
       {
         id: "faq-im-2",
-        question: "¿En qué condiciones operativas pueden instalarse los sensores electroquímicos?",
-        answer: "Nuestros sensores están diseñados para condiciones industriales severas: presiones de hasta 10,000 PSI, temperaturas de -20°C a 150°C, fluidos multifásicos (gas-líquido), presencia de H2S y CO2, y fluidos con alto contenido de sólidos o arena. La instalación se realiza mediante accesorios retrieval con presión viva, sin necesidad de parada de planta, utilizando equipos certificados y procedimientos API.",
+        question: "¿Qué es el servicio movil de medición electroquimica en campo?",
+        answer: "Nuestro servicio movil en campo está orientado a la determinacion de velocidades instantáneas de corrosión en sistemas con fluido circulante, bajo condiciones reales de operacion. Mediante la toma de muestras de fluido y su análisis electroquímico in situ, podemos evaluar la cinética de corrosión, identificar mecanismos activos y optimizar la dosificación de inhibidores en tiempo real, sin necesidad de interrumpir el proceso o esperar resultados a largo plazo.",
       },
       {
         id: "faq-im-3",
@@ -274,8 +298,18 @@ export const SERVICES = [
       },
       {
         id: "faq-im-5",
-        question: "¿Cómo se optimiza la dosificación de inhibidores de corrosión para reducir OPEX?",
-        answer: "La optimización parte del análisis de la curva dosis-respuesta: medimos la velocidad de corrosión en tiempo real para diferentes concentraciones del inhibidor y determinamos la Concentración Mínima Efectiva (CME). El monitoreo electroquímico continuo detecta cuando las condiciones del fluido cambian y el inhibidor pierde eficiencia, ajustando la dosis y evitando tanto el sobreconsumo de químicos como la sub-protección del activo.",
+        question: "¿Es necesario detener la producción de la planta o pozo de producción para medir la corrosión interna?",
+        answer: "No. Utilizamos tecnicas de monitoreo y herramientas de acceso en linea que permiten recolectar muestras de fluido y realizar las mediciones sin necesidad de detener la producción o interrumpir el proceso. Esto es especialmente valioso en activos críticos donde las paradas no programadas pueden generar pérdidas significativas. Nuestro enfoque se basa en la integración de sensores y técnicas de muestreo que garantizan la seguridad y continuidad operativa durante la evaluación de la corrosión interna.",
+      },
+      {
+        id: "faq-im-6",
+        question: "¿Es necesario detener la producción de la planta o pozo de producción para medir la corrosión interna?",
+        answer: "No. Utilizamos tecnicas de monitoreo y herramientas de acceso en linea que permiten recolectar muestras de fluido y realizar las mediciones sin necesidad de detener la producción o interrumpir el proceso. Esto es especialmente valioso en activos críticos donde las paradas no programadas pueden generar pérdidas significativas. Nuestro enfoque se basa en la integración de sensores y técnicas de muestreo que garantizan la seguridad y continuidad operativa durante la evaluación de la corrosión interna."
+      },
+      {
+        id: "faq-im-7",
+        question: "¿Es necesario detener la producción de la planta o pozo de producción para medir la corrosión interna?",
+        answer: "Al ser un sistema completamente móvil, nuestros especialistas pueden trasladarse rápidamente a diferentes puntos críticos de su planta (sistemas de enfriamiento, ductos, separadores) para realizar mapeos electroquímicos en el día."
       },
     ],
   },
