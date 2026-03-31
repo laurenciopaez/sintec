@@ -221,23 +221,29 @@ Two-column section introducing the company with a visual card and floating highl
 
 ### `components/home/Contact.tsx`
 
-Full contact form with validation and submission states.
+Full contact form with validation, dual submission (email + Google Sheets), and submission states.
 
 **Form fields:**
 - Name (required)
 - Email (required, format validated)
 - Company (optional)
 - Phone (optional)
-- Service of interest (select)
+- Service of interest (select): Integridad de Activos, RBI, Análisis de Falla, Control de Corrosión, Inspección y Monitoreo, Procedimientos Técnicos, Análisis de datos y Machine Learning, Otro
 - Message (required)
 
 **States:** `idle` | `loading` | `success` | `error`
 
-**Validation:** Uses `validateForm` and `sanitizeText` from `lib/contactFormUtils.ts`. Includes profanity filter and sensitive data detection. On success, shows thank-you state with reset option.
+**Validation:** Uses `validateForm` and `sanitizeText` from `lib/contactFormUtils.ts`. Includes profanity filter, sensitive data detection, and a honeypot field for bot protection. On success, shows thank-you state with reset option.
+
+**Submission flow (on valid submit):**
+1. **Google Sheets** (fire-and-forget) — `fetch` con `Content-Type: text/plain` al Apps Script Web App. Fallo silencioso, no bloquea el flujo.
+2. **Web3Forms** (awaited) — envía el email. La `access_key` viene de `NEXT_PUBLIC_WEB3FORMS_KEY` en `.env.local`. El email de destino se configura en la cuenta de web3forms.com, no en el código.
+
+Si Sheets falla, el email se envía igual. Si Web3Forms falla, el usuario ve el error.
+
+**Rate limiting:** debounce de 3 segundos entre envíos consecutivos.
 
 **Analytics:** Calls `analytics.contactFormSubmit()` on success and `analytics.contactFormError(field)` on validation failure.
-
-**Note:** Currently simulates submission with `setTimeout`. Replace with actual API call to `app/api/contact/route.ts` in `handleSubmit`.
 
 ---
 

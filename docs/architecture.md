@@ -230,7 +230,9 @@ Contact form input goes through two layers in `lib/contactFormUtils.ts`:
 1. **Sanitization** (`sanitizeText`) — strips HTML tags, `javascript:` URIs, inline event handlers
 2. **Validation** (`validateForm`) — field length limits, email regex, phone regex, profanity filter, sensitive data detection (credit cards, passwords)
 
-A separate `lib/contact-validation.ts` provides `validateContactForm` and `sanitizeString` for use in a future API route (`app/api/contact/route.ts`).
+A separate `lib/contact-validation.ts` provides `validateContactForm` and `sanitizeString` (disponible para un futuro API route si se necesita server-side validation adicional).
+
+**Persistencia de leads:** el formulario hace un fetch fire-and-forget a un Apps Script Web App que escribe cada envío en un Google Sheet ("persistencia de formulario pagina web"). Se usa `Content-Type: text/plain` para evitar el preflight CORS. El email de destino se gestiona desde la cuenta de web3forms.com.
 
 ---
 
@@ -258,7 +260,7 @@ A separate `lib/contact-validation.ts` provides `validateContactForm` and `sanit
 
 ## Future Enhancements
 
-- [ ] Add `app/api/contact/route.ts` for real form submission (validation scaffold in `lib/contact-validation.ts` is ready)
+- [x] Form submission: email vía Web3Forms + persistencia en Google Sheets vía Apps Script Web App
 - [ ] Integrate CMS (e.g., Sanity, Contentful) for content management
 - [ ] Add `app/blog/` section for technical articles
 - [ ] Add sitemap.xml generation

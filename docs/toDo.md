@@ -22,7 +22,7 @@
 ### 1. Backend real para el formulario de contacto
 - [x] Crear `/api/contact` (Next.js Route Handler)
 - [x] Envío de emails via Resend o Nodemailer
-- [ ] Persistencia de leads (DB o Google Sheets)
+- [x] Persistencia de leads (Google Sheets)
 - [x] Validación de inputs en el servidor
 - [x] Rate limiting para prevenir spam
 - [x] Sanitización de datos
@@ -52,7 +52,7 @@
 ## FASE 2 — Contenido y posicionamiento
 
 ### 5. Páginas SEO por servicio
-- [ ] Crear página individual para cada servicio (mínimo 1000 palabras)
+- [x] Crear página individual para cada servicio (mínimo 1000 palabras)
 - [x] Cada página debe incluir: introducción técnica, metodología, casos de uso, beneficios, FAQs
 - [ ] Optimizar H1/H2/H3 con keywords objetivo
 - [x] Agregar imágenes reales con alt text descriptivo
