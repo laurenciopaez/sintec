@@ -29,6 +29,7 @@ const SERVICE_OPTIONS = [
   "Control de Corrosión",
   "Inspección y Monitoreo",
   "Procedimientos Técnicos",
+  "Analisis de datos y Machine Learning",
   "Otro / Consulta general",
 ];
 
@@ -75,11 +76,27 @@ export function Contact() {
 
     setStatus("loading");
 
+    // ── Google Sheets — persistencia de leads ─────────────────────────────
+    const SHEETS_URL = "https://script.google.com/macros/s/AKfycbzaVNitHsci3MPXaCtUlZbAG5yCIC6voYqfXGyL_7G_grlyTRC8xTOp-sy_mX9vnakG0w/exec";
+
     // ── Web3Forms — free static-site form service ──────────────────────────
-    // Get your free access key at https://web3forms.com
-    const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ;
+    const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
     try {
+      // Ambos envíos en paralelo — si Sheets falla, el email igual se envía
+      void fetch(SHEETS_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({
+          name:    form.name,
+          email:   form.email,
+          company: form.company,
+          phone:   form.phone,
+          service: form.service,
+          message: form.message,
+        }),
+      }).catch(() => null); // silencioso — no bloquea el flujo
+
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
