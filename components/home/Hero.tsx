@@ -126,7 +126,7 @@ export function Hero() {
           {[
             { value: "+20", label: "Años de experiencia" },
             { value: "+150", label: "Proyectos completados" },
-            { value: "+50", label: "Clientes activos" },
+            { value: "+10", label: "Clientes activos" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl font-bold text-white mb-1">

@@ -38,10 +38,10 @@ export function Clients() {
         <div className="absolute right-0 top-0 h-full w-24 z-10 pointer-events-none bg-gradient-to-l from-white to-transparent" />
 
         <motion.div
-          className="flex gap-12 items-center"
+          className="flex gap-14 items-center"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
-            duration: 50,
+            duration: 150,
             ease: "linear",
             repeat: Infinity,
           }}
