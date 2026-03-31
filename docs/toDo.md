@@ -78,10 +78,10 @@
 - [ ] Chatbot con captura de email/teléfono antes de responder
 
 ### 10. Prueba social
-- [ ] Logos de clientes en sección dedicada
-- [ ] Testimonios reales (texto o video)
-- [ ] Contador de proyectos / años de experiencia actualizados
-- [ ] Casos de éxito con resultados cuantificables
+- [x] Logos de clientes en sección dedicada
+- [x] Testimonios reales (texto o video)
+- [x] Contador de proyectos / años de experiencia actualizados
+- [x] Casos de éxito con resultados cuantificables
 
 ---
 
