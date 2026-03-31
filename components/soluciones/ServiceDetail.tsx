@@ -48,6 +48,10 @@ function ServiceImageCarousel({
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
+    setCurrent(0);
+  }, [images]);
+
+  useEffect(() => {
     if (images.length <= 1) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
@@ -57,7 +61,7 @@ function ServiceImageCarousel({
 
   if (!images || images.length === 0) {
     return (
-      <div className="mb-8 w-full h-60 lg:h-90 rounded-2xl bg-[#f5f5f7] flex items-center justify-center">
+      <div className="mb-8 w-full h-60 lg:h-80 rounded-2xl bg-[#f5f5f7] flex items-center justify-center">
         <span className="text-[#6e6e73] text-sm">Imagen no disponible</span>
       </div>
     );
@@ -67,7 +71,7 @@ function ServiceImageCarousel({
 
   return (
     <div className="mb-8">
-      <div className="w-full h-60 lg:h-90 rounded-2xl bg-[#f5f5f7] relative overflow-hidden">
+      <div className="w-full h-60 lg:h-80 rounded-2xl bg-[#f5f5f7] relative overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -82,7 +86,7 @@ function ServiceImageCarousel({
               alt={alt}
               fill
               className="object-contain rounded-2xl"
-              sizes="(max-width: 768px) 100vw, 70vw"
+              sizes="(max-width: 768px) 100vw, 60vw"
             />
           </motion.div>
         </AnimatePresence>
@@ -152,121 +156,136 @@ export function ServiceDetail({
     : undefined;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-      <div className="bg-white rounded-3xl shadow-2xl border border-[#d2d2d7]/40 p-8 lg:p-12">
-        {/* Badge row */}
-        <div className="flex flex-wrap items-center gap-3 mb-6">
-          <span className="text-xs font-mono text-[#6e6e73] bg-[#f5f5f7] px-3 py-1 rounded-full">
-            Servicio {String(serviceIndex + 1).padStart(2, "0")} /{" "}
-            {String(SERVICES.length).padStart(2, "0")}
-          </span>
-          <div className="flex flex-wrap gap-1.5">
-            {standardsByIndex[serviceIndex]?.map((std) => (
-              <span
-                key={std}
-                className="text-xs px-2.5 py-1 rounded-full bg-[#297373]/10 text-[#297373] font-medium border border-[#297373]/20"
-              >
-                {std}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Icon */}
-        <div className="w-16 h-16 rounded-2xl bg-[#001514] flex items-center justify-center text-white mb-6">
-          {iconMapLarge[service.icon]}
-        </div>
-
-        {/* Description */}
-        <p
-          className={`text-[#6e6e73] leading-relaxed text-base max-w-3xl ${
-            alcanceList || valorAgregadoList ? "mb-4" : "mb-8"
-          }`}
-        >
-          {service.description}
-        </p>
-
-        {alcanceList && (
-          <div className={valorAgregadoList ? "mb-4" : "mb-8"}>
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-3">
-              Alcance
-            </p>
-            <ul className="space-y-1.5">
-              {alcanceList.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2 text-[#6e6e73] text-sm"
-                >
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#297373] shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {valorAgregadoList && (
-          <div className="mb-8">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-3">
-              Valor Agregado
-            </p>
-            <ul className="space-y-1.5">
-              {valorAgregadoList.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2 text-[#6e6e73] text-sm"
-                >
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#A33400] shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Features grid */}
-        <div className="mb-8">
-          <h3 className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-4">
-            Alcance del servicio
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {service.features.map((feature) => (
-              <div
-                key={feature}
-                className="flex items-center gap-3 bg-[#f5f5f7] rounded-xl px-4 py-3"
-              >
-                <CheckCircle size={16} className="text-[#297373] shrink-0" />
-                <span className="text-[#001514] text-sm font-medium">
-                  {feature}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Image carousel */}
-        <ServiceImageCarousel
-          images={service.imageSrc as ServiceImage[]}
-          alt={service.imageAlt}
-        />
-
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Link
-            href="/#contacto"
-            className="inline-flex items-center justify-center gap-2 bg-[#297373] hover:bg-[#0A1045] text-white px-6 py-3 rounded-xl font-semibold text-sm transition-colors duration-200"
-          >
-            Consultar sobre este servicio
-            <ArrowRight size={15} />
-          </Link>
-          <Link
-            href="/soluciones"
-            className="inline-flex items-center justify-center gap-2 border border-[#d2d2d7] hover:border-[#297373] text-[#001514] hover:text-[#297373] px-6 py-3 rounded-xl font-semibold text-sm transition-colors duration-200"
-          >
-            Ver todos los servicios
-          </Link>
+    <motion.div
+      key={service.id}
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -24 }}
+      transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="p-8 lg:p-12 h-full"
+    >
+      {/* Badge row */}
+      <div className="flex items-center gap-3 mb-6">
+        <span className="text-xs font-mono text-[#6e6e73] bg-[#f5f5f7] px-3 py-1 rounded-full">
+          Servicio {String(serviceIndex + 1).padStart(2, "0")} /{" "}
+          {String(SERVICES.length).padStart(2, "0")}
+        </span>
+        <div className="flex flex-wrap gap-1.5">
+          {standardsByIndex[serviceIndex]?.map((std) => (
+            <span
+              key={std}
+              className="text-xs px-2.5 py-1 rounded-full bg-[#297373]/10 text-[#297373] font-medium border border-[#297373]/20"
+            >
+              {std}
+            </span>
+          ))}
         </div>
       </div>
-    </div>
+
+      {/* Title + icon */}
+      <div className="flex items-start gap-5 mb-6">
+        <div className="w-16 h-16 rounded-2xl bg-[#001514] flex items-center justify-center text-white shrink-0">
+          {iconMapLarge[service.icon]}
+        </div>
+        <div>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#001514] leading-tight">
+            {service.title}
+          </h2>
+          <p className="text-[#297373] text-sm font-medium mt-1">
+            {service.shortDescription}
+          </p>
+        </div>
+      </div>
+
+      {/* Description */}
+      <p
+        className={`text-[#6e6e73] leading-relaxed text-base max-w-2xl ${
+          alcanceList || valorAgregadoList ? "mb-4" : "mb-8"
+        }`}
+      >
+        {service.description}
+      </p>
+
+      {alcanceList && (
+        <div className={valorAgregadoList ? "mb-4" : "mb-8"}>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-2">
+            Alcance
+          </p>
+          <ul className="space-y-1">
+            {alcanceList.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-2 text-[#6e6e73] text-sm"
+              >
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#297373] shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {valorAgregadoList && (
+        <div className="mb-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-2">
+            Valor Agregado
+          </p>
+          <ul className="space-y-1">
+            {valorAgregadoList.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-2 text-[#6e6e73] text-sm"
+              >
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#A33400] shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Features grid */}
+      <div className="mb-8">
+        <h3 className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-4">
+          Alcance del servicio
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {service.features.map((feature) => (
+            <div
+              key={feature}
+              className="flex items-center gap-3 bg-[#f5f5f7] rounded-xl px-4 py-3"
+            >
+              <CheckCircle size={16} className="text-[#297373] shrink-0" />
+              <span className="text-[#001514] text-sm font-medium">
+                {feature}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Image carousel */}
+      <ServiceImageCarousel
+        images={service.imageSrc as ServiceImage[]}
+        alt={service.imageAlt}
+      />
+
+      {/* CTAs */}
+      <div className="flex flex-col sm:flex-row gap-3">
+        <Link
+          href="/#contacto"
+          className="inline-flex items-center justify-center gap-2 bg-[#297373] hover:bg-[#0A1045] text-white px-6 py-3 rounded-xl font-semibold text-sm transition-colors duration-200"
+        >
+          Consultar sobre este servicio
+          <ArrowRight size={15} />
+        </Link>
+        <Link
+          href="/soluciones"
+          className="inline-flex items-center justify-center gap-2 border border-[#d2d2d7] hover:border-[#297373] text-[#001514] hover:text-[#297373] px-6 py-3 rounded-xl font-semibold text-sm transition-colors duration-200"
+        >
+          Ver todos los servicios
+        </Link>
+      </div>
+    </motion.div>
   );
 }

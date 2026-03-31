@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
 import { ServiceDetail } from "@/components/soluciones/ServiceDetail";
+import { ServiceSidebarLayout } from "@/components/soluciones/ServiceSidebarLayout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { SOLUCIONES_CONTENT } from "@/lib/content";
 
@@ -35,91 +36,44 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const serviceIndex = SERVICES.findIndex((s) => s.slug === slug);
-  const prevService = serviceIndex > 0 ? SERVICES[serviceIndex - 1] : null;
-  const nextService =
-    serviceIndex < SERVICES.length - 1 ? SERVICES[serviceIndex + 1] : null;
-
   const content = SOLUCIONES_CONTENT;
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero */}
-      <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 bg-[#001514] overflow-hidden">
+      {/* Mini hero */}
+      <section className="relative pt-32 pb-10 lg:pt-36 lg:pb-12 bg-[#001514] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#001514] via-[#001514] to-[#0A1045]" />
         <div className="absolute inset-0 hero-grid-bg opacity-30" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-[#297373]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection variant="slideUp">
             <Link
               href="/soluciones"
-              className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-8 transition-colors duration-200"
+              className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-6 transition-colors duration-200"
             >
               <ArrowLeft size={14} />
               Volver a Soluciones
             </Link>
 
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-3">
               <div className="h-px w-8 bg-[#A33400]" />
               <span className="text-[#A33400] text-sm font-medium tracking-widest uppercase">
-                Servicio {String(serviceIndex + 1).padStart(2, "0")} /{" "}
-                {String(SERVICES.length).padStart(2, "0")}
+                Servicios especializados
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 max-w-3xl">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
               {service.title}
             </h1>
-            <p className="text-white/60 text-xl max-w-2xl leading-relaxed">
-              {service.shortDescription}
-            </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Detail content */}
+      {/* Sidebar + content */}
       <section className="bg-[#f5f5f7]">
-        <ServiceDetail service={service} serviceIndex={serviceIndex} />
-      </section>
-
-      {/* Prev / Next navigation */}
-      <section className="py-10 bg-white border-t border-[#d2d2d7]/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between gap-4">
-          {prevService ? (
-            <Link
-              href={`/soluciones/${prevService.slug}`}
-              className="group flex items-center gap-3 text-[#001514] hover:text-[#297373] transition-colors duration-200"
-            >
-              <ArrowLeft
-                size={18}
-                className="group-hover:-translate-x-1 transition-transform duration-200"
-              />
-              <div>
-                <p className="text-xs text-[#6e6e73] mb-0.5">Anterior</p>
-                <p className="text-sm font-semibold">{prevService.title}</p>
-              </div>
-            </Link>
-          ) : (
-            <div />
-          )}
-          {nextService ? (
-            <Link
-              href={`/soluciones/${nextService.slug}`}
-              className="group flex items-center gap-3 text-right text-[#001514] hover:text-[#297373] transition-colors duration-200"
-            >
-              <div>
-                <p className="text-xs text-[#6e6e73] mb-0.5">Siguiente</p>
-                <p className="text-sm font-semibold">{nextService.title}</p>
-              </div>
-              <ArrowRight
-                size={18}
-                className="group-hover:translate-x-1 transition-transform duration-200"
-              />
-            </Link>
-          ) : (
-            <div />
-          )}
-        </div>
+        <ServiceSidebarLayout>
+          <ServiceDetail service={service} serviceIndex={serviceIndex} />
+        </ServiceSidebarLayout>
       </section>
 
       {/* CTA */}
