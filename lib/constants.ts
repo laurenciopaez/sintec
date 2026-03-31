@@ -1,4 +1,4 @@
-import { SERVICE_INTEGRITY, SERVICE_RBI, SERVICE_FAILURE, SERVICE_CORROSION, SERVICE_INSPECTION, SERVICE_PROCEDURES, SERVICE_CORROSION2, SERVICE_FAILURE2, SERVICE_INSPECTION2, SERVICE_INTEGRITY2, SERVICE_PROCEDURES2, SERVICE_RBI2 } from "./images/index";
+import { SERVICE_INTEGRITY, SERVICE_RBI, SERVICE_FAILURE, SERVICE_CORROSION, SERVICE_INSPECTION, SERVICE_PROCEDURES, SERVICE_CORROSION2, SERVICE_FAILURE2, SERVICE_INSPECTION2, SERVICE_INTEGRITY2, SERVICE_PROCEDURES2, SERVICE_RBI2, SERVICE_DATA_ANALYSIS, SERVICE_DATA_ANALYSIS2} from "./images/index";
 
 export const COMPANY_NAME = "SINTEC S.A.";
 export const COMPANY_SHORT_NAME = "SINTEC";
@@ -367,6 +367,47 @@ export const SERVICES = [
         question: "¿Con qué periodicidad deben revisarse y actualizarse los procedimientos técnicos?",
         answer: "Los procedimientos de inspección y mantenimiento deben revisarse al menos cada 3 años, o ante cambios en normativas de referencia, modificaciones de equipos o proceso, resultados de auditorías o incidentes. Los procedimientos de respuesta a emergencias requieren revisión anual y simulacros periódicos. Implementamos un sistema MOC (Management of Change) para asegurar que cualquier modificación pase por un proceso de aprobación documentado.",
       },
+    ],
+  },
+  {
+    id: "analisis-de-datos",
+    title: "Análisis de Datos e Inteligencia de Activos",
+    shortDescription:
+      "Transformamos datos técnicos en insights accionables para la optimización de activos industriales.",
+    description:
+      "En un entorno industrial cada vez más digitalizado, el análisis avanzado de datos y el aprendizaje automatico se ha convertido en una herramienta indispensable para la gestión de activos. Nuestra consultoría integra técnicas de análisis estadístico, machine learning y visualización de datos para convertir la información técnica en insights prácticos que optimizan la toma de decisiones. Desde la identificación de patrones de falla hasta la predicción de tendencias de degradación, nuestro enfoque basado en datos permite a nuestros clientes anticipar problemas, optimizar planes de mantenimiento y maximizar la vida útil de sus activos críticos.",
+    icon: "Database",
+    slug: "analisis-de-datos",
+    features: [
+      "Análisis estadístico avanzado",
+      "Modelos predictivos basados en machine learning",
+      "Visualización interactiva de datos",
+      "Integración de datos de inspección y operación",
+    ],
+    imageSrc: SERVICE_DATA_ANALYSIS,
+    imageAlt: "Análisis de Datos",
+    imageSrc2: SERVICE_DATA_ANALYSIS2,
+    faq: [
+      {
+        id: "faq-ad-1",
+        question: "¿Cuales son los modelos que mas utilizan?",
+        answer: "Utilizamos modelos de regresión lineal y no lineal para identificar relaciones entre variables, modelos de clasificación (Random Forest, SVM) para categorizar estados de activos, y modelos de series temporales (ARIMA, LSTM) para predecir tendencias de degradación. La selección del modelo depende del tipo de datos disponibles y el objetivo específico del análisis.",
+      },
+      {
+        id: "faq-ad-2",
+        question: "¿Cómo se utilizan los modelos predictivos en la gestión de activos?",
+        answer: "Los modelos predictivos basados en machine learning identifican patrones complejos en los datos que pueden indicar una falla inminente o una aceleración en la degradación. Esto permite anticipar problemas antes de que ocurran, optimizar los planes de mantenimiento y extender la vida útil de los activos.",
+      },
+      {
+        id: "faq-ad-3",
+        question: "¿Qué tipo de datos se necesitan para el análisis avanzado?",
+        answer: "Se requieren datos de inspección (espesores medidos, resultados de pruebas no destructivas), datos operativos (temperatura, presión, caudal, composición del fluido), historial de mantenimiento y reparaciones, y datos de fallas anteriores. La calidad y cantidad de los datos disponibles influye directamente en la precisión de los modelos predictivos.",
+      },
+      {
+        id: "faq-ad-4",
+        question: "¿Cómo se visualizan los resultados del análisis de datos?",
+        answer: "Utilizamos herramientas de visualización con Matplotlib para presentar los resultados de manera clara e interactiva. Esto incluye gráficos de tendencias, mapas de calor, diagramas de dispersión y tablas dinámicas que permiten a los usuarios explorar los datos y obtener insights accionables.",
+      }
     ],
   },
 ];

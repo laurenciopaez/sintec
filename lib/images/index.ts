@@ -36,6 +36,11 @@ export const SERVICE_INSPECTION = [
 export const SERVICE_PROCEDURES = [
   { src: "../img/service1/operacion2.png", description: "Metodología general de IOWs." },
 ];
+export const SERVICE_DATA_ANALYSIS = [
+  { src: "../img/service1/ML_1.png", description: "Visualizacion de proyecciones de daño asistidos por machine learning." },
+  { src: "../img/service1/ML_3.png", description: "Resultado correlacional del modelo de machine learning." },
+  { src: "../img/service1/ML_4.png", description: "Dispersión de resultados de predicción luego del entrenamiento del modelo." },
+];
 
 //Service images home screen
 export const SERVICE_INTEGRITY2 = "img/service2/integridad de activos.png";
@@ -44,7 +49,7 @@ export const SERVICE_FAILURE2 = "img/service2/FEA abrazaderas.png";
 export const SERVICE_CORROSION2 = "img/service2/corrosion1.png";
 export const SERVICE_INSPECTION2 = "img/service2/phasedarray1.png";
 export const SERVICE_PROCEDURES2 = "img/service2/operacion1.jpeg";
-
+export const SERVICE_DATA_ANALYSIS2 = "img/service2/ML_2.png";
 // Client logos
 export const CLIENT_1 = "img/logos/YPF_logo.png";
 export const CLIENT_2 = "img/logos/PAE_logo.png";
