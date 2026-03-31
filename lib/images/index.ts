@@ -6,35 +6,35 @@ export const TEAM_IMAGE = "";
 
 // Service images
 export const SERVICE_INTEGRITY = [
-  { src: "img/service1/modelado1.png", description: "Modelo 3D en vista isometrica con corte transversal y longitudinal de separador bifasico con corrosión localizada y generalida." },
-  { src: "img/service1/modelado2.png", description: "Modelo 3D de conjunto balacín de AIB. Se visualizan los apoyos, rodamientos, eje, abrazaderas, pernos y viga de balancín." },
-  { src: "img/service1/modelado3.png", description: "Simulación de deformaciones de pipeline de gas." },
-  { src: "img/service1/modelado4.png", description: "Resultado simulación FEA de tanque separador bifasico. Gradientes tensionales." },
+  { src: "../img/service1/modelado1.png", description: "Modelo 3D en vista isometrica con corte transversal y longitudinal de separador bifasico con corrosión localizada y generalida." },
+  { src: "../img/service1/modelado2.png", description: "Modelo 3D de conjunto balacín de AIB. Se visualizan los apoyos, rodamientos, eje, abrazaderas, pernos y viga de balancín." },
+  { src: "../img/service1/modelado3.png", description: "Simulación de deformaciones de pipeline de gas." },
+  { src: "../img/service1/modelado4.png", description: "Resultado simulación FEA de tanque separador bifasico. Gradientes tensionales." },
 ];
 export const SERVICE_RBI = [
-  { src: "img/service1/RBI.jpg", description: "Diagrama de corrosión y materiales." },
-  { src: "img/service1/RBI2.png", description: "Plan de inspección." },
-  { src: "img/service1/RBI3.png", description: "Programa de monitoreo." },
+  { src: "../img/service1/RBI.jpg", description: "Diagrama de corrosión y materiales." },
+  { src: "../img/service1/RBI2.png", description: "Plan de inspección." },
+  { src: "../img/service1/RBI3.png", description: "Programa de monitoreo." },
 ];
 export const SERVICE_FAILURE = [
-  { src: "img/service1/analisis de falla.jpg", description: "Análisis de falla de electrodo de equipo separador de crudo." },
-  { src: "img/service1/analisis de falla 2.jpeg", description: "Brida retirada de servicio por corrosión interna inducida por corrientes parasitas producto de la protección catodica." },
-  { src: "img/service1/analisis de falla 3.jpeg", description: "Fuga por corrosión bajo depositos intensificada por condensación de agua y parada prolongada del equipo." },
+  { src: "../img/service1/analisis de falla.jpg", description: "Análisis de falla de electrodo de equipo separador de crudo." },
+  { src: "../img/service1/analisis de falla 2.jpeg", description: "Brida retirada de servicio por corrosión interna inducida por corrientes parasitas producto de la protección catodica." },
+  { src: "../img/service1/analisis de falla 3.jpeg", description: "Fuga por corrosión bajo depositos intensificada por condensación de agua y parada prolongada del equipo." },
 ];
 export const SERVICE_CORROSION = [
-  { src: "img/service1/corrosion2.jpeg", description: "Corrosión generalizada." },
-  { src: "img/service1/corrosion3.png", description: "Resultado de simulación FEA de tubing de producción." },
-  { src: "img/service1/corrosion4.jpeg", description: "Corrosión por corrientes parasitas." },
-  { src: "img/service1/corrosion5.jpeg", description: "Corrosión por corrientes parasitas en brida." },
-  { src: "img/service1/corrosion6.jpeg", description: "Corrosión localizada y clusters." },
+  { src: "../img/service1/corrosion2.jpeg", description: "Corrosión generalizada." },
+  { src: "../img/service1/corrosion3.png", description: "Resultado de simulación FEA de tubing de producción." },
+  { src: "../img/service1/corrosion4.jpeg", description: "Corrosión por corrientes parasitas." },
+  { src: "../img/service1/corrosion5.jpeg", description: "Corrosión por corrientes parasitas en brida." },
+  { src: "../img/service1/corrosion6.jpeg", description: "Corrosión localizada y clusters." },
 ];
 export const SERVICE_INSPECTION = [
-  { src: "img/service1/mediciones1.jpg", description: "Mediciones electroquímicas con sistema de monitoreo movil. Mediciones in-situ." },
-  { src: "img/service1/mediciones2.jpeg", description: "Toma de muestra con bamboleta." },
-  { src: "img/service1/mediciones3.jpeg", description: "Mediciones electroquímicas con sistema de monitoreo movil. Mediciones in-situ." },
+  { src: "../img/service1/mediciones1.jpg", description: "Mediciones electroquímicas con sistema de monitoreo movil. Mediciones in-situ." },
+  { src: "../img/service1/mediciones2.jpeg", description: "Toma de muestra con bamboleta." },
+  { src: "../img/service1/mediciones3.jpeg", description: "Mediciones electroquímicas con sistema de monitoreo movil. Mediciones in-situ." },
 ];
 export const SERVICE_PROCEDURES = [
-  { src: "img/service1/operacion2.png", description: "Metodología general de IOWs." },
+  { src: "../img/service1/operacion2.png", description: "Metodología general de IOWs." },
 ];
 
 //Service images home screen
