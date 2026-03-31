@@ -124,7 +124,7 @@ Four-column responsive footer with brand info, navigation, services, and contact
 **Columns:**
 1. Brand + tagline + LinkedIn link
 2. Navigation links
-3. Services links (to `/soluciones#slug`)
+3. Services links (to `/soluciones/[slug]`)
 4. Contact info (email, phone, location)
 
 **Constants used:**
@@ -163,7 +163,7 @@ Full-viewport hero section with animated headline and CTAs.
 - Section header with animated intro
 - `StaggerContainer` with `StaggerItem` for cards
 - Each card: icon (color change on hover), title, description, "Conocer más" link
-- Cards link to `/soluciones#slug`
+- Cards link to `/soluciones/[slug]` (dynamic service pages)
 - Bottom CTA to `/soluciones`
 
 **Data source:** `SERVICES` from `lib/constants.ts`
@@ -186,6 +186,23 @@ Dark-background section with four animated counter statistics.
 - `active`: boolean — starts when section is in view
 
 **Data source:** `STATS` from `lib/constants.ts`
+
+---
+
+### `components/home/Clients.tsx`
+
+Infinite horizontal marquee displaying client company logos.
+
+**Features:**
+- Logo array duplicated 6× for seamless loop
+- Framer Motion `animate` with `x: ["0%", "-50%"]`, `repeat: Infinity`
+- Fade edges via gradient overlays on left/right sides
+- Logos are grayscale by default, full color on hover
+- Section heading: "Empresas que confían en nosotros"
+
+**Data source:** `CLIENT_1`–`CLIENT_7` image constants from `lib/images/index.ts`
+
+**No props.**
 
 ---
 
@@ -216,9 +233,11 @@ Full contact form with validation and submission states.
 
 **States:** `idle` | `loading` | `success` | `error`
 
-**Validation:** Client-side only. On success, shows thank-you state with reset option.
+**Validation:** Uses `validateForm` and `sanitizeText` from `lib/contactFormUtils.ts`. Includes profanity filter and sensitive data detection. On success, shows thank-you state with reset option.
 
-**Note:** Currently simulates submission with `setTimeout`. Replace with actual API call in `handleSubmit`.
+**Analytics:** Calls `analytics.contactFormSubmit()` on success and `analytics.contactFormError(field)` on validation failure.
+
+**Note:** Currently simulates submission with `setTimeout`. Replace with actual API call to `app/api/contact/route.ts` in `handleSubmit`.
 
 ---
 
@@ -240,6 +259,7 @@ Floating FAQ chatbot widget in the bottom-right corner.
 - Smooth open/close with `AnimatePresence`
 - View transitions with slide animations
 - Footer with direct link to contact form
+- Tracks opens and FAQ clicks via `analytics.chatbotOpen()` and `analytics.chatbotFaqClick(question)`
 
 **Data source:** `FAQ_ITEMS` from `lib/constants.ts`
 
@@ -257,3 +277,99 @@ Floating FAQ chatbot widget in the bottom-right corner.
 ```
 
 To add FAQ items, append to the `FAQ_ITEMS` array in `lib/constants.ts`.
+
+---
+
+## Soluciones Components
+
+These components are used exclusively in the `/soluciones/[slug]` and `/soluciones/[slug]/faq` routes.
+
+---
+
+### `components/soluciones/ServiceSidebarLayout.tsx`
+
+Shared layout wrapper for service detail and FAQ pages. Renders a dark sidebar with all services listed and a content panel for children.
+
+**Props:**
+```tsx
+{ children: React.ReactNode }
+```
+
+**Behavior:**
+- Reads current pathname via `usePathname` to determine the active service slug
+- Handles both `/soluciones/[slug]` and `/soluciones/[slug]/faq` paths correctly
+- Mobile: horizontal scrolling tab row
+- Desktop: vertical sidebar (272–320px wide) with service list and "Consultar ahora" CTA
+- Active service highlighted with teal background and orange left-bar indicator
+
+**Data source:** `SERVICES` from `lib/constants.ts`
+
+---
+
+### `components/soluciones/ServiceDetail.tsx`
+
+Full service detail content panel, rendered inside `ServiceSidebarLayout`.
+
+**Props:**
+```tsx
+{
+  service: (typeof SERVICES)[0]
+  serviceIndex: number
+}
+```
+
+**Features:**
+- Badge row with service number and applicable technical standards (API, ASME, NACE, etc.)
+- Large icon + title + short description header
+- Long description text
+- Optional `alcance` list (bullet points, teal dots) — read from `service.alcance`
+- Optional `valorAgregado` list (bullet points, orange dots) — read from `service.valorAgregado`
+- Features grid (CheckCircle cards, 2-col on desktop)
+- `ServiceImageCarousel` — auto-advances every 6s, manual prev/next, dot indicators
+- FAQ tab shortcut button (links to `/soluciones/[slug]/faq`)
+- CTAs: "Consultar sobre este servicio" → `/#contacto`, "Ver todos los servicios" → `/soluciones`
+
+**Internal component:** `ServiceImageCarousel`
+- Images type: `{ src: string; description: string }[]`
+- Auto-resets to slide 0 when `images` prop changes
+- Shows caption below carousel with animated fade
+
+---
+
+### `components/soluciones/ServiceFAQ.tsx`
+
+Per-service FAQ accordion, rendered inside `ServiceSidebarLayout` on the `/faq` route.
+
+**Props:**
+```tsx
+{
+  service: (typeof SERVICES)[0]
+  serviceIndex: number
+}
+```
+
+**Features:**
+- Reads `service.faq` array (type `{ id, question, answer }[]`)
+- Each `FaqCard` is an animated accordion (expand/collapse with height animation)
+- Tracks FAQ clicks via `analytics.chatbotFaqClick(question)`
+- Numbered badges per question
+- Bottom CTA card for unanswered questions → `/#contacto`
+
+---
+
+### `components/soluciones/ServiceTabs.tsx`
+
+Standalone tab-based service viewer, not used in the current page routing but available as an alternative presentation. Manages its own active service state and syncs with URL hash.
+
+**Props:**
+```tsx
+{ initialSlug?: string }
+```
+
+**Features:**
+- Reads/writes `window.location.hash` via `hashchange` event
+- Same sidebar structure as `ServiceSidebarLayout` (self-contained)
+- Same content panel as `ServiceDetail` (self-contained copy)
+- Includes `ServiceImageCarousel`
+
+**Note:** Use `ServiceSidebarLayout` + `ServiceDetail` for routed pages. `ServiceTabs` is better suited for embedding in a single page without routing.

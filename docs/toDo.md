@@ -26,6 +26,7 @@
 - [x] Validación de inputs en el servidor
 - [x] Rate limiting para prevenir spam
 - [x] Sanitización de datos
+- [ ] Accesibilidad
 
 ### 2. Estrategia de keywords
 - [x] Definir keywords principales: `integridad de activos`, `inspección industrial`, `API 579`, `RBI`

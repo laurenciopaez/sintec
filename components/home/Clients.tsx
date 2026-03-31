@@ -20,8 +20,8 @@ const LOGOS_DOUBLED = [...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS,...LOGOS, ...LOGOS
 
 export function Clients() {
   return (
-    <section className="py-8 lg:py-20 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+    <section className="py-6 lg:py-18 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
         <div className="flex items-center gap-4">
           <div className="h-px flex-1 bg-[#d2d2d7]/60" />
           <span className="text-[#6e6e73] text-sm font-medium tracking-widest uppercase whitespace-nowrap">
