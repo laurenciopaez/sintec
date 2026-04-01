@@ -17,6 +17,21 @@ export const metadata: Metadata = {
   title: "Soluciones | SINTEC S.A.",
   description:
     "Conoce el portafolio completo de servicios de SINTEC S.A.: Integridad de Activos, RBI, Análisis de Falla, Control de Corrosión, Inspección y más.",
+  openGraph: {
+    type: "website",
+    url: "https://sintecsa.com.ar/soluciones",
+    title: "Soluciones | SINTEC S.A.",
+    description:
+      "Portafolio completo de servicios de ingeniería de integridad: RBI, análisis de falla, control de corrosión, inspección técnica y más.",
+    images: [{ url: "/img/service1/RBI.jpg", width: 1200, height: 630, alt: "Soluciones SINTEC S.A." }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Soluciones | SINTEC S.A.",
+    description:
+      "Portafolio completo de servicios de ingeniería de integridad: RBI, análisis de falla, control de corrosión, inspección técnica y más.",
+    images: ["/img/service1/RBI.jpg"],
+  },
 };
 
 const iconMap: Record<string, React.ReactNode> = {

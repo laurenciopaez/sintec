@@ -23,6 +23,19 @@ export async function generateMetadata({
   return {
     title: `${service.title} | SINTEC S.A.`,
     description: service.shortDescription,
+    openGraph: {
+      type: "website",
+      url: `https://sintecsa.com.ar/soluciones/${slug}`,
+      title: `${service.title} | SINTEC S.A.`,
+      description: service.shortDescription,
+      images: [{ url: "/img/service1/RBI.jpg", width: 1200, height: 630, alt: `${service.title} — SINTEC S.A.` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | SINTEC S.A.`,
+      description: service.shortDescription,
+      images: ["/img/service1/RBI.jpg"],
+    },
   };
 }
 

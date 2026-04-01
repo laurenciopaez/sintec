@@ -20,6 +20,21 @@ export const metadata: Metadata = {
   title: "Quiénes Somos | SINTEC S.A.",
   description:
     "Conoce la historia, misión, visión y valores de SINTEC S.A., consultora argentina líder en ingeniería de integridad industrial desde 2004.",
+  openGraph: {
+    type: "website",
+    url: "https://sintecsa.com.ar/quienes-somos",
+    title: "Quiénes Somos | SINTEC S.A.",
+    description:
+      "Conoce la historia, misión, visión y valores de SINTEC S.A., consultora argentina líder en ingeniería de integridad industrial desde 2004.",
+    images: [{ url: "/img/quienesSomos/integridadProfesional.jpeg", width: 1200, height: 630, alt: "Equipo SINTEC S.A." }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Quiénes Somos | SINTEC S.A.",
+    description:
+      "Conoce la historia, misión, visión y valores de SINTEC S.A., consultora argentina líder en ingeniería de integridad industrial desde 2004.",
+    images: ["/img/quienesSomos/integridadProfesional.jpeg"],
+  },
 };
 
 const iconMap: Record<string, React.ReactNode> = {

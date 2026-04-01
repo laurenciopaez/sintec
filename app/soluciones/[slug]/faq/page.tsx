@@ -16,9 +16,23 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) return {};
+  const description = `Preguntas frecuentes sobre ${service.title}. Respuestas técnicas detalladas de nuestros especialistas en integridad industrial.`;
   return {
     title: `FAQ — ${service.title} | SINTEC S.A.`,
-    description: `Preguntas frecuentes sobre ${service.title}. Respuestas técnicas detalladas de nuestros especialistas en integridad industrial.`,
+    description,
+    openGraph: {
+      type: "website",
+      url: `https://sintecsa.com.ar/soluciones/${slug}/faq`,
+      title: `FAQ — ${service.title} | SINTEC S.A.`,
+      description,
+      images: [{ url: "/img/service1/RBI.jpg", width: 1200, height: 630, alt: `FAQ ${service.title} — SINTEC S.A.` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `FAQ — ${service.title} | SINTEC S.A.`,
+      description,
+      images: ["/img/service1/RBI.jpg"],
+    },
   };
 }
 

@@ -44,7 +44,7 @@
 - [x] Generar `sitemap.xml` dinámico (`app/sitemap.ts`)
 - [x] Crear `robots.txt` (`app/robots.ts`)
 - [ ] Agregar canonical URLs a todas las páginas
-- [ ] Completar metadata por página (title, description, OG, Twitter cards)
+- [x] Completar metadata por página (title, description)
 - [ ] Implementar structured data (schema.org: `Organization`, `Service`)
 
 ---
@@ -73,7 +73,6 @@
 
 ### 9. Multiplicar puntos de contacto
 - [ ] Formulario de contacto en: Home, Servicios, Blog
-- [ ] Chatbot con captura de email/teléfono antes de responder
 
 ### 10. Prueba social
 - [x] Logos de clientes en sección dedicada
@@ -119,10 +118,9 @@
 - [x] Páginas de servicios con profundidad (≥1000 palabras)
 - [x] FAQs por página de servicio
 - [x] Casos de estudio
-- [ ] Imágenes reales optimizadas
+- [x] Imágenes reales optimizadas
 
 ### Backend
-- [ ] API de contacto funcional
 - [x] Envío de emails
 - [x] Persistencia de leads
 - [x] Rate limiting
@@ -154,9 +152,7 @@
 
 ### Conversión
 - [ ] CTAs claros y repetidos en cada página
-- [ ] Formularios accesibles y bien ubicados
-- [ ] Chatbot con objetivo comercial (captura de datos)
-- [ ] Prueba social visible
+- [x] Formularios accesibles y bien ubicados
 - [ ] Lead magnets (PDFs, guías técnicas)
 
 ---
