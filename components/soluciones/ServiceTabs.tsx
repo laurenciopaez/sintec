@@ -85,13 +85,15 @@ function ServiceImageCarousel({ images, alt }: { images: ServiceImage[]; alt: st
           <>
             <button
               onClick={() => setCurrent((prev) => (prev - 1 + images.length) % images.length)}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200"
+              aria-label="Imagen anterior"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#297373]"
             >
               <ChevronLeft size={18} className="text-[#297373]" />
             </button>
             <button
               onClick={() => setCurrent((prev) => (prev + 1) % images.length)}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200"
+              aria-label="Imagen siguiente"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#297373]"
             >
               <ChevronRight size={18} className="text-[#297373]" />
             </button>
@@ -100,7 +102,9 @@ function ServiceImageCarousel({ images, alt }: { images: ServiceImage[]; alt: st
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                  aria-label={`Ver imagen ${i + 1}`}
+                  aria-current={i === current ? "true" : undefined}
+                  className={`h-1.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#297373] ${
                     i === current ? "bg-[#297373] w-4" : "bg-[#297373]/30 w-1.5"
                   }`}
                 />

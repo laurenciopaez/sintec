@@ -54,6 +54,7 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
               Navegación
             </h3>
+            <nav aria-label="Páginas del sitio">
             <ul className="space-y-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -82,6 +83,7 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
+            </nav>
           </div>
 
           {/* Services Column */}
@@ -89,6 +91,7 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
               Servicios
             </h3>
+            <nav aria-label="Servicios">
             <ul className="space-y-3">
               {SERVICES.map((service) => (
                 <li key={service.id}>
@@ -105,6 +108,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            </nav>
           </div>
 
           {/* Contact Column */}
