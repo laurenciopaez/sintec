@@ -2,11 +2,21 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { SERVICES } from "@/lib/constants";
+import * as esConstants from "@/lib/constants";
+import * as enConstants from "@/lib/constants-en";
+import * as esContent from "@/lib/content";
+import * as enContent from "@/lib/content-en";
 import { ServiceDetail } from "@/components/soluciones/ServiceDetail";
 import { ServiceSidebarLayout } from "@/components/soluciones/ServiceSidebarLayout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { SOLUCIONES_CONTENT } from "@/lib/content";
+
+const { SERVICES } = esConstants; // used only for generateStaticParams (slugs are locale-agnostic)
+
+function getLocaleData(locale: string) {
+  return locale === "en"
+    ? { c: enConstants, content: enContent }
+    : { c: esConstants, content: esContent };
+}
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
@@ -18,7 +28,8 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const service = SERVICES.find((s) => s.slug === slug);
+  const { c } = getLocaleData(locale);
+  const service = c.SERVICES.find((s) => s.slug === slug);
   if (!service) return {};
 
   const base = `https://sintecsa.com.ar/${locale}/soluciones/${slug}`;
@@ -56,11 +67,12 @@ export default async function LocaleServicePage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const service = SERVICES.find((s) => s.slug === slug);
+  const { c, content: pageContent } = getLocaleData(locale);
+  const service = c.SERVICES.find((s) => s.slug === slug);
   if (!service) notFound();
 
-  const serviceIndex = SERVICES.findIndex((s) => s.slug === slug);
-  const content = SOLUCIONES_CONTENT;
+  const serviceIndex = c.SERVICES.findIndex((s) => s.slug === slug);
+  const content = pageContent.SOLUCIONES_CONTENT;
 
   const backLabel = locale === "en" ? "Back to Solutions" : "Volver a Soluciones";
   const specializedLabel = locale === "en" ? "Specialized services" : "Servicios especializados";

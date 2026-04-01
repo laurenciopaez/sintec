@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { SERVICES } from "@/lib/constants";
+import { useConstants } from "@/lib/use-translations";
 
 const iconMapLarge: Record<string, React.ReactNode> = {
   Shield: <Shield size={36} />,
@@ -153,6 +154,7 @@ export function ServiceDetail({
   service: (typeof SERVICES)[0];
   serviceIndex: number;
 }) {
+  const { SERVICES: services } = useConstants();
   const s = service as Record<string, unknown>;
   const alcanceList = Array.isArray(s.alcance)
     ? (s.alcance as string[])
@@ -194,7 +196,7 @@ export function ServiceDetail({
       <div className="flex items-center gap-3 mb-6">
         <span className="text-xs font-mono text-[#6e6e73] bg-[#f5f5f7] px-3 py-1 rounded-full">
           Servicio {String(serviceIndex + 1).padStart(2, "0")} /{" "}
-          {String(SERVICES.length).padStart(2, "0")}
+          {String(services.length).padStart(2, "0")}
         </span>
         <div className="flex flex-wrap gap-1.5">
           {standardsByIndex[serviceIndex]?.map((std) => (

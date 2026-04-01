@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { STATS } from "@/lib/constants";
+import { useConstants } from "@/lib/use-translations";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 function useCountUp(
@@ -83,6 +83,7 @@ function StatCard({ stat, index, active }: StatCardProps) {
 }
 
 export function Stats() {
+  const { STATS } = useConstants();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 

@@ -634,3 +634,32 @@ export const VALUES = [
     image: "/sintec/img/quienesSomos/innovacionContinua.png",
   },
 ];
+
+
+export const HERO = {
+  subtitle: "Ingeniería de Integridad Industrial",
+  ctaSolutions: "Conocer Soluciones",
+  ctaContact: "Contactar",
+  stats: [
+    { value: "+20",   label: "Años de experiencia" },
+    { value: "+1000", label: "Proyectos completados" },
+    { value: "+10",   label: "Clientes activos" },
+  ],
+};
+
+export const FOOTER = {
+  tagline: "Consultoría argentina especializada en ingeniería de integridad industrial. Más de 20 años de experiencia a su servicio.",
+  navHeading: "Navegación",
+  navAriaLabel: "Páginas del sitio",
+  servicesHeading: "Servicios",
+  servicesAriaLabel: "Servicios",
+  contactHeading: "Contacto",
+  contactLabelPhone: "Teléfono",
+  contactLabelAddress: "Ubicación",
+  contactLabelHR: "RRHH",
+  contactHRLink: "Trabaja con nosotros",
+  contactNavLink: "Contacto",
+  copyright: "Todos los derechos reservados.",
+  privacy: "Política de Privacidad",
+  terms: "Términos de Uso",
+};

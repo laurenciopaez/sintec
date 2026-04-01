@@ -1,19 +1,26 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Mail, Phone, MapPin, Linkedin, ArrowRight, Users } from "lucide-react";
-import {
-  COMPANY_NAME,
-  COMPANY_SHORT_NAME,
-  COMPANY_EMAIL,
-  COMPANY_PHONE,
-  COMPANY_ADDRESS,
-  NAV_LINKS,
-  SERVICES,
-} from "@/lib/constants";
+import { useConstants } from "@/lib/use-translations";
+import { useLocale } from "@/lib/locale-context";
 
 const currentYear = new Date().getFullYear();
 
 export function Footer() {
+  const locale = useLocale();
+  const {
+    COMPANY_NAME,
+    COMPANY_SHORT_NAME,
+    COMPANY_EMAIL,
+    COMPANY_PHONE,
+    COMPANY_ADDRESS,
+    NAV_LINKS,
+    SERVICES,
+    FOOTER,
+  } = useConstants();
+
   return (
     <footer className="bg-[#001514] text-white">
       {/* Main Footer */}
@@ -21,7 +28,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-6">
+            <Link href={`/${locale}`} className="inline-block mb-6">
               <div className="flex items-center">
                 <span className="text-2xl font-bold text-white">
                   {COMPANY_SHORT_NAME}
@@ -32,8 +39,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-[#6e6e73] text-sm leading-relaxed mb-6 max-w-xs">
-              Consultoría argentina especializada en ingeniería de integridad
-              industrial. Más de 20 años de experiencia a su servicio.
+              {FOOTER.tagline}
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
@@ -52,69 +58,69 @@ export function Footer() {
           {/* Navigation Column */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
-              Navegación
+              {FOOTER.navHeading}
             </h3>
-            <nav aria-label="Páginas del sitio">
-            <ul className="space-y-3">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
+            <nav aria-label={FOOTER.navAriaLabel}>
+              <ul className="space-y-3">
+                {NAV_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={`/${locale}${link.href === "/" ? "" : link.href}`}
+                      className="text-[#6e6e73] hover:text-white text-sm transition-colors duration-200 flex items-center gap-2 group"
+                    >
+                      <ArrowRight
+                        size={14}
+                        className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-1 group-hover:translate-x-0"
+                      />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+                <li>
                   <Link
-                    href={link.href}
+                    href={`/${locale}#contacto`}
                     className="text-[#6e6e73] hover:text-white text-sm transition-colors duration-200 flex items-center gap-2 group"
                   >
                     <ArrowRight
                       size={14}
                       className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-1 group-hover:translate-x-0"
                     />
-                    {link.label}
+                    {FOOTER.contactNavLink}
                   </Link>
                 </li>
-              ))}
-              <li>
-                <Link
-                  href="/#contacto"
-                  className="text-[#6e6e73] hover:text-white text-sm transition-colors duration-200 flex items-center gap-2 group"
-                >
-                  <ArrowRight
-                    size={14}
-                    className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-1 group-hover:translate-x-0"
-                  />
-                  Contacto
-                </Link>
-              </li>
-            </ul>
+              </ul>
             </nav>
           </div>
 
           {/* Services Column */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
-              Servicios
+              {FOOTER.servicesHeading}
             </h3>
-            <nav aria-label="Servicios">
-            <ul className="space-y-3">
-              {SERVICES.map((service) => (
-                <li key={service.id}>
-                  <Link
-                    href={`/soluciones/${service.slug}`}
-                    className="text-[#6e6e73] hover:text-white text-sm transition-colors duration-200 flex items-center gap-2 group"
-                  >
-                    <ArrowRight
-                      size={14}
-                      className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-1 group-hover:translate-x-0 shrink-0"
-                    />
-                    <span>{service.title}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <nav aria-label={FOOTER.servicesAriaLabel}>
+              <ul className="space-y-3">
+                {SERVICES.map((service) => (
+                  <li key={service.id}>
+                    <Link
+                      href={`/${locale}/soluciones/${service.slug}`}
+                      className="text-[#6e6e73] hover:text-white text-sm transition-colors duration-200 flex items-center gap-2 group"
+                    >
+                      <ArrowRight
+                        size={14}
+                        className="opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-1 group-hover:translate-x-0 shrink-0"
+                      />
+                      <span>{service.title}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </nav>
           </div>
 
           {/* Contact Column */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
-              Contacto
+              {FOOTER.contactHeading}
             </h3>
             <ul className="space-y-4">
               <li>
@@ -140,7 +146,7 @@ export function Footer() {
                     <Phone size={15} className="text-[#A33400]" />
                   </span>
                   <div>
-                    <p className="text-xs text-[#6e6e73] mb-0.5">Teléfono</p>
+                    <p className="text-xs text-[#6e6e73] mb-0.5">{FOOTER.contactLabelPhone}</p>
                     <span className="text-sm">{COMPANY_PHONE}</span>
                   </div>
                 </a>
@@ -151,22 +157,22 @@ export function Footer() {
                     <MapPin size={15} className="text-[#A33400]" />
                   </span>
                   <div>
-                    <p className="text-xs text-[#6e6e73] mb-0.5">Ubicación</p>
+                    <p className="text-xs text-[#6e6e73] mb-0.5">{FOOTER.contactLabelAddress}</p>
                     <span className="text-sm">{COMPANY_ADDRESS}</span>
                   </div>
                 </div>
               </li>
               <li>
                 <Link
-                  href="/trabaja-con-nosotros"
+                  href={`/${locale}/trabaja-con-nosotros`}
                   className="flex items-start gap-3 text-[#6e6e73] hover:text-white transition-colors duration-200 group"
                 >
                   <span className="w-8 h-8 rounded-lg bg-[#297373]/10 flex items-center justify-center shrink-0 group-hover:bg-[#297373]/20 transition-colors duration-200">
                     <Users size={15} className="text-[#A33400]" />
                   </span>
                   <div>
-                    <p className="text-xs text-[#6e6e73] mb-0.5">RRHH</p>
-                    <span className="text-sm">Trabaja con nosotros</span>
+                    <p className="text-xs text-[#6e6e73] mb-0.5">{FOOTER.contactLabelHR}</p>
+                    <span className="text-sm">{FOOTER.contactHRLink}</span>
                   </div>
                 </Link>
               </li>
@@ -180,21 +186,20 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-[#6e6e73] text-sm">
-              &copy; {currentYear} {COMPANY_NAME}. Todos los derechos
-              reservados.
+              &copy; {currentYear} {COMPANY_NAME}. {FOOTER.copyright}
             </p>
             <div className="flex items-center gap-6">
               <Link
-                href="/privacidad"
+                href={`/${locale}/privacidad`}
                 className="text-[#6e6e73] hover:text-white text-xs transition-colors duration-200"
               >
-                Política de Privacidad
+                {FOOTER.privacy}
               </Link>
               <Link
-                href="/terminos"
+                href={`/${locale}/terminos`}
                 className="text-[#6e6e73] hover:text-white text-xs transition-colors duration-200"
               >
-                Términos de Uso
+                {FOOTER.terms}
               </Link>
             </div>
           </div>

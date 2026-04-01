@@ -76,6 +76,35 @@ export const QUIENES_SOMOS_CONTENT = {
       "ISO 9001 - Sistema de Gestión de Calidad",
     ],
   },
+  tags: {
+    company: "La empresa",
+    ourHistory: "Nuestra historia",
+    purpose: "Propósito",
+    differential: "Diferencial",
+    standards: "Estándares",
+    missionVisionValues: "Misión, Visión y Valores",
+    timelineHeading: "Hitos de nuestra trayectoria",
+  },
+  timeline: [
+    { year: "2000", text: "Fundación de SINTEC S.A. en Mar del Plata, Buenos Aires" },
+    { year: "2004", text: "Primeros proyectos de RBI en plantas de tratamiento de gas" },
+    { year: "2004", text: "Primer análisis de terminales de carga" },
+    { year: "2006", text: "Diseño e implementación de bases de datos de integridad para la gestión de cañerías, equipos y tanques en PAE, YDS e YPF" },
+    { year: "2007", text: "Implementación de sistema de monitoreo de corrosión interna y externa con técnicas electroquímicas" },
+    { year: "2008", text: "Participación en la selección de materiales de Casing en pozos de producción de crudo y gas en Bolivia" },
+    { year: "2010", text: "Primera evaluación de ductos y plantas offshore en Argentina" },
+    { year: "2014", text: "Alianza estratégica con laboratorios INTEMA para análisis de falla y metalografía" },
+    { year: "2022", text: "Implementación de servicio de monitoreo de corrosión móvil" },
+    { year: "2022", text: "Primera evaluación de ductos y plantas offshore fuera de Argentina" },
+    { year: "2025", text: "Creación del área de análisis de datos e inteligencia artificial" },
+    { year: "2026", text: "+20 años y más de 1000 proyectos exitosos" },
+  ],
+  cta: {
+    title: "¿Listo para trabajar con nosotros?",
+    subtitle: "Contacte a nuestros especialistas y cuéntenos sobre su proyecto o necesidad.",
+    contact: "Contactar ahora",
+    solutions: "Ver nuestras soluciones",
+  },
 };
 
 export const SOLUCIONES_CONTENT = {

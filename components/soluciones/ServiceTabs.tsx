@@ -16,7 +16,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import Image from "next/image"; // Importar el componente Image de Next.js
-import { SERVICES } from "@/lib/constants";
+import { useConstants } from "@/lib/use-translations";
 
 const iconMap: Record<string, React.ReactNode> = {
   Shield: <Shield size={22} />,
@@ -141,6 +141,7 @@ const standardsByIndex: string[][] = [
 ];
 
 export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
+  const { SERVICES } = useConstants();
   const [activeId, setActiveId] = useState(
     initialSlug || SERVICES[0].id
   );

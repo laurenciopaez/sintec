@@ -14,7 +14,8 @@ import {
   Loader2,
   UserCircle,
 } from "lucide-react";
-import { FAQ_TREE, type FaqTreeNode, COMPANY_SHORT_NAME } from "@/lib/constants";
+import type { FaqTreeNode } from "@/lib/constants";
+import { useConstants } from "@/lib/use-translations";
 import { analytics } from "@/lib/analytics";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -96,6 +97,7 @@ const EMAIL_RE = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
 // ── Component ──────────────────────────────────────────────────────────────────
 
 export function ChatBot() {
+  const { FAQ_TREE, COMPANY_SHORT_NAME } = useConstants();
   // ── View state ───────────────────────────────────────────────────────────────
   const [isOpen, setIsOpen] = useState(false);
   const [view, setView] = useState<ChatView>("faq-list");

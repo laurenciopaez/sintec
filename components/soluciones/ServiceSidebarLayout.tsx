@@ -13,7 +13,7 @@ import {
   ArrowRight,
   ChevronRight,
 } from "lucide-react";
-import { SERVICES } from "@/lib/constants";
+import { useConstants } from "@/lib/use-translations";
 
 const iconMap: Record<string, React.ReactNode> = {
   Shield: <Shield size={22} />,
@@ -29,6 +29,7 @@ export function ServiceSidebarLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { SERVICES } = useConstants();
   const pathname = usePathname();
   const pathParts = pathname.split("/");
   const lastPart = pathParts[pathParts.length - 1];

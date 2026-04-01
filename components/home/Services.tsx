@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { SERVICES } from "@/lib/constants";
+import { useConstants } from "@/lib/use-translations";
 
 const iconMap: Record<string, React.ReactNode> = {
   Shield: <Shield size={28} />,
@@ -39,6 +39,7 @@ const cardVariants = {
 };
 
 export function Services() {
+  const { SERVICES } = useConstants();
   return (
     <section className="py-24 lg:py-32 bg-[#f5f5f7]" id="servicios">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

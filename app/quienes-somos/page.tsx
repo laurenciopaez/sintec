@@ -125,6 +125,11 @@ export default function QuienesSomosPage() {
                         year: "2004",
                         text: "Primeros proyectos de RBI en plantas de tratamiento de gas",
                       },
+                      
+                      {
+                        year: "2004",
+                        text: "Primer analisis de terminales de carga.",
+                      },
                       {
                         year: "2006",
                         text: "Diseño e implementación de bases de datos de integridad para la gestion de cañerias, equipos y tanques en PAE, YDS e YPF.",
@@ -137,6 +142,11 @@ export default function QuienesSomosPage() {
                         year: "2008",
                         text: "Participación en la selección de materiales de Casing en pozos de producción de crudo y gas en Bolivia.",
                       },
+                      
+                      {
+                        year: "2010",
+                        text: "Primera evaluación de ductos y plantas offshore en Argentina",
+                      },
                       {
                         year: "2014",
                         text: "Alianza estrategica con laboratorios INTEMA para análisis de falla y metalografía",
@@ -144,6 +154,11 @@ export default function QuienesSomosPage() {
                       {
                         year: "2022",
                         text: "Implementación de servicio de monitereo de corrosión movil",
+                      }
+                      ,
+                      {
+                        year: "2022",
+                        text: "Primera evaluación de ductos y plantas offshore fuera de Argentina",
                       },
                       {
                         year: "2025",

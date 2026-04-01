@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { COMPANY_TAGLINE } from "@/lib/constants";
+import { useConstants } from "@/lib/use-translations";
 
 const words = ["SINTEC", "S.A."];
-const taglineWords = COMPANY_TAGLINE.split(" ");
 
 export function Hero() {
+  const { COMPANY_TAGLINE, HERO } = useConstants();
+  const taglineWords = COMPANY_TAGLINE.split(" ");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export function Hero() {
         >
           <div className="h-px w-12 bg-[#297373]" />
           <span className="text-[#A33400] text-sm font-medium tracking-widest uppercase">
-            Ingeniería de Integridad Industrial
+            {HERO.subtitle}
           </span>
           <div className="h-px w-12 bg-[#297373]" />
         </motion.div>
@@ -102,7 +103,7 @@ export function Hero() {
             href="/soluciones"
             className="group inline-flex items-center gap-3 bg-[#297373] hover:bg-[#0A1045] text-white px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 shadow-lg shadow-[#297373]/20 hover:shadow-[#297373]/40"
           >
-            Conocer Soluciones
+            {HERO.ctaSolutions}
             <ArrowRight
               size={18}
               className="transition-transform duration-200 group-hover:translate-x-1"
@@ -112,7 +113,7 @@ export function Hero() {
             href="#contacto"
             className="group inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 backdrop-blur-sm border border-white/20 hover:border-white/40"
           >
-            Contactar
+            {HERO.ctaContact}
           </a>
         </motion.div>
 
@@ -123,11 +124,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 1.7 }}
           className="flex flex-wrap justify-center gap-8 sm:gap-12"
         >
-          {[
-            { value: "+20", label: "Años de experiencia" },
-            { value: "+1000", label: "Proyectos completados" },
-            { value: "+10", label: "Clientes activos" },
-          ].map((stat) => (
+          {HERO.stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl font-bold text-white mb-1">
                 {stat.value}

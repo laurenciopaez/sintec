@@ -652,3 +652,31 @@ export const VALUES = [
   },
 ];
 
+
+export const HERO = {
+  subtitle: "Industrial Integrity Engineering",
+  ctaSolutions: "Explore Solutions",
+  ctaContact: "Contact Us",
+  stats: [
+    { value: "+20",   label: "Years of experience" },
+    { value: "+1000", label: "Completed projects" },
+    { value: "+10",   label: "Active clients" },
+  ],
+};
+
+export const FOOTER = {
+  tagline: "Argentine consultancy specializing in industrial integrity engineering. Over 20 years of experience at your service.",
+  navHeading: "Navigation",
+  navAriaLabel: "Site pages",
+  servicesHeading: "Services",
+  servicesAriaLabel: "Services",
+  contactHeading: "Contact",
+  contactLabelPhone: "Phone",
+  contactLabelAddress: "Location",
+  contactLabelHR: "HR",
+  contactHRLink: "Work with us",
+  contactNavLink: "Contact",
+  copyright: "All rights reserved.",
+  privacy: "Privacy Policy",
+  terms: "Terms of Use",
+};

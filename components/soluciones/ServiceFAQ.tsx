@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ArrowLeft, MessageCircle } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
+import { useConstants } from "@/lib/use-translations";
 import { analytics } from "@/lib/analytics";
 
 type FaqItem = { id: string; question: string; answer: string };
@@ -73,11 +74,13 @@ function FaqCard({ item, index }: { item: FaqItem; index: number }) {
 
 export function ServiceFAQ({
   service,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   serviceIndex,
 }: {
   service: (typeof SERVICES)[0];
   serviceIndex: number;
 }) {
+  const { SERVICES: services } = useConstants();
   const s = service as Record<string, unknown>;
   const faqItems = Array.isArray(s.faq) ? (s.faq as FaqItem[]) : [];
 
@@ -107,7 +110,7 @@ export function ServiceFAQ({
         <div className="flex items-center gap-2 mb-2">
           <span className="text-xs font-mono text-[#6e6e73] bg-[#f5f5f7] px-3 py-1 rounded-full">
             Servicio {String(serviceIndex + 1).padStart(2, "0")} /{" "}
-            {String(SERVICES.length).padStart(2, "0")}
+            {String(services.length).padStart(2, "0")}
           </span>
           <span className="text-xs px-2.5 py-1 rounded-full bg-[#A33400]/10 text-[#A33400] font-medium border border-[#A33400]/20">
             FAQ

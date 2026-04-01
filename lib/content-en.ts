@@ -76,6 +76,35 @@ export const QUIENES_SOMOS_CONTENT = {
       "ISO 9001 - Quality Management System",
     ],
   },
+  tags: {
+    company: "The company",
+    ourHistory: "Our story",
+    purpose: "Purpose",
+    differential: "Differential",
+    standards: "Standards",
+    missionVisionValues: "Mission, Vision and Values",
+    timelineHeading: "Key milestones",
+  },
+  timeline: [
+    { year: "2000", text: "SINTEC S.A. founded in Mar del Plata, Buenos Aires" },
+    { year: "2004", text: "First RBI projects in gas processing plants" },
+    { year: "2004", text: "First cargo terminal analysis" },
+    { year: "2006", text: "Design and implementation of integrity databases for piping, equipment and tank management at PAE, YDS and YPF" },
+    { year: "2007", text: "Implementation of internal and external corrosion monitoring system using electrochemical techniques" },
+    { year: "2008", text: "Participation in casing material selection for oil and gas production wells in Bolivia" },
+    { year: "2010", text: "First evaluation of offshore pipelines and plants in Argentina" },
+    { year: "2014", text: "Strategic alliance with INTEMA laboratories for failure analysis and metallography" },
+    { year: "2022", text: "Launch of mobile corrosion monitoring service" },
+    { year: "2022", text: "First evaluation of offshore pipelines and plants outside Argentina" },
+    { year: "2025", text: "Creation of data analytics and artificial intelligence division" },
+    { year: "2026", text: "+20 years and over 1000 successful projects" },
+  ],
+  cta: {
+    title: "Ready to work with us?",
+    subtitle: "Contact our specialists and tell us about your project or need.",
+    contact: "Contact us now",
+    solutions: "View our solutions",
+  },
 };
 
 export const SOLUCIONES_CONTENT = {
