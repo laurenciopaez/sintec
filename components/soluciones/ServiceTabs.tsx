@@ -77,6 +77,7 @@ function ServiceImageCarousel({ images, alt }: { images: ServiceImage[]; alt: st
               fill
               className="object-contain rounded-2xl"
               sizes="(max-width: 768px) 100vw, 50vw"
+              priority={current === 0}
             />
           </motion.div>
         </AnimatePresence>

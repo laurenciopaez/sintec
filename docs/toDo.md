@@ -41,8 +41,8 @@
 - [x] Configurar redirects desde las URLs antiguas
 
 ### 4. SEO técnico base
-- [ ] Generar `sitemap.xml` dinámico (`app/sitemap.ts`)
-- [ ] Crear `robots.txt` (`app/robots.ts`)
+- [x] Generar `sitemap.xml` dinámico (`app/sitemap.ts`)
+- [x] Crear `robots.txt` (`app/robots.ts`)
 - [ ] Agregar canonical URLs a todas las páginas
 - [ ] Completar metadata por página (title, description, OG, Twitter cards)
 - [ ] Implementar structured data (schema.org: `Organization`, `Service`)
@@ -58,10 +58,8 @@
 - [x] Agregar imágenes reales con alt text descriptivo
 
 ### 7. Contenido de autoridad
-- [ ] Mostrar certificaciones (API, NACE, ISO)
 - [x] Agregar logos de clientes (con permiso)
 - [x] Publicar proyectos realizados / portfolio
-- [ ] Crear casos de estudio con métricas reales
 
 ---
 
@@ -108,35 +106,32 @@
 ## Checklist técnico completo
 
 ### SEO
-- [ ] Keywords principales y secundarias definidas
-- [ ] Metadata avanzada por página
+- [x] Keywords principales y secundarias definidas
+- [x] Metadata avanzada por página
 - [ ] Open Graph completo
 - [ ] Sitemap dinámico
-- [ ] robots.txt
+- [x] robots.txt
 - [ ] Canonical URLs
 - [ ] Structured data (schema.org)
 - [x] URLs limpias (sin hash)
 
 ### Contenido
-- [ ] Páginas de servicios con profundidad (≥1000 palabras)
-- [ ] Blog técnico activo
-- [ ] FAQs por página de servicio
-- [ ] Casos de estudio
-- [ ] Certificaciones visibles
+- [x] Páginas de servicios con profundidad (≥1000 palabras)
+- [x] FAQs por página de servicio
+- [x] Casos de estudio
 - [ ] Imágenes reales optimizadas
 
 ### Backend
 - [ ] API de contacto funcional
 - [x] Envío de emails
-- [ ] Persistencia de leads
-- [ ] Validación backend
+- [x] Persistencia de leads
 - [x] Rate limiting
 - [x] Sanitización de inputs
 
 ### Performance
 - [ ] Lazy loading de componentes pesados
 - [ ] Minimizar Client Components innecesarios
-- [ ] Optimización de imágenes reales (next/image)
+- [x] Optimización de imágenes reales (next/image)
 - [ ] Preload de fuentes críticas
 
 ### Arquitectura
@@ -145,7 +140,7 @@
 - [ ] Preparar estructura para CMS
 
 ### Seguridad
-- [ ] Validación backend obligatoria en formularios
+- [x] Validación backend obligatoria en formularios
 - [ ] Protección XSS
 - [ ] Protección CSRF
 - [ ] Escape de todos los inputs

@@ -113,6 +113,7 @@ function ServiceCard({ service }: ServiceCardProps) {
               alt={service.imageAlt}
               fill
               className="object-contain rounded-2xl"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           </div>
         )}
