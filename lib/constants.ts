@@ -376,7 +376,7 @@ export const SERVICES = [
       "Transformamos datos técnicos en insights accionables para la optimización de activos industriales.",
     description:
       "En un entorno industrial cada vez más digitalizado, el análisis avanzado de datos y el aprendizaje automatico se ha convertido en una herramienta indispensable para la gestión de activos. Nuestra consultoría integra técnicas de análisis estadístico, machine learning y visualización de datos para convertir la información técnica en insights prácticos que optimizan la toma de decisiones. Desde la identificación de patrones de falla hasta la predicción de tendencias de degradación, nuestro enfoque basado en datos permite a nuestros clientes anticipar problemas, optimizar planes de mantenimiento y maximizar la vida útil de sus activos críticos.",
-    icon: "Database",
+    icon: "BarChart3",
     slug: "analisis-de-datos",
     features: [
       "Análisis estadístico avanzado",
@@ -544,7 +544,6 @@ export const FAQ_TREE: FaqTreeNode[] = [
           "Sí, operamos en todo el territorio argentino. Hemos desarrollado proyectos en Buenos Aires, Neuquén (Vaca Muerta), Mendoza, Chubut y Santa Cruz, con personal certificado y equipamiento propio.",
         cta: { label: "Contactar a un especialista", href: "/#contacto" },
       },
-      ,
       {
         id: "horarios-atencion",
         label: "¿Cual es el horario de atención?",
@@ -553,7 +552,6 @@ export const FAQ_TREE: FaqTreeNode[] = [
           "Trabajamos de lunes a viernes de 9 a 18 hs. Fuera de este horario, puede contactarnos por email o completar el formulario de contacto en nuestra web, y nos comunicaremos dentro de las 24 horas hábiles.",
         cta: { label: "Contactar a un especialista", href: "/#contacto" },
       },
-      ,
       {
         id: "ubicación-operacional",
         label: "¿Donde están ubicados?",
@@ -562,7 +560,6 @@ export const FAQ_TREE: FaqTreeNode[] = [
           "Nuestras oficinas se encuentran en la ciudad de Mar del Plata, pero operamos en todo el territorio argentino. Contamos con personal certificado y equipamiento propio para desarrollar proyectos en cualquier región del país.",
         cta: { label: "Contactar a un especialista", href: "/#contacto" },
       },
-      ,
       {
         id: "hablar-personalmente",
         label: "¿Cómo puedo hablar con un especialista?",
@@ -571,7 +568,6 @@ export const FAQ_TREE: FaqTreeNode[] = [
           "Puede contactarnos por email a jprossi@sintecsa.com.ar o por teléfono al +54 223 373-0283. También puede completar el formulario de contacto en nuestra web y nos comunicaremos dentro de las 24 horas hábiles.",
         cta: { label: "Ir al formulario de contacto", href: "/#contacto" },
       },
-      
     ],
   },
   {
