@@ -38,7 +38,7 @@ export function Footer() {
             {/* Social Links */}
             <div className="flex gap-3">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/sintec-s-a/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#6e6e73] hover:text-white hover:bg-[#297373] hover:border-[#297373] transition-all duration-200"
