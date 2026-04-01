@@ -124,12 +124,21 @@ export const metadata: Metadata = {
     title: "SINTEC S.A. | Ingeniería de Integridad",
     description:
       "Consultora argentina especializada en ingeniería de integridad industrial. Más de 20 años de experiencia.",
+    images: [
+      {
+        url: "https://sintecsa.com.ar/img/logos/SINTECSA_logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SINTEC S.A. - Ingeniería de Integridad",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "SINTEC S.A. | Ingeniería de Integridad",
     description:
       "Consultora argentina especializada en ingeniería de integridad industrial.",
+    images: ["https://sintecsa.com.ar/img/logos/SINTECSA_logo.jpg"],
   },
   robots: {
     index: true,
