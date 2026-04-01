@@ -15,6 +15,45 @@ interface ChatMessage {
   text: string;
 }
 
+interface HistoryItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+interface CacheData {
+  timestamp: number;
+  history: HistoryItem[];
+}
+
+const CACHE_KEY = "sintecsa_chat_session";
+const CACHE_TTL = 60 * 60 * 1000; // 1 hora
+
+function loadCache(): { history: HistoryItem[]; remaining: number } | null {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const { timestamp, history }: CacheData = JSON.parse(raw);
+    const age = Date.now() - timestamp;
+    if (age >= CACHE_TTL) {
+      localStorage.removeItem(CACHE_KEY);
+      return null;
+    }
+    return { history, remaining: CACHE_TTL - age };
+  } catch {
+    return null;
+  }
+}
+
+function saveCache(history: HistoryItem[], timestamp: number) {
+  const data: CacheData = { timestamp, history };
+  localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+}
+
+function clearCache() {
+  localStorage.removeItem(CACHE_KEY);
+}
+
 export function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [view, setView] = useState<ChatView>("faq-list");
@@ -23,14 +62,33 @@ export function ChatBot() {
   );
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [showPulse, setShowPulse] = useState(true);
+  const [history, setHistory] = useState<HistoryItem[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const hasAutoOpened = useRef(false);
   const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sessionTimestampRef = useRef<number | null>(null);
+  const cacheExpiryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Carga historial desde localStorage al montar
+  useEffect(() => {
+    const cached = loadCache();
+    if (cached && cached.history.length > 0) {
+      setHistory(cached.history);
+      // Programa el auto-clear para cuando expire la hora
+      cacheExpiryTimerRef.current = setTimeout(() => {
+        clearCache();
+        setHistory([]);
+      }, cached.remaining);
+    }
+    return () => {
+      if (cacheExpiryTimerRef.current) clearTimeout(cacheExpiryTimerRef.current);
+    };
+  }, []);
 
   // Auto-scroll to bottom on new message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, view]);
+  }, [messages, view, history]);
 
   // Hide pulse after first open
   useEffect(() => {
@@ -43,7 +101,7 @@ export function ChatBot() {
   useEffect(() => {
     const handleScroll = () => {
       if (hasAutoOpened.current) return;
-      if (scrollTimerRef.current) return; // timer already running
+      if (scrollTimerRef.current) return;
 
       scrollTimerRef.current = setTimeout(() => {
         if (!hasAutoOpened.current) {
@@ -82,12 +140,43 @@ export function ChatBot() {
     setSelectedFaq(faq);
     setView("faq-answer");
     analytics.chatbotFaqClick(faq.question);
+
+    // Agrega al historial y persiste en localStorage
+    const newItem: HistoryItem = {
+      id: faq.id,
+      question: faq.question,
+      answer: faq.answer,
+    };
+
+    setHistory((prev) => {
+      // Evita duplicados consecutivos
+      if (prev.length > 0 && prev[prev.length - 1].id === faq.id) return prev;
+      const updated = [...prev, newItem];
+      const now = sessionTimestampRef.current ?? Date.now();
+      if (!sessionTimestampRef.current) {
+        sessionTimestampRef.current = now;
+        // Programa el auto-clear si es sesión nueva
+        if (cacheExpiryTimerRef.current) clearTimeout(cacheExpiryTimerRef.current);
+        cacheExpiryTimerRef.current = setTimeout(() => {
+          clearCache();
+          setHistory([]);
+        }, CACHE_TTL);
+      }
+      saveCache(updated, now);
+      return updated;
+    });
   };
 
   const handleBack = () => {
     setSelectedFaq(null);
     setView("faq-list");
   };
+
+  const isReturningUser = history.length > 0;
+  // En faq-answer, el historial a mostrar son los items anteriores al actual
+  const historyWithoutCurrent = selectedFaq
+    ? history.filter((h) => h.id !== selectedFaq.id)
+    : history;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
@@ -146,15 +235,53 @@ export function ChatBot() {
                     transition={{ duration: 0.2 }}
                     className="p-5"
                   >
-                    {/* Greeting */}
+                    {/* Historial de conversación previa */}
+                    {isReturningUser && (
+                      <div className="mb-4 pb-4 border-b border-[#d2d2d7]/40">
+                        <p className="text-[10px] text-[#6e6e73]/60 font-medium uppercase tracking-wide text-center mb-3">
+                          Conversación anterior
+                        </p>
+                        <div className="space-y-3">
+                          {history.map((item) => (
+                            <div key={item.id} className="space-y-2 opacity-60">
+                              <div className="flex justify-end">
+                                <div className="bg-[#297373]/70 text-white rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
+                                  <p className="text-xs leading-relaxed">{item.question}</p>
+                                </div>
+                              </div>
+                              <div className="flex gap-2">
+                                <div className="w-6 h-6 rounded-full bg-[#297373]/10 flex items-center justify-center shrink-0 mt-0.5">
+                                  <MessageCircle size={12} className="text-[#297373]" />
+                                </div>
+                                <div className="bg-[#f5f5f7] rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
+                                  <p className="text-xs text-[#001514] leading-relaxed line-clamp-2">
+                                    {item.answer}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Saludo */}
                     <div className="flex gap-3 mb-5">
                       <div className="w-8 h-8 rounded-full bg-[#297373]/10 flex items-center justify-center shrink-0 mt-1">
                         <MessageCircle size={16} className="text-[#297373]" />
                       </div>
                       <div className="bg-[#f5f5f7] rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
                         <p className="text-sm text-[#001514] leading-relaxed">
-                          ¡Hola! Soy el asistente de <strong>SINTEC S.A.</strong>{" "}
-                          ¿En qué puedo ayudarle hoy?
+                          {isReturningUser ? (
+                            <>
+                              ¡Bienvenido nuevamente! ¿Hay algo más en lo que pueda ayudarle?
+                            </>
+                          ) : (
+                            <>
+                              ¡Hola! Soy el asistente de <strong>SINTEC S.A.</strong>{" "}
+                              ¿En qué puedo ayudarle hoy?
+                            </>
+                          )}
                         </p>
                       </div>
                     </div>
@@ -192,7 +319,32 @@ export function ChatBot() {
                     transition={{ duration: 0.2 }}
                     className="p-5"
                   >
-                    {/* User question bubble */}
+                    {/* Historial previo (atenuado) */}
+                    {historyWithoutCurrent.length > 0 && (
+                      <div className="mb-4 pb-4 border-b border-[#d2d2d7]/40 space-y-3">
+                        {historyWithoutCurrent.map((item) => (
+                          <div key={item.id} className="space-y-2 opacity-50">
+                            <div className="flex justify-end">
+                              <div className="bg-[#297373]/70 text-white rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
+                                <p className="text-xs leading-relaxed">{item.question}</p>
+                              </div>
+                            </div>
+                            <div className="flex gap-2">
+                              <div className="w-6 h-6 rounded-full bg-[#297373]/10 flex items-center justify-center shrink-0 mt-0.5">
+                                <MessageCircle size={12} className="text-[#297373]" />
+                              </div>
+                              <div className="bg-[#f5f5f7] rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
+                                <p className="text-xs text-[#001514] leading-relaxed line-clamp-2">
+                                  {item.answer}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Pregunta actual del usuario */}
                     <div className="flex justify-end mb-4">
                       <div className="bg-[#297373] text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]">
                         <p className="text-sm leading-relaxed">
@@ -201,7 +353,7 @@ export function ChatBot() {
                       </div>
                     </div>
 
-                    {/* Bot answer bubble */}
+                    {/* Respuesta del bot */}
                     <div className="flex gap-3 mb-5">
                       <div className="w-8 h-8 rounded-full bg-[#297373]/10 flex items-center justify-center shrink-0 mt-1">
                         <MessageCircle size={16} className="text-[#297373]" />

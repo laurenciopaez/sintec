@@ -469,7 +469,7 @@ export const FAQ_ITEMS = [
     id: "contact",
     question: "¿Cómo puedo contactarlos?",
     answer:
-      "Puede contactarnos por email a jprossi@sintecsa.com.ar o por teléfono al +54 223 464-4322/23. También puede completar el formulario de contacto en nuestra web y nos comunicaremos dentro de las 24 horas hábiles.",
+      "Puede contactarnos por email a jprossi@sintecsa.com.ar o por teléfono al +54 223 373-0283. También puede completar el formulario de contacto en nuestra web y nos comunicaremos dentro de las 24 horas hábiles.",
     cta: { label: "Ir al formulario de contacto", href: "/#contacto" },
   },
   {
