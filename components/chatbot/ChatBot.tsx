@@ -24,6 +24,8 @@ export function ChatBot() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [showPulse, setShowPulse] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const hasAutoOpened = useRef(false);
+  const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Auto-scroll to bottom on new message
   useEffect(() => {
@@ -37,15 +39,43 @@ export function ChatBot() {
     }
   }, [isOpen]);
 
+  // Auto-open after 15s of scroll activity
+  useEffect(() => {
+    const handleScroll = () => {
+      if (hasAutoOpened.current) return;
+      if (scrollTimerRef.current) return; // timer already running
+
+      scrollTimerRef.current = setTimeout(() => {
+        if (!hasAutoOpened.current) {
+          hasAutoOpened.current = true;
+          setIsOpen(true);
+          setView("faq-list");
+          setSelectedFaq(null);
+        }
+      }, 15000);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimerRef.current) clearTimeout(scrollTimerRef.current);
+    };
+  }, []);
+
   const handleOpen = () => {
+    hasAutoOpened.current = true;
+    if (scrollTimerRef.current) {
+      clearTimeout(scrollTimerRef.current);
+      scrollTimerRef.current = null;
+    }
     setIsOpen(true);
     setView("faq-list");
     setSelectedFaq(null);
+    analytics.chatbotOpen();
   };
 
   const handleClose = () => {
     setIsOpen(false);
-    analytics.chatbotOpen();
   };
 
   const handleFaqSelect = (faq: (typeof FAQ_ITEMS)[0]) => {
