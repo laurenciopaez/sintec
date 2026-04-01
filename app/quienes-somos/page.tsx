@@ -115,28 +115,40 @@ export default function QuienesSomosPage() {
                   <div className="space-y-6">
                     {[
                       {
+                        year: "2000",
+                        text: "Fundación de SINTEC S.A. en Mar del Plata, Buenos Aires",
+                      },
+                      {
                         year: "2004",
-                        text: "Fundación de SINTEC S.A. en Buenos Aires",
+                        text: "Primeros proyectos de RBI en plantas de tratamiento de gas",
+                      },
+                      {
+                        year: "2006",
+                        text: "Diseño e implementación de bases de datos de integridad para la gestion de cañerias, equipos y tanques en PAE, YDS e YPF.",
+                      },
+                      {
+                        year: "2007",
+                        text: "Implementación de sistema de monitereo de corrosión interna y externa con técnicas electroquimicas.",
                       },
                       {
                         year: "2008",
-                        text: "Primeros proyectos de RBI en la industria oil & gas",
+                        text: "Participación en la selección de materiales de Casing en pozos de producción de crudo y gas en Bolivia.",
                       },
                       {
-                        year: "2012",
-                        text: "Expansión a proyectos en Patagonia y Neuquén",
+                        year: "2014",
+                        text: "Alianza estrategica con laboratorios INTEMA para análisis de falla y metalografía",
                       },
                       {
-                        year: "2016",
-                        text: "Implementación de tecnologías END avanzadas (PA, TOFD)",
+                        year: "2022",
+                        text: "Implementación de servicio de monitereo de corrosión movil",
                       },
                       {
-                        year: "2019",
-                        text: "Ingreso a proyectos en Vaca Muerta",
+                        year: "2025",
+                        text: "Creación del area de analisis de datos e inteligencia artificial",
                       },
                       {
-                        year: "2024",
-                        text: "+20 años y más de 150 proyectos exitosos",
+                        year: "2026",
+                        text: "+20 años y más de 1000 proyectos exitosos",
                       },
                     ].map((item, index) => (
                       <div key={index} className="flex gap-4">

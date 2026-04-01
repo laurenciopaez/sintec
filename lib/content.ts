@@ -7,7 +7,7 @@ export const QUIENES_SOMOS_CONTENT = {
   story: {
     title: "Nuestra Historia",
     paragraphs: [
-      "SINTEC S.A. nació en 2004 con una misión clara: brindar soluciones de ingeniería de integridad de clase mundial a la industria argentina. Fundada por profesionales con amplia trayectoria en el sector oil & gas y petroquímico, la empresa creció sobre la base del rigor técnico y la confianza de sus clientes.",
+      "SINTEC S.A. nació en 2000 con una misión clara: brindar soluciones de ingeniería de integridad de clase mundial a la industria argentina. Fundada por profesionales con amplia trayectoria en el sector oil & gas y petroquímico, la empresa creció sobre la base del rigor técnico y la confianza de sus clientes.",
       "A lo largo de más de veinte años, hemos acompañado el crecimiento de la industria nacional, adaptándonos a los desafíos de cada época: desde la modernización de plantas legacy hasta los proyectos de vanguardia en Vaca Muerta y las nuevas exigencias de sustentabilidad energética.",
       "Hoy somos referentes en la aplicación de metodologías internacionales como API, ASME y NACE, con un equipo humano apasionado por la excelencia técnica y comprometido con la seguridad operativa de nuestros clientes.",
     ],
@@ -28,7 +28,7 @@ export const QUIENES_SOMOS_CONTENT = {
       {
         title: "Experiencia Comprobada",
         description:
-          "Más de 20 años y 150 proyectos en las principales empresas de oil & gas, petroquímica y energía de Argentina.",
+          "Más de 20 años y 1000 proyectos en las principales empresas de oil & gas, petroquímica y energía de Argentina y el exterior.",
         icon: "TrendingUp",
       },
       { /// MMMMMM
@@ -72,7 +72,6 @@ export const QUIENES_SOMOS_CONTENT = {
       "API 653 - Inspección de Tanques de Almacenamiento",
       "API 580/581 - Inspección Basada en Riesgo (RBI)",
       "NACE CIP - Protección Catódica",
-      "ASNT NDT - Ensayos No Destructivos",
       "ASME B31.3 / B31.8 - Sistemas de Tuberías",
       "ISO 9001 - Sistema de Gestión de Calidad",
     ],
