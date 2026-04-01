@@ -12,14 +12,14 @@ export const metadata: Metadata = {
     title: "SINTEC S.A. | Ingeniería de Integridad Industrial",
     description:
       "Consultora argentina especializada en gestión de integridad de activos industriales. Más de 20 años de experiencia en RBI, análisis de falla, control de corrosión e inspección.",
-    images: [{ url: "./img/logos/SINTECSA_logo.jpg", width: 1200, height: 630, alt: "SINTEC S.A. — Ingeniería de Integridad" }],
+    images: [{ url: "img/logos/SINTECSA_logo.jpg", width: 1200, height: 630, alt: "SINTEC S.A. — Ingeniería de Integridad" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "SINTEC S.A. | Ingeniería de Integridad Industrial",
     description:
       "Consultora argentina especializada en gestión de integridad de activos industriales.",
-    images: ["./img/logos/SINTECSA_logo.jpg"],
+    images: ["img/logos/SINTECSA_logo.jpg"],
   },
 };
 
