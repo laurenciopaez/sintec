@@ -85,9 +85,15 @@
 - [ ] Permitir edición sin tocar código
 
 ### 12. Internacionalización (i18n)
-- [ ] Configurar `next-intl` o i18n nativo de Next.js
-- [ ] Crear rutas `/es` y `/en`
-- [ ] Traducir contenido principal al inglés
+- [x] Configurar rutas `/es` y `/en` con `app/[locale]/` (Next.js App Router nativo)
+- [x] Detección automática de idioma (browser language + localStorage)
+- [x] Navbar locale-aware con switcher ES|EN y persistencia de preferencia
+- [x] `lib/i18n.ts` — tipos, utilidades, labels de navegación bilingüe
+- [x] `lib/locale-context.tsx` — React context para locale en cliente
+- [x] `lib/constants-en.ts` — esqueleto de constantes en inglés (listo para traducir)
+- [x] `lib/content-en.ts` — esqueleto de contenido en inglés (listo para traducir)
+- [x] `hreflang` en todas las páginas locale (alternates.languages)
+- [ ] Traducir contenido principal al inglés (constants-en.ts + content-en.ts)
 
 ### 13. Analítica avanzada
 - [x] Implementar Google Analytics 4 (GA4)

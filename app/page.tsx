@@ -1,46 +1,38 @@
-import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-import { Hero } from "@/components/home/Hero";
+"use client";
 
-export const metadata: Metadata = {
-  title: "SINTEC S.A. | Ingeniería de Integridad Industrial",
-  description:
-    "Consultora argentina especializada en gestión de integridad de activos industriales. Más de 20 años de experiencia en RBI, análisis de falla, control de corrosión e inspección para oil & gas, petroquímica y energía.",
-  openGraph: {
-    type: "website",
-    url: "https://sintecsa.com.ar",
-    title: "SINTEC S.A. | Ingeniería de Integridad Industrial",
-    description:
-      "Consultora argentina especializada en gestión de integridad de activos industriales. Más de 20 años de experiencia en RBI, análisis de falla, control de corrosión e inspección.",
-    images: [{ url: "img/logos/SINTECSA_logo.jpg", width: 1200, height: 630, alt: "SINTEC S.A. — Ingeniería de Integridad" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SINTEC S.A. | Ingeniería de Integridad Industrial",
-    description:
-      "Consultora argentina especializada en gestión de integridad de activos industriales.",
-    images: ["https://sintecsa.com.ar/img/logos/SINTECSA_logo.jpg"],
-  },
-  alternates: {
-    canonical: "https://sintecsa.com.ar",
-  },
-};
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-const Services = dynamic(() => import("@/components/home/Services").then(m => m.Services));
-const Stats = dynamic(() => import("@/components/home/Stats").then(m => m.Stats));
-const Clients = dynamic(() => import("@/components/home/Clients").then(m => m.Clients));
-const AboutTeaser = dynamic(() => import("@/components/home/AboutTeaser").then(m => m.AboutTeaser));
-const Contact = dynamic(() => import("@/components/home/Contact").then(m => m.Contact));
+/**
+ * Root page — detects preferred language and redirects to /es or /en.
+ * Priority: 1) saved preference in localStorage  2) browser language
+ */
+export default function RootPage() {
+  const router = useRouter();
 
-export default function HomePage() {
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("sintec-locale");
+      if (saved === "en" || saved === "es") {
+        router.replace(`/${saved}`);
+        return;
+      }
+    } catch {
+      // localStorage not available (private mode, SSR guard)
+    }
+    const lang = navigator.language.toLowerCase();
+    router.replace(lang.startsWith("es") ? "/es" : "/en");
+  }, [router]);
+
+  // Shown briefly while JS determines the locale
   return (
-    <>
-      <Hero />
-      <Services />
-      <Stats />
-      <Clients />
-      <AboutTeaser />
-      <Contact />
-    </>
+    <div className="min-h-screen flex items-center justify-center bg-[#001514]">
+      <div className="flex flex-col items-center gap-4">
+        <span className="text-2xl font-bold text-white tracking-tight">
+          SINTEC<span className="text-[#5aacac] font-light"> S.A.</span>
+        </span>
+        <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+      </div>
+    </div>
   );
 }
