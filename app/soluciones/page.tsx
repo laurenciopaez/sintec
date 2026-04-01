@@ -8,6 +8,7 @@ import {
   Eye,
   FileText,
   ArrowRight,
+  Download,
 } from "lucide-react";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { SERVICES } from "@/lib/constants";
@@ -144,6 +145,18 @@ export default function SolucionesPage() {
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          {/* Descarga catálogo */}
+          <AnimatedSection variant="slideUp" delay={0.2} className="mt-12 text-center">
+            <a
+              href="./venta/colores.png"
+              download
+              className="inline-flex items-center gap-3 bg-[#A33400] hover:bg-[#1f5a5a] text-white px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-[#297373]/20"
+            >
+              <Download size={20} />
+              Descargá nuestro catálogo completo de Soluciones
+            </a>
+          </AnimatedSection>
         </div>
       </section>
 

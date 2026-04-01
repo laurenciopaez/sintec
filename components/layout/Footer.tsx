@@ -26,7 +26,7 @@ export function Footer() {
                 <span className="text-2xl font-bold text-white">
                   {COMPANY_SHORT_NAME}
                 </span>
-                <span className="text-2xl font-light text-[#A33400] ml-0.5">
+                <span className="text-2xl font-light text-[#297373] ml-0.5">
                   S.A.
                 </span>
               </div>
