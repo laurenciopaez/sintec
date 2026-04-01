@@ -26,7 +26,7 @@
 - [x] Validación de inputs en el servidor
 - [x] Rate limiting para prevenir spam
 - [x] Sanitización de datos
-- [ ] Accesibilidad
+- [x] Accesibilidad
 
 ### 2. Estrategia de keywords
 - [x] Definir keywords principales: `integridad de activos`, `inspección industrial`, `API 579`, `RBI`
@@ -94,10 +94,9 @@
 - [ ] Traducir contenido principal al inglés
 
 ### 13. Analítica avanzada
-- [ ] Implementar Google Analytics 4 (GA4)
-- [ ] Rastrear eventos: clicks en CTAs, envíos de formulario, scroll depth
-- [ ] Tracking de conversiones
-- [ ] Heatmaps (Hotjar o Microsoft Clarity, ambos gratuitos)
+- [x] Implementar Google Analytics 4 (GA4)
+- [x] Tracking de conversiones
+- [x] Heatmaps (Hotjar o Microsoft Clarity, ambos gratuitos)
 
 ---
 
@@ -106,11 +105,11 @@
 ### SEO
 - [x] Keywords principales y secundarias definidas
 - [x] Metadata avanzada por página
-- [ ] Open Graph completo
-- [ ] Sitemap dinámico
+- [x] Open Graph completo
+- [x] Sitemap dinámico
 - [x] robots.txt
 - [ ] Canonical URLs
-- [ ] Structured data (schema.org)
+- [x] Structured data (schema.org)
 - [x] URLs limpias (sin hash)
 
 ### Contenido
@@ -127,20 +126,17 @@
 
 ### Performance
 - [x] Lazy loading de componentes pesados
-- [ ] Minimizar Client Components innecesarios
 - [x] Optimización de imágenes reales (next/image)
 - [ ] Preload de fuentes críticas
 
 ### Arquitectura
-- [ ] Separar capa de dominio (data / UI)
-- [ ] Evitar centralización excesiva en `constants.ts`
 - [ ] Preparar estructura para CMS
 
 ### Seguridad
 - [x] Validación backend obligatoria en formularios
-- [ ] Protección XSS
+- [x] Protección XSS
 - [ ] Protección CSRF
-- [ ] Escape de todos los inputs
+- [x] Escape de todos los inputs
 - [ ] Headers de seguridad (next.config.ts)
 
 ### Analítica
