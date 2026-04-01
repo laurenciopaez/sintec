@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Linkedin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, ArrowRight, Users } from "lucide-react";
 import {
   COMPANY_NAME,
   COMPANY_SHORT_NAME,
@@ -155,6 +155,20 @@ export function Footer() {
                     <span className="text-sm">{COMPANY_ADDRESS}</span>
                   </div>
                 </div>
+              </li>
+              <li>
+                <Link
+                  href="/trabaja-con-nosotros"
+                  className="flex items-start gap-3 text-[#6e6e73] hover:text-white transition-colors duration-200 group"
+                >
+                  <span className="w-8 h-8 rounded-lg bg-[#297373]/10 flex items-center justify-center shrink-0 group-hover:bg-[#297373]/20 transition-colors duration-200">
+                    <Users size={15} className="text-[#A33400]" />
+                  </span>
+                  <div>
+                    <p className="text-xs text-[#6e6e73] mb-0.5">RRHH</p>
+                    <span className="text-sm">Trabaja con nosotros</span>
+                  </div>
+                </Link>
               </li>
             </ul>
           </div>
