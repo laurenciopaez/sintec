@@ -129,7 +129,7 @@
 - [x] Sanitización de inputs
 
 ### Performance
-- [ ] Lazy loading de componentes pesados
+- [x] Lazy loading de componentes pesados
 - [ ] Minimizar Client Components innecesarios
 - [x] Optimización de imágenes reales (next/image)
 - [ ] Preload de fuentes críticas
