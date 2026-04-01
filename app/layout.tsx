@@ -149,6 +149,54 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <ChatBot />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "SINTEC S.A.",
+              alternateName: "SINTEC",
+              url: "https://sintecsa.com.ar",
+              email: "jprossi@sintecsa.com.ar",
+              telephone: "+54 223 373-0283",
+              foundingDate: "2004",
+              description:
+                "Consultora argentina especializada en ingeniería de integridad, gestión de riesgos y confiabilidad de activos industriales para los sectores oil & gas, petroquímica, refinación y energía.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Mar del Plata",
+                addressRegion: "Buenos Aires",
+                addressCountry: "AR",
+              },
+              areaServed: {
+                "@type": "Country",
+                name: "Argentina",
+              },
+              knowsAbout: [
+                "Integridad de activos industriales",
+                "Inspección Basada en Riesgo (RBI)",
+                "Análisis de falla",
+                "Control de corrosión",
+                "Protección catódica",
+                "Monitoreo electroquímico",
+                "Normativas API, ASME, NACE, ISO",
+              ],
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Servicios de Ingeniería de Integridad",
+                itemListElement: [
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Integridad de Activos" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Inspección Basada en Riesgo (RBI)" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Análisis de Falla" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Control de Corrosión" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Inspección Técnica" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Procedimientos e Ingeniería Normativa" } },
+                ],
+              },
+            }),
+          }}
+        />
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}

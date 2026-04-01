@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/constants";
 
+export const dynamic = "force-static";
+
 const BASE_URL = "https://www.sintecsa.com.ar";
 
 export default function sitemap(): MetadataRoute.Sitemap {

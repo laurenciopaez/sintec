@@ -51,7 +51,26 @@ export default async function ServicePage({
   const serviceIndex = SERVICES.findIndex((s) => s.slug === slug);
   const content = SOLUCIONES_CONTENT;
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.shortDescription,
+    url: `https://sintecsa.com.ar/soluciones/${slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "SINTEC S.A.",
+      url: "https://sintecsa.com.ar",
+    },
+    areaServed: { "@type": "Country", name: "Argentina" },
+  };
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+    />
     <div className="min-h-screen bg-white">
       {/* Mini hero */}
       <section className="relative pt-32 pb-10 lg:pt-36 lg:pb-12 bg-[#001514] overflow-hidden">
@@ -113,5 +132,6 @@ export default async function ServicePage({
         </div>
       </section>
     </div>
+    </>
   );
 }

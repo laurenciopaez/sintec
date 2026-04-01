@@ -32,7 +32,6 @@
 - [x] Definir keywords principales: `integridad de activos`, `inspección industrial`, `API 579`, `RBI`
 - [x] Definir long-tail: `inspección de ductos argentina`, `corrosion CO2 oil gas model`
 - [ ] Mapear cada keyword a una URL específica
-- [ ] Usar la lista para guiar TODO el contenido futuro
 
 ### 3. Reestructurar URLs de servicios
 - [x] Reemplazar `/soluciones#rbi` → `/soluciones/rbi`
@@ -45,7 +44,7 @@
 - [x] Crear `robots.txt` (`app/robots.ts`)
 - [ ] Agregar canonical URLs a todas las páginas
 - [x] Completar metadata por página (title, description)
-- [ ] Implementar structured data (schema.org: `Organization`, `Service`)
+- [x] Implementar structured data (schema.org: `Organization`, `Service`)
 
 ---
 
