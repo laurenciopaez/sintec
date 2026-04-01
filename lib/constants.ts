@@ -456,16 +456,6 @@ export const FAQ_ITEMS = [
     cta: { label: "Ver nuestras soluciones", href: "/soluciones" },
   },
   {
-    id: "rbi",
-    question: "¿Qué es RBI?",
-    answer:
-      "RBI (Risk-Based Inspection) es una metodología según API 580/581 que evalúa el riesgo de falla de equipos industriales. Permite priorizar y optimizar los planes de inspección, reduciendo costos hasta un 40% mientras se mejora la seguridad operativa.",
-    cta: {
-      label: "Conocer más sobre RBI",
-      href: "/soluciones/integridad-riesgos-rbi",
-    },
-  },
-  {
     id: "contact",
     question: "¿Cómo puedo contactarlos?",
     answer:
