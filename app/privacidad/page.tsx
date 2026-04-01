@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "Política de Privacidad | SINTEC S.A.",
   description:
     "Política de privacidad de SINTEC S.A. Información sobre el tratamiento de datos personales.",
+  alternates: {
+    canonical: "https://sintecsa.com.ar/privacidad",
+  },
 };
 
 export default function PrivacidadPage() {

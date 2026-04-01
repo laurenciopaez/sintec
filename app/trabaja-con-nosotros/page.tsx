@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Trabaja con Nosotros | SINTEC S.A.",
   description:
     "Sumate al equipo de SINTEC S.A. Envianos tu CV y formá parte de nuestra empresa de ingeniería de integridad industrial.",
+  alternates: {
+    canonical: "https://sintecsa.com.ar/trabaja-con-nosotros",
+  },
 };
 
 export default function TrabajaConNosotrosPage() {

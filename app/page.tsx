@@ -19,7 +19,10 @@ export const metadata: Metadata = {
     title: "SINTEC S.A. | Ingeniería de Integridad Industrial",
     description:
       "Consultora argentina especializada en gestión de integridad de activos industriales.",
-    images: ["img/logos/SINTECSA_logo.jpg"],
+    images: ["https://sintecsa.com.ar/img/logos/SINTECSA_logo.jpg"],
+  },
+  alternates: {
+    canonical: "https://sintecsa.com.ar",
   },
 };
 

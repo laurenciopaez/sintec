@@ -20,6 +20,9 @@ export async function generateMetadata({
   return {
     title: `FAQ — ${service.title} | SINTEC S.A.`,
     description,
+    alternates: {
+      canonical: `https://sintecsa.com.ar/soluciones/${slug}/faq`,
+    },
     openGraph: {
       type: "website",
       url: `https://sintecsa.com.ar/soluciones/${slug}/faq`,

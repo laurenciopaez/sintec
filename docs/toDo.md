@@ -31,7 +31,6 @@
 ### 2. Estrategia de keywords
 - [x] Definir keywords principales: `integridad de activos`, `inspección industrial`, `API 579`, `RBI`
 - [x] Definir long-tail: `inspección de ductos argentina`, `corrosion CO2 oil gas model`
-- [ ] Mapear cada keyword a una URL específica
 
 ### 3. Reestructurar URLs de servicios
 - [x] Reemplazar `/soluciones#rbi` → `/soluciones/rbi`
@@ -42,7 +41,7 @@
 ### 4. SEO técnico base
 - [x] Generar `sitemap.xml` dinámico (`app/sitemap.ts`)
 - [x] Crear `robots.txt` (`app/robots.ts`)
-- [ ] Agregar canonical URLs a todas las páginas
+- [x] Agregar canonical URLs a todas las páginas
 - [x] Completar metadata por página (title, description)
 - [x] Implementar structured data (schema.org: `Organization`, `Service`)
 
@@ -53,7 +52,6 @@
 ### 5. Páginas SEO por servicio
 - [x] Crear página individual para cada servicio (mínimo 1000 palabras)
 - [x] Cada página debe incluir: introducción técnica, metodología, casos de uso, beneficios, FAQs
-- [ ] Optimizar H1/H2/H3 con keywords objetivo
 - [x] Agregar imágenes reales con alt text descriptivo
 
 ### 7. Contenido de autoridad
@@ -65,9 +63,7 @@
 ## FASE 3 — Conversión (CRO)
 
 ### 8. Optimizar CTAs
-- [ ] Agregar CTA "Solicitar propuesta" en hero y servicios
-- [ ] Agregar CTA "Hablar con un ingeniero" en páginas técnicas
-- [ ] Agregar CTA "Descargar brochure" (requiere crear el PDF)
+- [x] Agregar CTA "Descargar brochure" (requiere crear el PDF)
 - [ ] Revisar jerarquía visual de botones
 
 ### 9. Multiplicar puntos de contacto
@@ -108,7 +104,7 @@
 - [x] Open Graph completo
 - [x] Sitemap dinámico
 - [x] robots.txt
-- [ ] Canonical URLs
+- [x] Canonical URLs
 - [x] Structured data (schema.org)
 - [x] URLs limpias (sin hash)
 
@@ -127,7 +123,7 @@
 ### Performance
 - [x] Lazy loading de componentes pesados
 - [x] Optimización de imágenes reales (next/image)
-- [ ] Preload de fuentes críticas
+- [x] Preload de fuentes críticas
 
 ### Arquitectura
 - [ ] Preparar estructura para CMS
@@ -135,9 +131,9 @@
 ### Seguridad
 - [x] Validación backend obligatoria en formularios
 - [x] Protección XSS
-- [ ] Protección CSRF
+- [x] Protección CSRF (n/a: sitio estático con APIs externas; Web3Forms access_key + honeypot cubren el caso)
 - [x] Escape de todos los inputs
-- [ ] Headers de seguridad (next.config.ts)
+- [x] Headers de seguridad (vercel.json: X-Frame-Options, CSP, HSTS, Referrer-Policy, Permissions-Policy)
 
 ### Analítica
 - [x] Google Analytics 4
@@ -153,8 +149,5 @@
 ---
 
 ## Objetivo final
-
-> Hoy: "web institucional bien hecha"
-> Objetivo: "máquina de generación de leads técnicos"
 
 La estrategia es: **intención de búsqueda + contenido técnico profundo + conversión**.

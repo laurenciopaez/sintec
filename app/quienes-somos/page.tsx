@@ -35,6 +35,9 @@ export const metadata: Metadata = {
       "Conoce la historia, misión, visión y valores de SINTEC S.A., consultora argentina líder en ingeniería de integridad industrial desde 2004.",
     images: ["/img/quienesSomos/integridadProfesional.jpeg"],
   },
+  alternates: {
+    canonical: "https://sintecsa.com.ar/quienes-somos",
+  },
 };
 
 const iconMap: Record<string, React.ReactNode> = {

@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "Términos de Uso | SINTEC S.A.",
   description:
     "Términos y condiciones de uso del sitio web de SINTEC S.A.",
+  alternates: {
+    canonical: "https://sintecsa.com.ar/terminos",
+  },
 };
 
 export default function TerminosPage() {

@@ -33,6 +33,9 @@ export const metadata: Metadata = {
       "Portafolio completo de servicios de ingeniería de integridad: RBI, análisis de falla, control de corrosión, inspección técnica y más.",
     images: ["/img/service1/RBI.jpg"],
   },
+  alternates: {
+    canonical: "https://sintecsa.com.ar/soluciones",
+  },
 };
 
 const iconMap: Record<string, React.ReactNode> = {
