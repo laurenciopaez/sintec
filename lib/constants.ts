@@ -447,36 +447,166 @@ export const STATS = [
   },
 ];
 
-export const FAQ_ITEMS = [
+// ── Chatbot decision tree ──────────────────────────────────────────────────────
+
+export interface FaqTreeNode {
+  id: string;
+  /** Text shown on the button at this level */
+  label: string;
+  // Leaf-only (answer view)
+  question?: string;
+  answer?: string;
+  cta?: { label: string; href: string };
+  // Branch-only (sub-menu)
+  children?: FaqTreeNode[];
+}
+
+export const FAQ_TREE: FaqTreeNode[] = [
   {
-    id: "services",
-    question: "¿Qué servicios ofrecen?",
-    answer:
-      "Ofrecemos servicios especializados en ingeniería de integridad industrial: Integridad de Activos, Inspección Basada en Riesgo (RBI), Análisis de Falla, Control de Corrosión, Inspección y Monitoreo con electroquimicas in-situ, y elaboración de Procedimientos Técnicos.",
-    cta: { label: "Ver nuestras soluciones", href: "/soluciones" },
+    id: "servicios",
+    label: "¿Qué servicios ofrecemos?",
+    children: [
+      {
+        id: "integridad-activos",
+        label: "Integridad de Activos",
+        question: "¿Qué es la Integridad de Activos?",
+        answer:
+          "Es la gestión técnica del ciclo de vida de activos industriales para que operen de forma segura y confiable. Desarrollamos Planes de Gestión de Integridad (PGI) alineados con API, ASME e ISO, evaluando el estado real de equipos, mecanismos de daño activos y vida útil remanente.",
+        cta: { label: "Ver el servicio", href: "/soluciones/integridad-activos" },
+      },
+      {
+        id: "rbi",
+        label: "Inspección Basada en Riesgo (RBI)",
+        question: "¿Qué es RBI y para qué sirve?",
+        answer:
+          "RBI (Risk-Based Inspection, API 580/581) evalúa la Probabilidad y Consecuencia de Falla de cada equipo para priorizar las inspecciones donde el riesgo es mayor. Permite optimizar los intervalos de inspección, reduciendo costos hasta un 40% sin comprometer la seguridad operativa.",
+        cta: { label: "Conocer más sobre RBI", href: "/soluciones/integridad-riesgos-rbi" },
+      },
+      {
+        id: "analisis-falla",
+        label: "Análisis de Falla",
+        question: "¿En qué consiste el Análisis de Falla?",
+        answer:
+          "Es una investigación forense que identifica la causa raíz de una falla mediante metalografía, fractografía, análisis químico y modelado. El resultado es un informe técnico-pericial con causas raíz (física, humana y sistémica) y recomendaciones para prevenir recurrencias.",
+        cta: { label: "Ver el servicio", href: "/soluciones/analisis-falla" },
+      },
+      {
+        id: "control-corrosion",
+        label: "Control de Corrosión",
+        question: "¿Qué soluciones de Control de Corrosión ofrecen?",
+        answer:
+          "Diseñamos e implementamos protección catódica (ICCP y ánodos de sacrificio), especificación de recubrimientos anticorrosivos (SSPC/NACE), monitoreo con cupones y sondas de resistencia eléctrica, y tratamiento con inhibidores. Cubrimos corrosión interna, externa, atmosférica y CUI.",
+        cta: { label: "Ver el servicio", href: "/soluciones/control-corrosion" },
+      },
+      {
+        id: "monitoreo",
+        label: "Monitoreo Electroquímico Industrial",
+        question: "¿Qué es el Monitoreo Electroquímico?",
+        answer:
+          "Utilizamos celdas de 3 y 5 electrodos instaladas en condiciones reales de servicio (presión, temperatura y fluido) para medir velocidades de corrosión instantáneas sin interrumpir el proceso. Aplicaciones en bocas de pozo, pipelines y separadores, con evaluación de inhibidores y bactericidas.",
+        cta: { label: "Ver el servicio", href: "/soluciones/inspeccion-monitoreo" },
+      },
+      {
+        id: "procedimientos",
+        label: "Procedimientos Técnicos",
+        question: "¿Qué procedimientos técnicos elaboran?",
+        answer:
+          "Elaboramos procedimientos de inspección, reparación y operación bajo normativas API, ASME y NACE. La documentación es apta para auditorías, certificaciones y como soporte técnico-legal ante organismos regulatorios.",
+        cta: { label: "Ver el servicio", href: "/soluciones/procedimientos-tecnicos" },
+      },
+    ],
   },
   {
-    id: "contact",
-    question: "¿Cómo puedo contactarlos?",
-    answer:
-      "Puede contactarnos por email a jprossi@sintecsa.com.ar o por teléfono al +54 223 373-0283. También puede completar el formulario de contacto en nuestra web y nos comunicaremos dentro de las 24 horas hábiles.",
-    cta: { label: "Ir al formulario de contacto", href: "/#contacto" },
+    id: "sobre-sintec",
+    label: "Sobre SINTEC S.A.",
+    children: [
+      {
+        id: "quienes-somos",
+        label: "¿Quiénes son?",
+        question: "¿Quiénes son SINTEC S.A.?",
+        answer:
+          "Somos una consultora argentina fundada en 2004, especializada en ingeniería de integridad de activos industriales. Contamos con ingenieros certificados en normativas API, ASME y NACE, con amplia trayectoria en Oil & Gas, petroquímica y energía en todo el territorio nacional.",
+        cta: { label: "Conocer más sobre nosotros", href: "/quienes-somos" },
+      },
+      {
+        id: "industries",
+        label: "¿En qué industrias trabajan?",
+        question: "¿En qué industrias trabajan?",
+        answer:
+          "Nos especializamos en industrias con alta demanda de integridad: Oil & Gas (upstream, midstream, downstream), petroquímica, refinación, generación de energía, industria química y agua/saneamiento.",
+        cta: { label: "Ver quiénes somos", href: "/quienes-somos" },
+      },
+      {
+        id: "coverage",
+        label: "¿Trabajan en toda Argentina?",
+        question: "¿Trabajan en toda Argentina?",
+        answer:
+          "Sí, operamos en todo el territorio argentino. Hemos desarrollado proyectos en Buenos Aires, Neuquén (Vaca Muerta), Mendoza, Chubut y Santa Cruz, con personal certificado y equipamiento propio.",
+        cta: { label: "Contactar a un especialista", href: "/#contacto" },
+      },
+      ,
+      {
+        id: "horarios-atencion",
+        label: "¿Cual es el horario de atención?",
+        question: "¿Cual es el horario de atención?",
+        answer:
+          "Trabajamos de lunes a viernes de 9 a 18 hs. Fuera de este horario, puede contactarnos por email o completar el formulario de contacto en nuestra web, y nos comunicaremos dentro de las 24 horas hábiles.",
+        cta: { label: "Contactar a un especialista", href: "/#contacto" },
+      },
+      ,
+      {
+        id: "ubicación-operacional",
+        label: "¿Donde están ubicados?",
+        question: "¿Donde están ubicados?",
+        answer:
+          "Nuestras oficinas se encuentran en la ciudad de Mar del Plata, pero operamos en todo el territorio argentino. Contamos con personal certificado y equipamiento propio para desarrollar proyectos en cualquier región del país.",
+        cta: { label: "Contactar a un especialista", href: "/#contacto" },
+      },
+      ,
+      {
+        id: "hablar-personalmente",
+        label: "¿Cómo puedo hablar con un especialista?",
+        question: "¿Cómo puedo hablar con un especialista?",
+        answer:
+          "Puede contactarnos por email a jprossi@sintecsa.com.ar o por teléfono al +54 223 373-0283. También puede completar el formulario de contacto en nuestra web y nos comunicaremos dentro de las 24 horas hábiles.",
+        cta: { label: "Ir al formulario de contacto", href: "/#contacto" },
+      },
+      
+    ],
   },
   {
-    id: "coverage",
-    question: "¿Trabajan en toda Argentina?",
-    answer:
-      "Sí, contamos con capacidad de operar en todo el territorio argentino. Hemos desarrollado proyectos en Buenos Aires, Neuquén (Vaca Muerta), Mendoza, Chubut y Santa Cruz, con personal certificado y equipamiento propio.",
-    cta: { label: "Contactar a un especialista", href: "/#contacto" },
-  },
-  {
-    id: "industries",
-    question: "¿En qué industrias trabajan?",
-    answer:
-      "Nos especializamos en industrias con alta demanda de integridad: Oil & Gas (upstream, midstream, downstream), petroquímica, refinación, generación de energía, industria química y agua/saneamiento.",
-    cta: { label: "Ver quiénes somos", href: "/quienes-somos" },
+    id: "contacto",
+    label: "Contacto y consultas",
+    children: [
+      {
+        id: "como-contactar",
+        label: "¿Cómo puedo contactarlos?",
+        question: "¿Cómo puedo contactarlos?",
+        answer:
+          "Puede contactarnos por email a jprossi@sintecsa.com.ar o por teléfono al +54 223 373-0283. También puede completar el formulario de contacto en nuestra web y nos comunicaremos dentro de las 24 horas hábiles.",
+        cta: { label: "Ir al formulario de contacto", href: "/#contacto" },
+      },
+      {
+        id: "cotizacion",
+        label: "¿Cómo obtengo una cotización?",
+        question: "¿Cómo obtengo una cotización?",
+        answer:
+          "Las cotizaciones se elaboran a medida según el alcance del proyecto (tipo de activos, cantidad de equipos, normativa aplicable y ubicación). Contáctenos con una descripción de su necesidad y un especialista le enviará una propuesta técnica-económica sin compromiso.",
+        cta: { label: "Solicitar cotización", href: "/#contacto" },
+      },
+    ],
   },
 ];
+
+// Flat list of leaf nodes — retrocompatibilidad con analytics y cache
+export const FAQ_ITEMS = FAQ_TREE.flatMap((branch) =>
+  (branch.children ?? []).filter((n) => !n.children).map((n) => ({
+    id:       n.id,
+    question: n.question ?? n.label,
+    answer:   n.answer ?? "",
+    cta:      n.cta ?? { label: "Contactar", href: "/#contacto" },
+  }))
+);
 
 export const VALUES = [
   {

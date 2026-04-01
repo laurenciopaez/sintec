@@ -14,18 +14,12 @@ import {
   Loader2,
   UserCircle,
 } from "lucide-react";
-import { FAQ_ITEMS, COMPANY_SHORT_NAME } from "@/lib/constants";
+import { FAQ_TREE, type FaqTreeNode, COMPANY_SHORT_NAME } from "@/lib/constants";
 import { analytics } from "@/lib/analytics";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 type ChatView = "faq-list" | "faq-answer" | "chat" | "contact-form";
-
-interface ChatMessage {
-  id: string;
-  type: "bot" | "user";
-  text: string;
-}
 
 interface HistoryItem {
   id: string;
@@ -107,8 +101,12 @@ export function ChatBot() {
   const [view, setView] = useState<ChatView>("faq-list");
   const [showPulse, setShowPulse] = useState(true);
 
+  // ── FAQ tree navigation ──────────────────────────────────────────────────────
+  const [selectedFaq, setSelectedFaq] = useState<FaqTreeNode | null>(null);
+  const [nodeStack, setNodeStack] = useState<FaqTreeNode[][]>([FAQ_TREE]);
+  const [nodeLabels, setNodeLabels] = useState<string[]>([]);
+
   // ── FAQ history (cached) ─────────────────────────────────────────────────────
-  const [selectedFaq, setSelectedFaq] = useState<(typeof FAQ_ITEMS)[0] | null>(null);
   const [history, setHistory] = useState<HistoryItem[]>([]);
 
   // ── AI chat ──────────────────────────────────────────────────────────────────
@@ -194,17 +192,20 @@ export function ChatBot() {
     setIsOpen(true);
     setView("faq-list");
     setSelectedFaq(null);
+    setNodeStack([FAQ_TREE]);
+    setNodeLabels([]);
     analytics.chatbotOpen();
   };
 
   const handleClose = () => setIsOpen(false);
 
-  const handleFaqSelect = (faq: (typeof FAQ_ITEMS)[0]) => {
+  // Leaf node selected → show answer
+  const handleFaqSelect = (faq: FaqTreeNode) => {
     setSelectedFaq(faq);
     setView("faq-answer");
-    analytics.chatbotFaqClick(faq.question);
+    analytics.chatbotFaqClick(faq.question ?? faq.label);
 
-    const newItem: HistoryItem = { id: faq.id, question: faq.question, answer: faq.answer };
+    const newItem: HistoryItem = { id: faq.id, question: faq.question ?? faq.label, answer: faq.answer ?? "" };
     setHistory((prev) => {
       if (prev.length > 0 && prev[prev.length - 1].id === faq.id) return prev;
       const updated = [...prev, newItem];
@@ -219,9 +220,24 @@ export function ChatBot() {
     });
   };
 
+  // Branch node selected → push children to stack
+  const handleNodeClick = (node: FaqTreeNode) => {
+    if (node.children) {
+      setNodeStack((prev) => [...prev, node.children!]);
+      setNodeLabels((prev) => [...prev, node.label]);
+    } else {
+      handleFaqSelect(node);
+    }
+  };
+
   const handleBack = () => {
-    setSelectedFaq(null);
-    setView("faq-list");
+    if (view === "faq-answer") {
+      setSelectedFaq(null);
+      setView("faq-list");
+    } else if (nodeStack.length > 1) {
+      setNodeStack((prev) => prev.slice(0, -1));
+      setNodeLabels((prev) => prev.slice(0, -1));
+    }
   };
 
   // ── AI chat send ──────────────────────────────────────────────────────────────
@@ -442,22 +458,40 @@ export function ChatBot() {
                       </div>
                     </div>
 
-                    {/* FAQ Options */}
+                    {/* Breadcrumb + nodos actuales */}
                     <div>
+                      {nodeLabels.length > 0 && (
+                        <div className="flex items-center gap-2 mb-3 pl-1">
+                          <button
+                            onClick={handleBack}
+                            className="flex items-center gap-1.5 text-[#297373] hover:text-[#0A1045] text-xs font-medium transition-colors duration-150 cursor-pointer"
+                          >
+                            <ArrowLeft size={12} />
+                            {nodeLabels.length > 1 ? nodeLabels[nodeLabels.length - 2] : "Inicio"}
+                          </button>
+                          <span className="text-[#d2d2d7]">›</span>
+                          <span className="text-xs text-[#6e6e73] font-medium truncate">
+                            {nodeLabels[nodeLabels.length - 1]}
+                          </span>
+                        </div>
+                      )}
                       <p className="text-xs text-[#6e6e73] font-medium uppercase tracking-wide mb-3 pl-1">
-                        Preguntas frecuentes
+                        {nodeLabels.length === 0 ? "¿En qué puedo ayudarle?" : "Seleccione una opción"}
                       </p>
                       <div className="space-y-2">
-                        {FAQ_ITEMS.map((faq, index) => (
+                        {nodeStack[nodeStack.length - 1].map((node, index) => (
                           <motion.button
-                            key={faq.id}
-                            onClick={() => handleFaqSelect(faq)}
-                            className="w-full text-left px-4 py-3 rounded-xl bg-[#f5f5f7] hover:bg-[#297373]/10 hover:text-[#297373] border border-transparent hover:border-[#297373]/20 text-sm text-[#001514] transition-all duration-150 cursor-pointer"
+                            key={node.id}
+                            onClick={() => handleNodeClick(node)}
+                            className="w-full text-left px-4 py-3 rounded-xl bg-[#f5f5f7] hover:bg-[#297373]/10 hover:text-[#297373] border border-transparent hover:border-[#297373]/20 text-sm text-[#001514] transition-all duration-150 cursor-pointer flex items-center justify-between gap-2"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.05 + 0.1 }}
                           >
-                            {faq.question}
+                            <span>{node.label}</span>
+                            {node.children && (
+                              <span className="text-[#6e6e73] shrink-0">›</span>
+                            )}
                           </motion.button>
                         ))}
                       </div>
@@ -512,17 +546,19 @@ export function ChatBot() {
                       </div>
                     </div>
 
-                    <div className="flex gap-3 mb-4">
-                      <div className="w-8 shrink-0" />
-                      <Link
-                        href={selectedFaq.cta.href}
-                        onClick={handleClose}
-                        className="flex items-center gap-2 bg-[#297373] hover:bg-[#0A1045] text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
-                      >
-                        {selectedFaq.cta.label}
-                        <ExternalLink size={13} />
-                      </Link>
-                    </div>
+                    {selectedFaq.cta && (
+                      <div className="flex gap-3 mb-4">
+                        <div className="w-8 shrink-0" />
+                        <Link
+                          href={selectedFaq.cta.href}
+                          onClick={handleClose}
+                          className="flex items-center gap-2 bg-[#297373] hover:bg-[#0A1045] text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-colors duration-200"
+                        >
+                          {selectedFaq.cta.label}
+                          <ExternalLink size={13} />
+                        </Link>
+                      </div>
+                    )}
 
                     <button
                       onClick={handleBack}
