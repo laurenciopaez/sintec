@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest, NextResponse } from "next/server";
-import { SYSTEM_PROMPT } from "../../lib/chatbot";
+import { SYSTEM_PROMPT } from "../../../lib/chatbot";
 
 // ── Route handler ──────────────────────────────────────────────────────────────
 
