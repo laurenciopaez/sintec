@@ -16,6 +16,7 @@ import {
 import { StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { useConstants } from "@/lib/use-translations";
+import { SERVICES } from "@/lib/constants";
 
 const iconMap: Record<string, React.ReactNode> = {
   Shield: <Shield size={28} />,
@@ -26,17 +27,6 @@ const iconMap: Record<string, React.ReactNode> = {
   FileText: <FileText size={28} />,
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
-};
 
 export function Services() {
   const { SERVICES } = useConstants();
@@ -93,7 +83,7 @@ export function Services() {
 }
 
 interface ServiceCardProps {
-  service: (typeof SERVICES)[0];
+  service: (typeof SERVICES)[number];
   index: number;
 }
 
