@@ -5,71 +5,44 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Award, Users, Globe } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { useConstants } from "@/lib/use-translations";
+import { useLocale } from "@/lib/locale-context";
 
-const highlights = [
-  {
-    icon: <Award size={20} />,
-    title: "Certificaciones Internacionales",
-    description: "API, NACE, ASME y más estándares de clase mundial",
-  },
-  {
-    icon: <Users size={20} />,
-    title: "Equipo Interdisciplinario",
-    description: "Ingenieros Químicos, Mecánicos y Electromecánicos.",
-  },
-  {
-    icon: <Globe size={20} />,
-    title: "Cobertura Nacional",
-    description: "Proyectos en todo el territorio argentino y en el exterior",
-  },
-];
-
-const keyPoints = [
-  "Más de 20 años de trayectoria en la industria",
-  "Metodologías internacionales API, ASME y NACE",
-  "Equipo certificado en END/NDT y RBI",
-  "Enfoque integral desde evaluación hasta solución",
+const iconList = [
+  <Award size={20} key="award" />,
+  <Users size={20} key="users" />,
+  <Globe size={20} key="globe" />,
 ];
 
 export function AboutTeaser() {
+  const locale = useLocale();
+  const { ABOUT_TEASER } = useConstants();
+
   return (
     <section className="py-6 lg:py-10 bg-white overflow-hidden" id="nosotros">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Visual element */}
           <AnimatedSection variant="slideRight" className="relative order-2 lg:order-1">
-            {/* Main card */}
             <div className="relative">
-              {/* Background decoration */}
               <div className="absolute -top-4 -left-4 w-full h-full bg-[#297373]/5 rounded-3xl" />
               <div className="absolute -bottom-4 -right-4 w-full h-full bg-[#f5f5f7] rounded-3xl" />
 
-              {/* Main content block */}
               <div className="relative bg-[#001514] rounded-3xl p-8 lg:p-10">
                 <div className="text-[#A33400] text-sm font-medium tracking-widest uppercase mb-6">
-                  Quiénes somos
+                  {ABOUT_TEASER.cardTag}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">
-                  Expertos en Integridad Industrial
+                  {ABOUT_TEASER.cardTitle}
                 </h3>
                 <p className="text-white/60 text-sm leading-relaxed mb-8">
-                  Fundada en 2004, SINTEC S.A. es una consultora argentina de
-                  referencia en ingeniería de integridad. Trabajamos con las
-                  principales empresas de oil & gas, petroquímica y energía del
-                  país.
+                  {ABOUT_TEASER.cardDescription}
                 </p>
 
-                {/* Stats mini */}
                 <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
-                  {[
-                    { value: "2004", label: "Fundada" },
-                    { value: "+20", label: "Años" },
-                    { value: "+150", label: "Proyectos" },
-                  ].map((item) => (
+                  {ABOUT_TEASER.cardStats.map((item) => (
                     <div key={item.label} className="text-center">
-                      <div className="text-2xl font-bold text-white mb-1">
-                        {item.value}
-                      </div>
+                      <div className="text-2xl font-bold text-white mb-1">{item.value}</div>
                       <div className="text-xs text-white/40">{item.label}</div>
                     </div>
                   ))}
@@ -77,7 +50,7 @@ export function AboutTeaser() {
               </div>
 
               {/* Floating highlight cards */}
-              {highlights.map((item, index) => (
+              {ABOUT_TEASER.highlights.map((item, index) => (
                 <motion.div
                   key={index}
                   className={`absolute ${
@@ -91,9 +64,7 @@ export function AboutTeaser() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 + index * 0.15, duration: 0.5 }}
                   viewport={{ once: true }}
-                  animate={{
-                    y: [0, index % 2 === 0 ? -6 : 6, 0],
-                  }}
+                  animate={{ y: [0, index % 2 === 0 ? -6 : 6, 0] }}
                   style={{
                     animationDuration: `${3 + index}s`,
                     animationIterationCount: "infinite",
@@ -101,14 +72,10 @@ export function AboutTeaser() {
                   }}
                 >
                   <div className="w-8 h-8 rounded-lg bg-[#297373]/10 flex items-center justify-center text-[#297373] mb-2">
-                    {item.icon}
+                    {iconList[index]}
                   </div>
-                  <div className="text-xs font-semibold text-[#001514] mb-1">
-                    {item.title}
-                  </div>
-                  <div className="text-xs text-[#6e6e73]">
-                    {item.description}
-                  </div>
+                  <div className="text-xs font-semibold text-[#001514] mb-1">{item.title}</div>
+                  <div className="text-xs text-[#6e6e73]">{item.description}</div>
                 </motion.div>
               ))}
             </div>
@@ -119,24 +86,20 @@ export function AboutTeaser() {
             <div className="flex items-center gap-3 mb-4">
               <div className="h-px w-8 bg-[#297373]" />
               <span className="text-[#297373] text-sm font-medium tracking-widest uppercase">
-                Sobre nosotros
+                {ABOUT_TEASER.tagAbove}
               </span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl font-bold text-[#001514] mb-6 leading-tight">
-              Ingeniería con propósito y precisión
+              {ABOUT_TEASER.heading}
             </h2>
 
             <p className="text-[#6e6e73] text-lg leading-relaxed mb-8">
-              En SINTEC S.A. combinamos experiencia técnica, metodologías
-              internacionales y un equipo de ingenieros apasionados para ofrecer
-              soluciones de integridad que protegen personas, activos e
-              inversiones.
+              {ABOUT_TEASER.description}
             </p>
 
-            {/* Key points */}
             <div className="space-y-3 mb-10">
-              {keyPoints.map((point, index) => (
+              {ABOUT_TEASER.keyPoints.map((point, index) => (
                 <motion.div
                   key={index}
                   className="flex items-start gap-3"
@@ -145,25 +108,18 @@ export function AboutTeaser() {
                   transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <CheckCircle
-                    size={20}
-                    className="text-[#297373] shrink-0 mt-0.5"
-                  />
+                  <CheckCircle size={20} className="text-[#297373] shrink-0 mt-0.5" />
                   <span className="text-[#001514] text-base">{point}</span>
                 </motion.div>
               ))}
             </div>
 
-            {/* CTA */}
             <Link
-              href="/quienes-somos"
+              href={`/${locale}/quienes-somos`}
               className="group inline-flex items-center gap-3 bg-[#297373] hover:bg-[#0A1045] text-white px-7 py-3.5 rounded-xl font-semibold text-base transition-all duration-200"
             >
-              Conocer más sobre nosotros
-              <ArrowRight
-                size={18}
-                className="transition-transform duration-200 group-hover:translate-x-1"
-              />
+              {ABOUT_TEASER.cta}
+              <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </AnimatedSection>
         </div>

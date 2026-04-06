@@ -663,3 +663,71 @@ export const FOOTER = {
   privacy: "Política de Privacidad",
   terms: "Términos de Uso",
 };
+
+export const CLIENTS_SECTION = {
+  label: "Empresas que confían en nosotros",
+};
+
+export const ABOUT_TEASER = {
+  tagAbove: "Sobre nosotros",
+  cardTag: "Quiénes somos",
+  cardTitle: "Expertos en Integridad Industrial",
+  cardDescription: "Fundada en 2004, SINTEC S.A. es una consultora argentina de referencia en ingeniería de integridad. Trabajamos con las principales empresas de oil & gas, petroquímica y energía del país.",
+  cardStats: [
+    { value: "2004", label: "Fundada" },
+    { value: "+20", label: "Años" },
+    { value: "+150", label: "Proyectos" },
+  ],
+  highlights: [
+    { title: "Certificaciones Internacionales", description: "API, NACE, ASME y más estándares de clase mundial" },
+    { title: "Equipo Interdisciplinario", description: "Ingenieros Químicos, Mecánicos y Electromecánicos." },
+    { title: "Cobertura Nacional", description: "Proyectos en todo el territorio argentino y en el exterior" },
+  ],
+  heading: "Ingeniería con propósito y precisión",
+  description: "En SINTEC S.A. combinamos experiencia técnica, metodologías internacionales y un equipo de ingenieros apasionados para ofrecer soluciones de integridad que protegen personas, activos e inversiones.",
+  keyPoints: [
+    "Más de 20 años de trayectoria en la industria",
+    "Metodologías internacionales API, ASME y NACE",
+    "Equipo certificado en END/NDT y RBI",
+    "Enfoque integral desde evaluación hasta solución",
+  ],
+  cta: "Conocer más sobre nosotros",
+};
+
+export const CONTACT_SECTION = {
+  tag: "Contacto",
+  heading: "Hablemos de su proyecto",
+  subheading: "Cuéntenos sus necesidades y nuestros especialistas le responderán dentro de las 24 horas hábiles.",
+  labelPhone: "Teléfono",
+  labelAddress: "Ubicación",
+  responseNote: "Respondemos todas las consultas dentro de las 24 horas hábiles. Para urgencias, contáctenos directamente por teléfono.",
+  labelName: "Nombre y apellido",
+  labelEmail: "Email corporativo",
+  labelCompany: "Empresa",
+  labelTel: "Teléfono",
+  labelService: "Servicio de interés",
+  selectDefault: "Seleccione un servicio...",
+  labelMessage: "Mensaje",
+  messagePlaceholder: "Describa brevemente su consulta o proyecto...",
+  submit: "Enviar mensaje",
+  sending: "Enviando...",
+  successTitle: "¡Mensaje enviado!",
+  successBody: "Hemos recibido su consulta. Un especialista de SINTEC S.A. se pondrá en contacto en breve.",
+  successReset: "Enviar otra consulta",
+  privacy: "Sus datos son confidenciales y nunca serán compartidos con terceros.",
+  errorDefault: "Error al enviar. Intente nuevamente.",
+  errorNetwork: "Error de conexión. Verifique su internet e intente nuevamente.",
+  serviceOptions: [
+    "Integridad de Activos",
+    "Inspección Basada en Riesgo (RBI)",
+    "Análisis de Falla",
+    "Control de Corrosión",
+    "Inspección y Monitoreo",
+    "Procedimientos Técnicos",
+    "Análisis de datos y Machine Learning",
+    "Otro / Consulta general",
+  ],
+  solucionesTag: "Servicios especializados",
+  solucionesViewDetail: "Ver detalle",
+  solucionesCatalog: "Descargá nuestro catálogo completo de Soluciones",
+};

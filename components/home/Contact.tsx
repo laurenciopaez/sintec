@@ -21,23 +21,14 @@ import {
   type FormErrors,
   EMPTY_FORM,
 } from "@/lib/contactFormUtils";
-
-const SERVICE_OPTIONS = [
-  "Integridad de Activos",
-  "Integridad de Riesgos (RBI)",
-  "Análisis de Falla",
-  "Control de Corrosión",
-  "Inspección y Monitoreo",
-  "Procedimientos Técnicos",
-  "Analisis de datos y Machine Learning",
-  "Otro / Consulta general",
-];
+import { useConstants } from "@/lib/use-translations";
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
 export function Contact() {
+  const { CONTACT_SECTION: t } = useConstants();
   const [form, setForm]               = useState<FormState>(EMPTY_FORM);
   const [honeypot, setHoneypot]       = useState("");
   const [status, setStatus]           = useState<SubmitStatus>("idle");
@@ -127,12 +118,12 @@ export function Contact() {
         setHoneypot("");
         analytics.contactFormSubmit();
       } else {
-        setServerError(data.message ?? "Error al enviar. Intente nuevamente.");
+        setServerError(data.message ?? t.errorDefault);
         setStatus("error");
         analytics.contactFormError("server");
       }
     } catch {
-      setServerError("Error de conexión. Verifique su internet e intente nuevamente.");
+      setServerError(t.errorNetwork);
       setStatus("error");
       analytics.contactFormError("network");
     }
@@ -159,16 +150,15 @@ export function Contact() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-8 bg-[#297373]" />
             <span className="text-[#297373] text-sm font-medium tracking-widest uppercase">
-              Contacto
+              {t.tag}
             </span>
             <div className="h-px w-8 bg-[#297373]" />
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold text-[#001514] mb-4">
-            Hablemos de su proyecto
+            {t.heading}
           </h2>
           <p className="text-[#6e6e73] text-lg max-w-xl mx-auto">
-            Cuéntenos sus necesidades y nuestros especialistas le responderán
-            dentro de las 24 horas hábiles.
+            {t.subheading}
           </p>
         </AnimatedSection>
 
@@ -185,13 +175,13 @@ export function Contact() {
                 },
                 {
                   icon: <Phone size={22} />,
-                  label: "Teléfono",
+                  label: t.labelPhone,
                   value: COMPANY_PHONE,
                   href: `tel:${COMPANY_PHONE.replace(/\s/g, "")}`,
                 },
                 {
                   icon: <MapPin size={22} />,
-                  label: "Ubicación",
+                  label: t.labelAddress,
                   value: COMPANY_ADDRESS,
                   href: null,
                 },
@@ -226,11 +216,7 @@ export function Contact() {
               <div className="p-5 bg-[#297373]/5 rounded-2xl border border-[#297373]/20">
                 <div className="flex items-start gap-3">
                   <CheckCircle size={18} className="text-[#297373] shrink-0 mt-0.5" />
-                  <p className="text-sm text-[#6e6e73]">
-                    Respondemos todas las consultas dentro de las{" "}
-                    <strong className="text-[#001514]">24 horas hábiles</strong>.
-                    Para urgencias, contáctenos directamente por teléfono.
-                  </p>
+                  <p className="text-sm text-[#6e6e73]">{t.responseNote}</p>
                 </div>
               </div>
             </div>
@@ -251,17 +237,16 @@ export function Contact() {
                       <CheckCircle size={36} className="text-green-500" />
                     </div>
                     <h3 className="text-2xl font-bold text-[#001514] mb-3">
-                      ¡Mensaje enviado!
+                      {t.successTitle}
                     </h3>
                     <p className="text-[#6e6e73] mb-8 max-w-sm">
-                      Hemos recibido su consulta. Un especialista de SINTEC S.A.
-                      se pondrá en contacto en breve.
+                      {t.successBody}
                     </p>
                     <button
                       onClick={() => setStatus("idle")}
                       className="text-[#297373] font-medium hover:underline"
                     >
-                      Enviar otra consulta
+                      {t.successReset}
                     </button>
                   </motion.div>
                 ) : (
@@ -293,7 +278,7 @@ export function Contact() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-[#001514] mb-2">
-                          Nombre y apellido <span className="text-red-500">*</span>
+                          {t.labelName} <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="text"
@@ -316,7 +301,7 @@ export function Contact() {
 
                       <div>
                         <label className="block text-sm font-medium text-[#001514] mb-2">
-                          Email corporativo <span className="text-red-500">*</span>
+                          {t.labelEmail} <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="email"
@@ -342,14 +327,14 @@ export function Contact() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-[#001514] mb-2">
-                          Empresa
+                          {t.labelCompany}
                         </label>
                         <input
                           type="text"
                           name="company"
                           value={form.company}
                           onChange={handleChange}
-                          placeholder="Nombre de su empresa"
+                          placeholder={t.labelCompany}
                           maxLength={150}
                           autoComplete="organization"
                           className={inputCls("company")}
@@ -363,7 +348,7 @@ export function Contact() {
 
                       <div>
                         <label className="block text-sm font-medium text-[#001514] mb-2">
-                          Teléfono
+                          {t.labelTel}
                         </label>
                         <input
                           type="tel"
@@ -386,7 +371,7 @@ export function Contact() {
                     {/* Service */}
                     <div>
                       <label className="block text-sm font-medium text-[#001514] mb-2">
-                        Servicio de interés
+                        {t.labelService}
                       </label>
                       <select
                         name="service"
@@ -394,8 +379,8 @@ export function Contact() {
                         onChange={handleChange}
                         className={inputCls("service")}
                       >
-                        <option value="">Seleccione un servicio...</option>
-                        {SERVICE_OPTIONS.map((opt) => (
+                        <option value="">{t.selectDefault}</option>
+                        {t.serviceOptions.map((opt) => (
                           <option key={opt} value={opt}>{opt}</option>
                         ))}
                       </select>
@@ -405,7 +390,7 @@ export function Contact() {
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <label className="block text-sm font-medium text-[#001514]">
-                          Mensaje <span className="text-red-500">*</span>
+                          {t.labelMessage} <span className="text-red-500">*</span>
                         </label>
                         <span
                           aria-live="polite"
@@ -425,7 +410,7 @@ export function Contact() {
                         value={form.message}
                         onChange={handleChange}
                         rows={5}
-                        placeholder="Describa brevemente su consulta o proyecto..."
+                        placeholder={t.messagePlaceholder}
                         maxLength={MSG_MAX}
                         aria-required="true"
                         aria-invalid={!!errors.message}
@@ -469,19 +454,19 @@ export function Contact() {
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                             </svg>
-                            Enviando...
+                            {t.sending}
                           </>
                         ) : (
                           <>
                             <Send size={18} />
-                            Enviar mensaje
+                            {t.submit}
                           </>
                         )}
                       </motion.button>
                     </div>
 
                     <p className="text-xs text-[#6e6e73] text-center">
-                      Sus datos son confidenciales y nunca serán compartidos con terceros.
+                      {t.privacy}
                     </p>
                   </motion.form>
                 )}

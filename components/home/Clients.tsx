@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CLIENT_1, CLIENT_2, CLIENT_3, CLIENT_4, CLIENT_5, CLIENT_6, CLIENT_7 } from "@/lib/images/index";
+import { useConstants } from "@/lib/use-translations";
 
 const LOGOS = [
   { src: CLIENT_1, alt: "YPF" },
@@ -19,13 +20,14 @@ const LOGOS = [
 const LOGOS_DOUBLED = [...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS,...LOGOS, ...LOGOS];
 
 export function Clients() {
+  const { CLIENTS_SECTION } = useConstants();
   return (
     <section className="py-6 lg:py-18 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
         <div className="flex items-center gap-4">
           <div className="h-px flex-1 bg-[#d2d2d7]/60" />
           <span className="text-[#6e6e73] text-sm font-medium tracking-widest uppercase whitespace-nowrap">
-            Empresas que confían en nosotros
+            {CLIENTS_SECTION.label}
           </span>
           <div className="h-px flex-1 bg-[#d2d2d7]/60" />
         </div>

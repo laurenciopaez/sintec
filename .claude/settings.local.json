@@ -6,7 +6,8 @@
       "Bash(where npm:*)",
       "Bash(npm run:*)",
       "Bash(grep -l \"from \"\"@/lib/constants\"\"\" \"c:/Users/PCSIMU/Desktop/sintecsa web/components\"/**/*.tsx)",
-      "Bash(grep -n \"from \"\"@/lib/constants\"\"\" \"c:/Users/PCSIMU/Desktop/sintecsa web/components\"/**/*.tsx)"
+      "Bash(grep -n \"from \"\"@/lib/constants\"\"\" \"c:/Users/PCSIMU/Desktop/sintecsa web/components\"/**/*.tsx)",
+      "Bash(grep -l \"from \\\\\"@/lib/content\\\\\"\\\\|from \\\\\"@/lib/constants\\\\\"\" \"c:/Users/PCSIMU/Desktop/sintecsa web/app/[locale]\"/**/*.tsx)"
     ]
   }
 }

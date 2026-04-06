@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SERVICES } from "@/lib/constants";
+import * as esConstants from "@/lib/constants";
+import * as enConstants from "@/lib/constants-en";
+
+const { SERVICES } = esConstants; // slugs are locale-agnostic — used only for generateStaticParams
 import { ServiceFAQ } from "@/components/soluciones/ServiceFAQ";
 import { ServiceSidebarLayout } from "@/components/soluciones/ServiceSidebarLayout";
 
@@ -14,7 +17,8 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const service = SERVICES.find((s) => s.slug === slug);
+  const localeServices = locale === "en" ? enConstants.SERVICES : esConstants.SERVICES;
+  const service = localeServices.find((s) => s.slug === slug);
   if (!service) return {};
 
   const description =
@@ -55,14 +59,16 @@ export default async function LocaleServiceFAQPage({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const service = SERVICES.find((s) => s.slug === slug);
+  const { locale, slug } = await params;
+  const localeServices = locale === "en" ? enConstants.SERVICES : esConstants.SERVICES;
+  const serviceIndex = localeServices.findIndex((s) => s.slug === slug);
+  const service = localeServices[serviceIndex];
   if (!service) notFound();
 
   return (
     <div className="min-h-screen bg-[#f5f5f7]">
       <ServiceSidebarLayout>
-        <ServiceFAQ service={service} />
+        <ServiceFAQ service={service} serviceIndex={serviceIndex} />
       </ServiceSidebarLayout>
     </div>
   );
