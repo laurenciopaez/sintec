@@ -748,3 +748,113 @@ export const CONTACT_SECTION = {
   solucionesViewDetail: "View detail",
   solucionesCatalog: "Download our complete Solutions catalog",
 };
+
+export const SERVICES_SECTION = {
+  tag: "What we do",
+  heading: "Our Services",
+  subheading: "Specialized solutions in industrial integrity, designed to maximize the reliability and safety of your assets.",
+  viewAll: "View all solutions in detail",
+  learnMore: "Learn more",
+};
+
+export const STATS_SECTION = {
+  tag: "Our track record",
+  heading: "More than two decades of experience",
+  subheading: "Numbers that reflect our commitment to excellence and the trust of our clients.",
+};
+
+export const TRABAJA_CON_NOSOTROS = {
+  tag: "Human Resources",
+  title: "Work With Us",
+  subtitle:
+    "We are looking for professionals passionate about industrial engineering. Send us your CV and we will contact you when an opportunity arises that matches your profile.",
+  valueProps: [
+    { title: "+20 years", desc: "of track record in the Argentine and international market" },
+    { title: "Technical team", desc: "specialized in industrial integrity and reliability" },
+    { title: "Real projects", desc: "with impact in leading companies in the energy sector" },
+  ],
+  footerNote:
+    "Applications are reviewed by our HR team. We will contact you when positions become available.",
+  areas: [
+    "Industrial Integrity Engineering",
+    "Inspection and Monitoring",
+    "Data Analysis / Machine Learning",
+    "Corrosion Control",
+    "Failure Analysis",
+    "Administration and Management",
+    "Other",
+  ],
+  form: {
+    labelNombre: "Full name",
+    placeholderNombre: "John Smith",
+    labelEmail: "Email",
+    placeholderEmail: "john@example.com",
+    labelEdad: "Age",
+    placeholderEdad: "30",
+    labelArea: "Area of interest",
+    placeholderArea: "Select an area...",
+    labelEstudios: "Education",
+    placeholderEstudios: "E.g.: Mechanical Engineering — National University",
+    labelCv: "Curriculum Vitae",
+    cvHint: "(PDF, DOC or DOCX — max. 5 MB)",
+    cvUploadText: "Click to select your CV",
+    cvRemoveLabel: "Remove file",
+    labelPresentacion: "Cover letter",
+    presentacionOptional: "(optional)",
+    placeholderPresentacion:
+      "Tell us briefly about yourself and why you are interested in working at SINTEC S.A.",
+    submit: "Submit application",
+    sending: "Sending...",
+    privacy:
+      "Your data is confidential and will be used solely for the selection process.",
+    successTitle: "Application sent!",
+    successBody:
+      "We received your CV. Our HR team will review it and will contact you if your profile matches our needs.",
+    successReset: "Send another application",
+    errNombreRequired: "Name is required",
+    errNombreMin: "Minimum 2 characters",
+    errNombreMax: "Maximum 100 characters",
+    errBlocked: "This field contains inappropriate language",
+    errEmailRequired: "Email is required",
+    errEmailInvalid: "Invalid email format",
+    errEmailMax: "Email is too long",
+    errEdadRequired: "Age is required",
+    errEdadInvalid: "Enter a valid age (16–80)",
+    errEstudiosRequired: "Education is required",
+    errEstudiosMin: "Minimum 5 characters",
+    errEstudiosMax: "Maximum 200 characters",
+    errAreaRequired: "Please select an area of interest",
+    errCvRequired: "CV is required",
+    errCvExt: "Only PDF, DOC or DOCX files are accepted",
+    errCvSize: "File cannot exceed 5 MB",
+    errPresentacionMax: "Maximum 1000 characters",
+    errDefault: "Error sending. Please try again.",
+    errNetwork: "Connection error. Check your internet and try again.",
+    subjectPrefix: "CV Application",
+    msgEdadSuffix: "years old",
+    msgPresentacionLabel: "Cover letter:",
+  },
+};
+
+export const SOLUTIONS_UI = {
+  imageNotAvailable: "Image not available",
+  imagePrev: "Previous image",
+  imageNext: "Next image",
+  imageViewN: "View image",
+  serviceBadge: "Service",
+  sidebarHeading: "Services",
+  alcanceLabel: "Scope",
+  valorAgregadoLabel: "Added Value",
+  featuresHeading: "Service scope",
+  consultService: "Inquire about this service",
+  viewAllServices: "View all services",
+  meetTheTeam: "Meet the team",
+  consultNow: "Consult now",
+  backToService: "Back to service",
+  backToSolutions: "Back to Solutions",
+  solucionesHeroTag: "Specialized services",
+  faqHeading: "Frequently Asked Questions",
+  faqNotFound: "Didn't find what you were looking for?",
+  faqContact: "Contact us and a specialist will reply shortly.",
+  faqConsult: "Consult a specialist",
+};

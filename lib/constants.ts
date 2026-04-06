@@ -731,3 +731,113 @@ export const CONTACT_SECTION = {
   solucionesViewDetail: "Ver detalle",
   solucionesCatalog: "Descargá nuestro catálogo completo de Soluciones",
 };
+
+export const SERVICES_SECTION = {
+  tag: "Lo que hacemos",
+  heading: "Nuestros Servicios",
+  subheading: "Soluciones especializadas en integridad industrial, diseñadas para maximizar la confiabilidad y seguridad de sus activos.",
+  viewAll: "Ver todas las soluciones en detalle",
+  learnMore: "Conocer más",
+};
+
+export const STATS_SECTION = {
+  tag: "Nuestra trayectoria",
+  heading: "Más de dos décadas de experiencia",
+  subheading: "Números que reflejan nuestro compromiso con la excelencia y la confianza de nuestros clientes.",
+};
+
+export const TRABAJA_CON_NOSOTROS = {
+  tag: "Recursos Humanos",
+  title: "Trabaja con nosotros",
+  subtitle:
+    "Buscamos profesionales apasionados por la ingeniería industrial. Envianos tu CV y te contactaremos cuando surja una oportunidad que se ajuste a tu perfil.",
+  valueProps: [
+    { title: "+20 años", desc: "de trayectoria en el mercado argentino e internacional" },
+    { title: "Equipo técnico", desc: "especializado en integridad y confiabilidad industrial" },
+    { title: "Proyectos reales", desc: "de impacto en empresas líderes del sector energético" },
+  ],
+  footerNote:
+    "Las postulaciones son revisadas por nuestro equipo de RRHH. Nos contactaremos ante vacantes disponibles.",
+  areas: [
+    "Ingeniería de Integridad Industrial",
+    "Inspección y Monitoreo",
+    "Análisis de Datos / Machine Learning",
+    "Control de Corrosión",
+    "Análisis de Falla",
+    "Administración y Gestión",
+    "Otro",
+  ],
+  form: {
+    labelNombre: "Nombre y apellido",
+    placeholderNombre: "Juan García",
+    labelEmail: "Email",
+    placeholderEmail: "juan@ejemplo.com",
+    labelEdad: "Edad",
+    placeholderEdad: "30",
+    labelArea: "Área de interés",
+    placeholderArea: "Seleccione un área...",
+    labelEstudios: "Estudios",
+    placeholderEstudios: "Ej: Ing. Mecánica — Universidad Nacional de Mar del Plata",
+    labelCv: "Curriculum Vitae",
+    cvHint: "(PDF, DOC o DOCX — máx. 5 MB)",
+    cvUploadText: "Haga click para seleccionar su CV",
+    cvRemoveLabel: "Quitar archivo",
+    labelPresentacion: "Carta de presentación",
+    presentacionOptional: "(opcional)",
+    placeholderPresentacion:
+      "Cuéntenos brevemente sobre usted y por qué le interesa trabajar en SINTEC S.A.",
+    submit: "Enviar postulación",
+    sending: "Enviando...",
+    privacy:
+      "Sus datos son confidenciales y serán utilizados únicamente para el proceso de selección.",
+    successTitle: "¡Postulación enviada!",
+    successBody:
+      "Recibimos su CV. Nuestro equipo de RRHH lo revisará y se pondrá en contacto si su perfil se ajusta a nuestras necesidades.",
+    successReset: "Enviar otra postulación",
+    errNombreRequired: "El nombre es requerido",
+    errNombreMin: "Mínimo 2 caracteres",
+    errNombreMax: "Máximo 100 caracteres",
+    errBlocked: "El campo contiene lenguaje inapropiado",
+    errEmailRequired: "El email es requerido",
+    errEmailInvalid: "Formato de email inválido",
+    errEmailMax: "Email demasiado largo",
+    errEdadRequired: "La edad es requerida",
+    errEdadInvalid: "Ingrese una edad válida (16–80)",
+    errEstudiosRequired: "Los estudios son requeridos",
+    errEstudiosMin: "Mínimo 5 caracteres",
+    errEstudiosMax: "Máximo 200 caracteres",
+    errAreaRequired: "Seleccione un área de interés",
+    errCvRequired: "El CV es requerido",
+    errCvExt: "Solo se aceptan archivos PDF, DOC o DOCX",
+    errCvSize: "El archivo no puede superar 5 MB",
+    errPresentacionMax: "Máximo 1000 caracteres",
+    errDefault: "Error al enviar. Intente nuevamente.",
+    errNetwork: "Error de conexión. Verifique su internet e intente nuevamente.",
+    subjectPrefix: "Postulación CV",
+    msgEdadSuffix: "años",
+    msgPresentacionLabel: "Carta de presentación:",
+  },
+};
+
+export const SOLUTIONS_UI = {
+  imageNotAvailable: "Imagen no disponible",
+  imagePrev: "Imagen anterior",
+  imageNext: "Imagen siguiente",
+  imageViewN: "Ver imagen",
+  serviceBadge: "Servicio",
+  sidebarHeading: "Servicios",
+  alcanceLabel: "Alcance",
+  valorAgregadoLabel: "Valor Agregado",
+  featuresHeading: "Alcance del servicio",
+  consultService: "Consultar sobre este servicio",
+  viewAllServices: "Ver todos los servicios",
+  meetTheTeam: "Conocer el equipo",
+  consultNow: "Consultar ahora",
+  backToService: "Volver al servicio",
+  backToSolutions: "Volver a Soluciones",
+  solucionesHeroTag: "Servicios especializados",
+  faqHeading: "Preguntas Frecuentes",
+  faqNotFound: "¿No encontraste lo que buscabas?",
+  faqContact: "Contactanos y un especialista te responderá a la brevedad.",
+  faqConsult: "Consultar a un especialista",
+};

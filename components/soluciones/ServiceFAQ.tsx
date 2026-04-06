@@ -80,7 +80,7 @@ export function ServiceFAQ({
   service: (typeof SERVICES)[0];
   serviceIndex: number;
 }) {
-  const { SERVICES: services } = useConstants();
+  const { SERVICES: services, SOLUTIONS_UI: ui } = useConstants();
   const s = service as Record<string, unknown>;
   const faqItems = Array.isArray(s.faq) ? (s.faq as FaqItem[]) : [];
 
@@ -102,14 +102,14 @@ export function ServiceFAQ({
           size={14}
           className="group-hover:-translate-x-0.5 transition-transform duration-200"
         />
-        Volver al servicio
+        {ui.backToService}
       </Link>
 
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-xs font-mono text-[#6e6e73] bg-[#f5f5f7] px-3 py-1 rounded-full">
-            Servicio {String(serviceIndex + 1).padStart(2, "0")} /{" "}
+            {ui.serviceBadge} {String(serviceIndex + 1).padStart(2, "0")} /{" "}
             {String(services.length).padStart(2, "0")}
           </span>
           <span className="text-xs px-2.5 py-1 rounded-full bg-[#A33400]/10 text-[#A33400] font-medium border border-[#A33400]/20">
@@ -117,7 +117,7 @@ export function ServiceFAQ({
           </span>
         </div>
         <h2 className="text-2xl lg:text-3xl font-bold text-[#001514] leading-tight mb-1">
-          Preguntas Frecuentes
+          {ui.faqHeading}
         </h2>
         <p className="text-[#6e6e73] text-sm">
           {service.title}
@@ -143,16 +143,16 @@ export function ServiceFAQ({
         </div>
         <div>
           <p className="text-[#001514] text-sm font-semibold mb-1">
-            ¿No encontraste lo que buscabas?
+            {ui.faqNotFound}
           </p>
           <p className="text-[#6e6e73] text-xs mb-3">
-            Contactanos y un especialista te responderá a la brevedad.
+            {ui.faqContact}
           </p>
           <Link
             href="/#contacto"
             className="inline-flex items-center gap-2 bg-[#297373] hover:bg-[#0A1045] text-white px-4 py-2 rounded-xl font-semibold text-xs transition-colors duration-200"
           >
-            Consultar a un especialista
+            {ui.faqConsult}
           </Link>
         </div>
       </motion.div>

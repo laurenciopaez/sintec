@@ -29,7 +29,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 
 export function Services() {
-  const { SERVICES } = useConstants();
+  const { SERVICES, SERVICES_SECTION: s } = useConstants();
   return (
     <section className="py-24 lg:py-32 bg-[#f5f5f7]" id="servicios">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,16 +38,15 @@ export function Services() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-8 bg-[#297373]" />
             <span className="text-[#297373] text-sm font-medium tracking-widest uppercase">
-              Lo que hacemos
+              {s.tag}
             </span>
             <div className="h-px w-8 bg-[#297373]" />
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold text-[#001514] mb-6">
-            Nuestros Servicios
+            {s.heading}
           </h2>
           <p className="text-[#6e6e73] text-lg max-w-2xl mx-auto leading-relaxed">
-            Soluciones especializadas en integridad industrial, diseñadas para
-            maximizar la confiabilidad y seguridad de sus activos.
+            {s.subheading}
           </p>
         </AnimatedSection>
 
@@ -70,7 +69,7 @@ export function Services() {
             href="/soluciones"
             className="group inline-flex items-center gap-2 text-[#297373] font-semibold hover:gap-3 transition-all duration-200"
           >
-            Ver todas las soluciones en detalle
+            {s.viewAll}
             <ArrowRight
               size={18}
               className="transition-transform duration-200 group-hover:translate-x-1"
@@ -88,6 +87,7 @@ interface ServiceCardProps {
 }
 
 function ServiceCard({ service }: ServiceCardProps) {
+  const { SERVICES_SECTION: s } = useConstants();
   return (
     <motion.div
       className="group bg-white rounded-2xl p-8 border border-[#d2d2d7]/50 hover:border-[#297373]/30 hover:shadow-xl hover:shadow-[#297373]/5 transition-all duration-300 cursor-pointer"
@@ -125,7 +125,7 @@ function ServiceCard({ service }: ServiceCardProps) {
 
         {/* CTA link */}
         <div className="flex items-center gap-2 text-[#297373] text-sm font-medium group/link">
-          <span>Conocer más</span>
+          <span>{s.learnMore}</span>
           <ArrowRight
             size={14}
             className="transition-transform duration-200 group-hover:translate-x-1"

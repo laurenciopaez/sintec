@@ -29,9 +29,10 @@ export function ServiceSidebarLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { SERVICES } = useConstants();
+  const { SERVICES, SOLUTIONS_UI: ui } = useConstants();
   const pathname = usePathname();
   const pathParts = pathname.split("/");
+  const locale = pathParts[1] ?? "es";
   const lastPart = pathParts[pathParts.length - 1];
   const activeSlug = lastPart === "faq"
     ? pathParts[pathParts.length - 2]
@@ -47,7 +48,7 @@ export function ServiceSidebarLayout({
           {/* Header */}
           <div className="px-6 py-5 border-b border-white/10">
             <p className="text-white/40 text-xs font-semibold uppercase tracking-widest">
-              Servicios
+              {ui.sidebarHeading}
             </p>
           </div>
 
@@ -58,7 +59,7 @@ export function ServiceSidebarLayout({
               return (
                 <Link
                   key={service.id}
-                  href={`/soluciones/${service.slug}`}
+                  href={`/${locale}/soluciones/${service.slug}`}
                   className={`shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                     isActive
                       ? "bg-[#297373] text-white"
@@ -81,7 +82,7 @@ export function ServiceSidebarLayout({
               return (
                 <Link
                   key={service.id}
-                  href={`/soluciones/${service.slug}`}
+                  href={`/${locale}/soluciones/${service.slug}`}
                   className={`group relative flex items-center gap-3 px-5 py-4 transition-all duration-200 ${
                     isActive
                       ? "bg-[#297373]/20 text-white"
@@ -137,10 +138,10 @@ export function ServiceSidebarLayout({
           {/* Footer CTA */}
           <div className="hidden lg:block px-5 py-4 border-t border-white/10 mt-auto">
             <Link
-              href="/#contacto"
+              href={`/${locale}#contacto`}
               className="flex items-center justify-center gap-2 w-full bg-[#A33400] hover:bg-[#8a2c00] text-white text-sm font-semibold py-3 rounded-xl transition-colors duration-200"
             >
-              Consultar ahora
+              {ui.consultNow}
               <ArrowRight size={14} />
             </Link>
           </div>

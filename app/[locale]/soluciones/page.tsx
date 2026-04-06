@@ -193,7 +193,7 @@ export default async function LocaleSolucionesPage({
           {/* Catalog download */}
           <AnimatedSection variant="slideUp" delay={0.2} className="mt-12 text-center">
             <a
-              href="./venta/colores.png"
+              href="/pdf/CATALOGO_SINTEC_04_2026_V1.pdf"
               download
               className="inline-flex items-center gap-3 bg-[#A33400] hover:bg-[#1f5a5a] text-white px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-[#297373]/20"
             >

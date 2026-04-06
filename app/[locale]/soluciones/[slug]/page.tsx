@@ -74,8 +74,7 @@ export default async function LocaleServicePage({
   const serviceIndex = c.SERVICES.findIndex((s) => s.slug === slug);
   const content = pageContent.SOLUCIONES_CONTENT;
 
-  const backLabel = locale === "en" ? "Back to Solutions" : "Volver a Soluciones";
-  const specializedLabel = locale === "en" ? "Specialized services" : "Servicios especializados";
+  const ui = c.SOLUTIONS_UI;
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -105,12 +104,12 @@ export default async function LocaleServicePage({
                 className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-6 transition-colors duration-200"
               >
                 <ArrowLeft size={14} />
-                {backLabel}
+                {ui.backToSolutions}
               </Link>
               <div className="flex items-center gap-3 mb-3">
                 <div className="h-px w-8 bg-[#A33400]" />
                 <span className="text-[#A33400] text-sm font-medium tracking-widest uppercase">
-                  {specializedLabel}
+                  {ui.solucionesHeroTag}
                 </span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { SERVICES } from "@/lib/constants";
+import { SERVICES, SOLUTIONS_UI } from "@/lib/constants";
 import { ServiceDetail } from "@/components/soluciones/ServiceDetail";
 import { ServiceSidebarLayout } from "@/components/soluciones/ServiceSidebarLayout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
@@ -87,13 +87,13 @@ export default async function ServicePage({
               className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-6 transition-colors duration-200"
             >
               <ArrowLeft size={14} />
-              Volver a Soluciones
+              {SOLUTIONS_UI.backToSolutions}
             </Link>
 
             <div className="flex items-center gap-3 mb-3">
               <div className="h-px w-8 bg-[#A33400]" />
               <span className="text-[#A33400] text-sm font-medium tracking-widest uppercase">
-                Servicios especializados
+                {SOLUTIONS_UI.solucionesHeroTag}
               </span>
             </div>
 

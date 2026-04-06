@@ -40,6 +40,7 @@ type ServiceImage = { src: string; description: string };
 
 function ServiceImageCarousel({ images, alt }: { images: ServiceImage[]; alt: string }) {
   const [current, setCurrent] = useState(0);
+  const { SOLUTIONS_UI: ui } = useConstants();
 
   useEffect(() => {
     if (images.length <= 1) return;
@@ -52,7 +53,7 @@ function ServiceImageCarousel({ images, alt }: { images: ServiceImage[]; alt: st
   if (!images || images.length === 0) {
     return (
       <div className="mb-8 w-full h-60 lg:h-90 rounded-2xl bg-[#f5f5f7] flex items-center justify-center">
-        <span className="text-[#6e6e73] text-sm">Imagen no disponible</span>
+        <span className="text-[#6e6e73] text-sm">{ui.imageNotAvailable}</span>
       </div>
     );
   }
@@ -85,14 +86,14 @@ function ServiceImageCarousel({ images, alt }: { images: ServiceImage[]; alt: st
           <>
             <button
               onClick={() => setCurrent((prev) => (prev - 1 + images.length) % images.length)}
-              aria-label="Imagen anterior"
+              aria-label={ui.imagePrev}
               className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#297373]"
             >
               <ChevronLeft size={18} className="text-[#297373]" />
             </button>
             <button
               onClick={() => setCurrent((prev) => (prev + 1) % images.length)}
-              aria-label="Imagen siguiente"
+              aria-label={ui.imageNext}
               className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#297373]"
             >
               <ChevronRight size={18} className="text-[#297373]" />
@@ -102,7 +103,7 @@ function ServiceImageCarousel({ images, alt }: { images: ServiceImage[]; alt: st
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  aria-label={`Ver imagen ${i + 1}`}
+                  aria-label={`${ui.imageViewN} ${i + 1}`}
                   aria-current={i === current ? "true" : undefined}
                   className={`h-1.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#297373] ${
                     i === current ? "bg-[#297373] w-4" : "bg-[#297373]/30 w-1.5"
@@ -141,7 +142,7 @@ const standardsByIndex: string[][] = [
 ];
 
 export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
-  const { SERVICES } = useConstants();
+  const { SERVICES, SOLUTIONS_UI: ui } = useConstants();
   const [activeId, setActiveId] = useState(
     initialSlug || SERVICES[0].id
   );
@@ -179,7 +180,7 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
           {/* Sidebar header */}
           <div className="px-6 py-5 border-b border-white/10">
             <p className="text-white/40 text-xs font-semibold uppercase tracking-widest">
-              Servicios
+              {ui.sidebarHeading}
             </p>
           </div>
 
@@ -270,7 +271,7 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
               href="/#contacto"
               className="flex items-center justify-center gap-2 w-full bg-[#A33400] hover:bg-[#8a2c00] text-white text-sm font-semibold py-3 rounded-xl transition-colors duration-200"
             >
-              Consultar ahora
+              {ui.consultNow}
               <ArrowRight size={14} />
             </Link>
           </div>
@@ -290,7 +291,7 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
               {/* Service number badge */}
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-xs font-mono text-[#6e6e73] bg-[#f5f5f7] px-3 py-1 rounded-full">
-                  Servicio 0{activeIndex + 1} / 06
+                  {ui.serviceBadge} {String(activeIndex + 1).padStart(2, "0")} / {String(SERVICES.length).padStart(2, "0")}
                 </span>
                 <div className="flex gap-1.5">
                   {standardsByIndex[activeIndex].map((std) => (
@@ -327,7 +328,7 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
               {alcanceList && (
                 <div className={valorAgregadoList ? "mb-4" : "mb-8"}>
                   <p className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-2">
-                    Alcance
+                    {ui.alcanceLabel}
                   </p>
                   <ul className="space-y-1">
                     {alcanceList.map((item) => (
@@ -343,7 +344,7 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
               {valorAgregadoList && (
                 <div className="mb-8">
                   <p className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-2">
-                    Valor Agregado
+                    {ui.valorAgregadoLabel}
                   </p>
                   <ul className="space-y-1">
                     {valorAgregadoList.map((item) => (
@@ -359,7 +360,7 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
               {/* Features grid */}
               <div className="mb-8">
                 <h3 className="text-xs font-semibold uppercase tracking-widest text-[#6e6e73] mb-4">
-                  Alcance del servicio
+                  {ui.featuresHeading}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {activeService.features.map((feature) => (
@@ -388,14 +389,14 @@ export function ServiceTabs({ initialSlug }: { initialSlug?: string }) {
                   href="/#contacto"
                   className="inline-flex items-center justify-center gap-2 bg-[#297373] hover:bg-[#0A1045] text-white px-6 py-3 rounded-xl font-semibold text-sm transition-colors duration-200"
                 >
-                  Consultar sobre este servicio
+                  {ui.consultService}
                   <ArrowRight size={15} />
                 </Link>
                 <Link
                   href="/quienes-somos"
                   className="inline-flex items-center justify-center gap-2 border border-[#d2d2d7] hover:border-[#297373] text-[#001514] hover:text-[#297373] px-6 py-3 rounded-xl font-semibold text-sm transition-colors duration-200"
                 >
-                  Conocer el equipo
+                  {ui.meetTheTeam}
                 </Link>
               </div>
             </motion.div>

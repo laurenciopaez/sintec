@@ -84,7 +84,7 @@ function StatCard({ stat, index, active }: StatCardProps) {
 }
 
 export function Stats() {
-  const { STATS } = useConstants();
+  const { STATS, STATS_SECTION: s } = useConstants();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
@@ -102,16 +102,15 @@ export function Stats() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-8 bg-[#A33400]" />
             <span className="text-[#A33400] text-sm font-medium tracking-widest uppercase">
-              Nuestra trayectoria
+              {s.tag}
             </span>
             <div className="h-px w-8 bg-[#A33400]" />
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Más de dos décadas de experiencia
+            {s.heading}
           </h2>
           <p className="text-white/50 text-lg max-w-xl mx-auto">
-            Números que reflejan nuestro compromiso con la excelencia y la
-            confianza de nuestros clientes.
+            {s.subheading}
           </p>
         </AnimatedSection>
 

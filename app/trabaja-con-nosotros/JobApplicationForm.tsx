@@ -4,24 +4,11 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, AlertCircle, Upload, X } from "lucide-react";
 import { sanitizeText, containsBlockedWord } from "@/lib/contactFormUtils";
-
-// ── Constants ─────────────────────────────────────────────────────────────────
-
-const AREAS = [
-  "Ingeniería de Integridad Industrial",
-  "Inspección y Monitoreo",
-  "Análisis de Datos / Machine Learning",
-  "Control de Corrosión",
-  "Análisis de Falla",
-  "Administración y Gestión",
-  "Otro",
-];
-
-const EMAIL_RE = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
-const CV_MAX_MB = 5;
-const CV_ALLOWED_EXT = [".pdf", ".doc", ".docx"];
+import { TRABAJA_CON_NOSOTROS as esT } from "@/lib/constants";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
+
+type FormT = typeof esT.form;
 
 interface FormState {
   nombre:       string;
@@ -38,49 +25,53 @@ const EMPTY_FORM: FormState = {
   nombre: "", email: "", edad: "", estudios: "", area: "", presentacion: "",
 };
 
+const EMAIL_RE = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+const CV_MAX_MB = 5;
+const CV_ALLOWED_EXT = [".pdf", ".doc", ".docx"];
+
 // ── Validation ────────────────────────────────────────────────────────────────
 
-function validate(f: FormState, cvFile: File | null): FormErrors {
+function validate(f: FormState, cvFile: File | null, t: FormT): FormErrors {
   const err: FormErrors = {};
 
   const nombre = f.nombre.trim();
-  if (!nombre)                          err.nombre = "El nombre es requerido";
-  else if (nombre.length < 2)           err.nombre = "Mínimo 2 caracteres";
-  else if (nombre.length > 100)         err.nombre = "Máximo 100 caracteres";
-  else if (containsBlockedWord(nombre)) err.nombre = "El campo contiene lenguaje inapropiado";
+  if (!nombre)                          err.nombre = t.errNombreRequired;
+  else if (nombre.length < 2)           err.nombre = t.errNombreMin;
+  else if (nombre.length > 100)         err.nombre = t.errNombreMax;
+  else if (containsBlockedWord(nombre)) err.nombre = t.errBlocked;
 
   const email = f.email.trim();
-  if (!email)                     err.email = "El email es requerido";
-  else if (!EMAIL_RE.test(email)) err.email = "Formato de email inválido";
-  else if (email.length > 254)    err.email = "Email demasiado largo";
+  if (!email)                     err.email = t.errEmailRequired;
+  else if (!EMAIL_RE.test(email)) err.email = t.errEmailInvalid;
+  else if (email.length > 254)    err.email = t.errEmailMax;
 
   const edad = parseInt(f.edad, 10);
-  if (!f.edad.trim())                    err.edad = "La edad es requerida";
-  else if (isNaN(edad) || edad < 16 || edad > 80) err.edad = "Ingrese una edad válida (16–80)";
+  if (!f.edad.trim())                    err.edad = t.errEdadRequired;
+  else if (isNaN(edad) || edad < 16 || edad > 80) err.edad = t.errEdadInvalid;
 
   const estudios = f.estudios.trim();
-  if (!estudios)                           err.estudios = "Los estudios son requeridos";
-  else if (estudios.length < 5)            err.estudios = "Mínimo 5 caracteres";
-  else if (estudios.length > 200)          err.estudios = "Máximo 200 caracteres";
-  else if (containsBlockedWord(estudios))  err.estudios = "El campo contiene lenguaje inapropiado";
+  if (!estudios)                           err.estudios = t.errEstudiosRequired;
+  else if (estudios.length < 5)            err.estudios = t.errEstudiosMin;
+  else if (estudios.length > 200)          err.estudios = t.errEstudiosMax;
+  else if (containsBlockedWord(estudios))  err.estudios = t.errBlocked;
 
-  if (!f.area) err.area = "Seleccione un área de interés";
+  if (!f.area) err.area = t.errAreaRequired;
 
   if (!cvFile) {
-    err.cv = "El CV es requerido";
+    err.cv = t.errCvRequired;
   } else {
     const ext = cvFile.name.toLowerCase().slice(cvFile.name.lastIndexOf("."));
     if (!CV_ALLOWED_EXT.includes(ext))
-      err.cv = "Solo se aceptan archivos PDF, DOC o DOCX";
+      err.cv = t.errCvExt;
     else if (cvFile.size > CV_MAX_MB * 1024 * 1024)
-      err.cv = `El archivo no puede superar ${CV_MAX_MB} MB`;
+      err.cv = t.errCvSize;
   }
 
   const presentacion = f.presentacion.trim();
   if (presentacion.length > 1000)
-    err.presentacion = "Máximo 1000 caracteres";
+    err.presentacion = t.errPresentacionMax;
   else if (presentacion && containsBlockedWord(presentacion))
-    err.presentacion = "El campo contiene lenguaje inapropiado";
+    err.presentacion = t.errBlocked;
 
   return err;
 }
@@ -89,7 +80,11 @@ function validate(f: FormState, cvFile: File | null): FormErrors {
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
-export function JobApplicationForm() {
+interface Props {
+  t: typeof esT;
+}
+
+export function JobApplicationForm({ t }: Props) {
   const [form, setForm]           = useState<FormState>(EMPTY_FORM);
   const [cvFile, setCvFile]       = useState<File | null>(null);
   const [honeypot, setHoneypot]   = useState("");
@@ -129,7 +124,7 @@ export function JobApplicationForm() {
     e.preventDefault();
     setServerError("");
 
-    const validationErrors = validate(form, cvFile);
+    const validationErrors = validate(form, cvFile, t.form);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -151,27 +146,25 @@ export function JobApplicationForm() {
       formData.append("email", form.email);
       formData.append(
         "subject",
-        `Postulación CV — ${form.nombre} | ${form.area}`
+        `${t.form.subjectPrefix} — ${form.nombre} | ${form.area}`
       );
       formData.append(
         "message",
         [
           `Nombre:          ${form.nombre}`,
           `Email:           ${form.email}`,
-          `Edad:            ${form.edad} años`,
+          `Edad:            ${form.edad} ${t.form.msgEdadSuffix}`,
           `Estudios:        ${form.estudios}`,
           `Área de interés: ${form.area}`,
           form.presentacion
-            ? `\nCarta de presentación:\n${form.presentacion}`
+            ? `\n${t.form.msgPresentacionLabel}\n${form.presentacion}`
             : "",
         ]
           .filter(Boolean)
           .join("\n")
       );
-      // Adjuntar CV — Web3Forms lo incluye en el email
       if (cvFile) formData.append("attachment", cvFile);
 
-      // No establecer Content-Type — el navegador lo define con el boundary correcto
       const res  = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body:   formData,
@@ -185,11 +178,11 @@ export function JobApplicationForm() {
         setHoneypot("");
         if (fileInputRef.current) fileInputRef.current.value = "";
       } else {
-        setServerError(data.message ?? "Error al enviar. Intente nuevamente.");
+        setServerError(data.message ?? t.form.errDefault);
         setStatus("error");
       }
     } catch {
-      setServerError("Error de conexión. Verifique su internet e intente nuevamente.");
+      setServerError(t.form.errNetwork);
       setStatus("error");
     }
   };
@@ -215,17 +208,16 @@ export function JobApplicationForm() {
               <CheckCircle size={36} className="text-green-500" />
             </div>
             <h3 className="text-2xl font-bold text-[#001514] mb-3">
-              ¡Postulación enviada!
+              {t.form.successTitle}
             </h3>
             <p className="text-[#6e6e73] mb-8 max-w-sm">
-              Recibimos su CV. Nuestro equipo de RRHH lo revisará y se pondrá
-              en contacto si su perfil se ajusta a nuestras necesidades.
+              {t.form.successBody}
             </p>
             <button
               onClick={() => setStatus("idle")}
               className="text-[#297373] font-medium hover:underline"
             >
-              Enviar otra postulación
+              {t.form.successReset}
             </button>
           </motion.div>
         ) : (
@@ -257,14 +249,14 @@ export function JobApplicationForm() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-medium text-[#001514] mb-2">
-                  Nombre y apellido <span className="text-red-500">*</span>
+                  {t.form.labelNombre} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="nombre"
                   value={form.nombre}
                   onChange={handleChange}
-                  placeholder="Juan García"
+                  placeholder={t.form.placeholderNombre}
                   maxLength={100}
                   autoComplete="name"
                   aria-required="true"
@@ -280,14 +272,14 @@ export function JobApplicationForm() {
 
               <div>
                 <label className="block text-sm font-medium text-[#001514] mb-2">
-                  Email <span className="text-red-500">*</span>
+                  {t.form.labelEmail} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={form.email}
                   onChange={handleChange}
-                  placeholder="juan@ejemplo.com"
+                  placeholder={t.form.placeholderEmail}
                   maxLength={254}
                   autoComplete="email"
                   aria-required="true"
@@ -306,14 +298,14 @@ export function JobApplicationForm() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-medium text-[#001514] mb-2">
-                  Edad <span className="text-red-500">*</span>
+                  {t.form.labelEdad} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="number"
                   name="edad"
                   value={form.edad}
                   onChange={handleChange}
-                  placeholder="30"
+                  placeholder={t.form.placeholderEdad}
                   min={16}
                   max={80}
                   aria-required="true"
@@ -329,7 +321,7 @@ export function JobApplicationForm() {
 
               <div>
                 <label className="block text-sm font-medium text-[#001514] mb-2">
-                  Área de interés <span className="text-red-500">*</span>
+                  {t.form.labelArea} <span className="text-red-500">*</span>
                 </label>
                 <select
                   name="area"
@@ -339,8 +331,8 @@ export function JobApplicationForm() {
                   aria-invalid={!!errors.area}
                   className={inputCls("area")}
                 >
-                  <option value="">Seleccione un área...</option>
-                  {AREAS.map((a) => (
+                  <option value="">{t.form.placeholderArea}</option>
+                  {t.areas.map((a) => (
                     <option key={a} value={a}>{a}</option>
                   ))}
                 </select>
@@ -355,14 +347,14 @@ export function JobApplicationForm() {
             {/* Estudios */}
             <div>
               <label className="block text-sm font-medium text-[#001514] mb-2">
-                Estudios <span className="text-red-500">*</span>
+                {t.form.labelEstudios} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 name="estudios"
                 value={form.estudios}
                 onChange={handleChange}
-                placeholder="Ej: Ing. Mecánica — Universidad Nacional de Mar del Plata"
+                placeholder={t.form.placeholderEstudios}
                 maxLength={200}
                 aria-required="true"
                 aria-invalid={!!errors.estudios}
@@ -378,8 +370,8 @@ export function JobApplicationForm() {
             {/* CV Upload */}
             <div>
               <label className="block text-sm font-medium text-[#001514] mb-2">
-                Curriculum Vitae <span className="text-red-500">*</span>
-                <span className="text-[#6e6e73] font-normal ml-1">(PDF, DOC o DOCX — máx. 5 MB)</span>
+                {t.form.labelCv} <span className="text-red-500">*</span>
+                <span className="text-[#6e6e73] font-normal ml-1">{t.form.cvHint}</span>
               </label>
 
               {cvFile ? (
@@ -394,7 +386,7 @@ export function JobApplicationForm() {
                     type="button"
                     onClick={removeFile}
                     className="shrink-0 w-7 h-7 rounded-lg bg-[#6e6e73]/10 hover:bg-red-100 hover:text-red-500 flex items-center justify-center transition-colors duration-200"
-                    aria-label="Quitar archivo"
+                    aria-label={t.form.cvRemoveLabel}
                   >
                     <X size={14} />
                   </button>
@@ -409,7 +401,7 @@ export function JobApplicationForm() {
                 >
                   <Upload size={22} className={errors.cv ? "text-red-400" : "text-[#6e6e73]"} />
                   <span className="text-sm text-[#6e6e73]">
-                    Haga click para seleccionar su CV
+                    {t.form.cvUploadText}
                   </span>
                   <input
                     ref={fileInputRef}
@@ -434,8 +426,8 @@ export function JobApplicationForm() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <label className="block text-sm font-medium text-[#001514]">
-                  Carta de presentación{" "}
-                  <span className="text-[#6e6e73] font-normal">(opcional)</span>
+                  {t.form.labelPresentacion}{" "}
+                  <span className="text-[#6e6e73] font-normal">{t.form.presentacionOptional}</span>
                 </label>
                 <span className="text-xs text-[#6e6e73] tabular-nums">
                   {form.presentacion.length} / 1000
@@ -447,7 +439,7 @@ export function JobApplicationForm() {
                 onChange={handleChange}
                 rows={4}
                 maxLength={1000}
-                placeholder="Cuéntenos brevemente sobre usted y por qué le interesa trabajar en SINTEC S.A."
+                placeholder={t.form.placeholderPresentacion}
                 aria-invalid={!!errors.presentacion}
                 className={`${inputCls("presentacion")} resize-none`}
               />
@@ -489,19 +481,19 @@ export function JobApplicationForm() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
-                    Enviando...
+                    {t.form.sending}
                   </>
                 ) : (
                   <>
                     <Send size={18} />
-                    Enviar postulación
+                    {t.form.submit}
                   </>
                 )}
               </motion.button>
             </div>
 
             <p className="text-xs text-[#6e6e73] text-center">
-              Sus datos son confidenciales y serán utilizados únicamente para el proceso de selección.
+              {t.form.privacy}
             </p>
           </motion.form>
         )}
