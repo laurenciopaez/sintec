@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useConstants } from "@/lib/use-translations";
+import { STATS } from "@/lib/constants";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 function useCountUp(
